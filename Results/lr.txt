@@ -1,0 +1,116 @@
+$`Test for 2004`
+
+Call:
+lm(formula = fmla, data = df_lagged %>% filter(year == i))
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-0.27826 -0.06687 -0.02588  0.04124  0.36279 
+
+Coefficients:
+                                                                                   Estimate Std. Error t value Pr(>|t|)    
+(Intercept)                                                                       4.705e-01  4.045e-01   1.163  0.24666    
+gdp_regional                                                                     -2.358e-06  1.610e-06  -1.465  0.14516    
+econ_act_rate                                                                    -9.330e-03  2.157e-03  -4.325 2.87e-05 ***
+HTC                                                                               2.090e-02  6.466e-03   3.233  0.00153 ** 
+participation_in_formal_and_or_non_formal_training_25_to_64_year_olds_population  8.230e-03  3.256e-03   2.528  0.01258 *  
+MMEDAGEPOP                                                                       -7.165e-03  4.166e-03  -1.720  0.08765 .  
+higher_education_perc                                                            -4.904e-03  1.488e-03  -3.297  0.00124 ** 
+lag_4_gdp_regional                                                                1.687e-01  1.309e-01   1.289  0.19951    
+lag_4_econ_act_rate                                                               2.836e-01  2.993e-01   0.947  0.34504    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 0.1113 on 141 degrees of freedom
+  (69 obserwacji zostało skasowanych z uwagi na braki w nich zawarte)
+Multiple R-squared:  0.2986,	Adjusted R-squared:  0.2588 
+F-statistic: 7.503 on 8 and 141 DF,  p-value: 2.587e-08
+
+
+$`Test for 2009`
+
+Call:
+lm(formula = fmla, data = df_lagged %>% filter(year == i))
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-0.48267 -0.08879 -0.01636  0.03934  0.52685 
+
+Coefficients:
+                                                                                   Estimate Std. Error t value Pr(>|t|)    
+(Intercept)                                                                       2.517e-01  4.308e-01   0.584 0.559849    
+gdp_regional                                                                     -2.794e-08  1.706e-06  -0.016 0.986949    
+econ_act_rate                                                                    -1.973e-02  2.569e-03  -7.678 9.20e-13 ***
+HTC                                                                               2.541e-02  8.308e-03   3.059 0.002556 ** 
+participation_in_formal_and_or_non_formal_training_25_to_64_year_olds_population  1.005e-02  2.886e-03   3.482 0.000622 ***
+MMEDAGEPOP                                                                       -8.489e-03  4.458e-03  -1.904 0.058447 .  
+higher_education_perc                                                            -9.412e-03  1.857e-03  -5.069 9.72e-07 ***
+lag_4_gdp_regional                                                               -1.751e-01  1.116e-01  -1.569 0.118371    
+lag_4_econ_act_rate                                                               1.677e+00  4.356e-01   3.851 0.000162 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 0.1426 on 184 degrees of freedom
+  (40 obserwacji zostało skasowanych z uwagi na braki w nich zawarte)
+Multiple R-squared:  0.3841,	Adjusted R-squared:  0.3574 
+F-statistic: 14.35 on 8 and 184 DF,  p-value: 3.548e-16
+
+
+$`Test for 2014`
+
+Call:
+lm(formula = fmla, data = df_lagged %>% filter(year == i))
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-0.37220 -0.11101 -0.01425  0.09252  0.45186 
+
+Coefficients:
+                                                                                   Estimate Std. Error t value Pr(>|t|)    
+(Intercept)                                                                      -1.355e-01  4.476e-01  -0.303 0.762488    
+gdp_regional                                                                     -1.338e-06  1.510e-06  -0.886 0.376667    
+econ_act_rate                                                                    -1.066e-02  2.476e-03  -4.304 2.64e-05 ***
+HTC                                                                               6.487e-03  8.075e-03   0.803 0.422728    
+participation_in_formal_and_or_non_formal_training_25_to_64_year_olds_population  1.487e-03  1.752e-03   0.848 0.397202    
+MMEDAGEPOP                                                                       -2.400e-03  3.906e-03  -0.614 0.539635    
+higher_education_perc                                                            -2.495e-03  1.828e-03  -1.365 0.173704    
+lag_4_gdp_regional                                                               -3.516e-01  1.567e-01  -2.243 0.025973 *  
+lag_4_econ_act_rate                                                               1.519e+00  4.247e-01   3.578 0.000435 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 0.1435 on 198 degrees of freedom
+  (28 obserwacji zostało skasowanych z uwagi na braki w nich zawarte)
+Multiple R-squared:  0.2651,	Adjusted R-squared:  0.2354 
+F-statistic: 8.928 on 8 and 198 DF,  p-value: 1.988e-10
+
+
+$`Test for 2019`
+
+Call:
+lm(formula = fmla, data = df_lagged %>% filter(year == i))
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-0.47427 -0.08964  0.00005  0.06920  0.40871 
+
+Coefficients:
+                                                                                   Estimate Std. Error t value Pr(>|t|)    
+(Intercept)                                                                       9.133e-01  5.264e-01   1.735  0.08429 .  
+gdp_regional                                                                     -9.254e-07  1.562e-06  -0.593  0.55410    
+econ_act_rate                                                                    -1.863e-02  2.503e-03  -7.446 2.66e-12 ***
+HTC                                                                               2.206e-02  8.526e-03   2.588  0.01036 *  
+participation_in_formal_and_or_non_formal_training_25_to_64_year_olds_population  3.898e-03  1.844e-03   2.113  0.03578 *  
+MMEDAGEPOP                                                                       -4.180e-03  4.474e-03  -0.934  0.35133    
+higher_education_perc                                                            -9.106e-03  1.873e-03  -4.862 2.32e-06 ***
+lag_4_gdp_regional                                                               -4.253e-01  1.741e-01  -2.444  0.01539 *  
+lag_4_econ_act_rate                                                               1.363e+00  4.889e-01   2.787  0.00582 ** 
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 0.1614 on 204 degrees of freedom
+  (22 obserwacje zostały skasowane z uwagi na braki w nich zawarte)
+Multiple R-squared:  0.411,	Adjusted R-squared:  0.3879 
+F-statistic: 17.79 on 8 and 204 DF,  p-value: < 2.2e-16
+
+

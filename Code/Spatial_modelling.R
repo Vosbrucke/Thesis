@@ -59,10 +59,9 @@ formula_bivariate <- as.formula(sum_populist ~
                                   econ_act_rate)
 
 
-# Make a function to model the result per year
-modelling_per_year <- function(i) {
-  reg1 <- lm(formula_bivariate, df_lagged %>% 
-                   filter(!is.na(country)) %>% 
+# Make a function to model linear regression per year
+modelling_per_year <- function(i, formula) {
+  reg1 <- lm(formula, df_lagged %>% 
                    filter(year == i)) 
   
   # Check r^2
@@ -70,7 +69,7 @@ modelling_per_year <- function(i) {
 }
 
 # Apply function
-vector <- sapply(seq(2004, 2019, by = 5), modelling_per_year)
+vector <- sapply(seq(2004, 2019, by = 5), modelling_per_year, formula = formula_bivariate)
 vector
 
 
@@ -100,11 +99,20 @@ moran_per_year <- function(i) {
 
 # Apply function
 vector_moran <- lapply(seq(2004, 2019, by = 5), moran_per_year)
+
+# Apply names
+names(vector_moran) <- paste("Test for", seq(2004, 2019, by = 5))
+
 vector_moran # There is indeed spatial dependency
 
+# Save results in txt format
+sink("Results/moran_test.txt")
+print(vector_moran)
+sink()
 
-# Create a function to check which model should be of the best fit
-lm_per_year <- function(i) {
+
+# Create a function to check which spatial model should be of the best fit
+lm_per_year <- function(i, formula) {
   df_lagged_year <- df_lagged %>% 
     filter(year == i)
   
@@ -117,14 +125,14 @@ lm_per_year <- function(i) {
   # Create spatial weights for neighbors lists
   listw1 <- nb2listw(queen_neighbour, style = "W", zero.policy = TRUE)
   
-  reg1 <- lm(formula_bivariate, df_lagged_year) 
+  reg1 <- lm(formula, df_lagged_year) 
 
   # Lagrange Multiplier diagnostics
   lm.LMtests(reg1, listw1, test= "all")
 }
 
 # For some reason the function does not work on 2004 year (no neighbor regions found) so this year is, for now- only until it is debugged, removed from the analysis
-vector_lm <- lapply(seq(2009, 2019, by = 5), lm_per_year)
+vector_lm <- lapply(seq(2009, 2019, by = 5), lm_per_year, formula = formula_bivariate)
 
 # Apply names
 names(vector_lm) <- paste("Test for", seq(2009, 2019, by = 5))
@@ -133,6 +141,26 @@ vector_lm
 
 # Save results in txt format
 sink("Results/lm.txt")
+print(lapply(vector_lm, summary))
+sink()
+
+
+# Multivariate analysis
+
+# Prepare a vector of independent variables
+r_side <- colnames(df_lagged_model)[8:15]
+
+# Column names to check in formula: sum_farright, sum_eurosceptic, sum_populist
+formula_multivariate <- as.formula(paste("sum_populist ~ ", paste(r_side, collapse= "+")))
+
+vector_lm <- lapply(seq(2009, 2019, by = 5), lm_per_year, formula = formula_multivariate)
+
+# Apply names
+names(vector_lm) <- paste("Test for", seq(2009, 2019, by = 5))
+
+
+# Save results in txt format
+sink("Results/lm_multivariate.txt")
 print(lapply(vector_lm, summary))
 sink()
 

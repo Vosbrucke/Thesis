@@ -1,30 +1,15 @@
-$`Test for 2004`
-	Lagrange multiplier diagnostics for spatial dependence
-data:  
-model: lm(formula = formula_bivariate, data = df_lagged_year)
-weights: listw1
- 
-       statistic parameter   p.value    
-LMerr  78.280095         1 < 2.2e-16 ***
-LMlag  85.675032         1 < 2.2e-16 ***
-RLMerr  0.018178         1  0.892748    
-RLMlag  7.413116         1  0.006475 ** 
-SARMA  85.693210         2 < 2.2e-16 ***
----
-Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
-
 $`Test for 2009`
 	Lagrange multiplier diagnostics for spatial dependence
 data:  
 model: lm(formula = formula_bivariate, data = df_lagged_year)
 weights: listw1
  
-        statistic parameter p.value    
-LMerr  129.763628         1 < 2e-16 ***
-LMlag  134.030057         1 < 2e-16 ***
-RLMerr   0.025527         1 0.87306    
-RLMlag   4.291956         1 0.03829 *  
-SARMA  134.055584         2 < 2e-16 ***
+       statistic parameter   p.value    
+LMerr   131.1868         1 < 2.2e-16 ***
+LMlag   126.0955         1 < 2.2e-16 ***
+RLMerr    7.8316         1  0.005134 ** 
+RLMlag    2.7402         1  0.097850 .  
+SARMA   133.9271         2 < 2.2e-16 ***
 ---
 Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
 
@@ -34,12 +19,12 @@ data:
 model: lm(formula = formula_bivariate, data = df_lagged_year)
 weights: listw1
  
-       statistic parameter   p.value    
-LMerr   115.0954         1 < 2.2e-16 ***
-LMlag   127.7807         1 < 2.2e-16 ***
-RLMerr    2.0664         1 0.1505792    
-RLMlag   14.7516         1 0.0001226 ***
-SARMA   129.8470         2 < 2.2e-16 ***
+       statistic parameter p.value    
+LMerr   112.8210         1 < 2e-16 ***
+LMlag   112.5552         1 < 2e-16 ***
+RLMerr    3.9200         1 0.04771 *  
+RLMlag    3.6542         1 0.05593 .  
+SARMA   116.4752         2 < 2e-16 ***
 ---
 Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
 
@@ -49,12 +34,12 @@ data:
 model: lm(formula = formula_bivariate, data = df_lagged_year)
 weights: listw1
  
-       statistic parameter   p.value    
-LMerr    83.5455         1 < 2.2e-16 ***
-LMlag    94.8870         1 < 2.2e-16 ***
-RLMerr    1.0303         1 0.3100865    
-RLMlag   12.3718         1 0.0004359 ***
-SARMA    95.9173         2 < 2.2e-16 ***
+       statistic parameter p.value    
+LMerr    81.1717         1  <2e-16 ***
+LMlag    78.8048         1  <2e-16 ***
+RLMerr    4.7856         1  0.0287 *  
+RLMlag    2.4187         1  0.1199    
+SARMA    83.5904         2  <2e-16 ***
 ---
 Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
 

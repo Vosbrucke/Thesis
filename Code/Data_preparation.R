@@ -233,6 +233,9 @@ employment_in_tech_full <- employment_in_tech_to_2008 %>%
   arrange(geo, TIME_PERIOD) %>% 
   select(geo, TIME_PERIOD, HTC)
 
+# HTC will not be used in the analysis due to high positive correlation with HRST and 
+# higher number of missing number (928) then HRST which had 411 NAs.
+
 
 # HR in science data
 HR_in_science <- read_csv("Raw_data/Eurostat/HR in science and technology by category and NUTS 2 regions.csv") %>% 
@@ -268,8 +271,8 @@ population_structure <- read_csv("Raw_data/Eurostat/Population structure indicat
 
 # Population by educational attainment level eurostat data
 education_level <- read_csv("Raw_data/Population by educational attainment level.csv") %>% 
-  filter(age == "Y25-64", isced11 == "ED3_4") %>% 
-  select(geo, TIME_PERIOD, ed3_4 = OBS_VALUE)
+  filter(age == "Y25-64", isced11 == "ED5-8") %>% 
+  select(geo, TIME_PERIOD, higher_education_perc = OBS_VALUE)
 
 
 # Disposable income of households eurostat data
