@@ -66,6 +66,17 @@ elections_pop <- elections %>%
     vote_perc = partyvote / totalvote
   )
 
+# Fix Ireland regions code
+elections_pop_ireland_fix <- elections_pop %>% 
+  filter(country == "Ireland") %>% 
+  select(-nuts2) %>% 
+  inner_join(tibble(nuts2 = c("IE04", "IE05", "IE061", "IE062", "IE063"), regionname = c("North West", "South", "East", "Dublin", "Midlands North West")), by = "regionname") %>% 
+  relocate(nuts2, .after = nutslevel)
+
+elections_pop <- elections_pop %>% 
+  filter(country != "Ireland") %>% 
+  bind_rows(elections_pop_ireland_fix)
+
 # Make a test for 2019 elections in Poland. The result is the percentage support of far right parties by nuts 2 regions
 elections_pop %>% 
   filter(country == "Poland") %>%

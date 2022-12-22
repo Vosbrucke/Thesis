@@ -314,5 +314,6 @@ joined_fully <- joined %>%
   mutate(is_duplicate = year == lag(year)) %>% 
   filter(is_duplicate == F)
 
+
 # Save the data frame
 write_csv(joined_fully, "Processed_data/joined_regional_data.csv")
