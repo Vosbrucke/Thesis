@@ -9,7 +9,9 @@ library(ggtext)
 library(sf)
 library(spdep)
 library(spatialreg)
-
+library(splm)
+library(spdep)
+library(plm)
 
 # Load modelling data frame- without columns to lag variables on
 df_lagged <- read_csv("Processed_data/df_to_modelling.csv") %>% 
@@ -167,3 +169,19 @@ sink()
 
 # Write the region shapefile
 # st_write(SHP_regions, "Processed_data/Shapefiles/SHP_regions.shp", driver = "ESRI Shapefile", append = FALSE)
+
+# Define panel data
+panel <- pdata.frame(df_lagged, c("nuts2", "year"))
+
+
+spml(formula_bivariate, data = panel, listw = listw1, , model = "within", lag = TRUE , spatial.error = "none")
+
+fixed <- plm(formula_bivariate, data = panel, model="within")
+
+random <- plm(formula_bivariate, data = panel, model="random")
+
+# Perform Hausman Test
+phtest(fixed, random)
+
+# The model with fixed effects is better suited to the data
+slmtest(formula_bivariate, data = panel, listw = listw1, model = "within", test = c("lme", "lml", "rlme", "rlml"))

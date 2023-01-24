@@ -184,7 +184,7 @@ sink()
 
 # Visualize the political extreme situation for Hungary
 visualization_elections <- elections_extremes %>% 
-  filter(country == "Hungary")
+  filter(country == "Ireland")
 
 visualization_elections %>% 
   ggplot(aes(year, sum_eurosceptic)) +
@@ -209,8 +209,8 @@ ggsave("Plots/Votes_percentage_Hungary.png", width = 15, height = 15, units = "c
 
 elections_extremes %>% 
   ggplot(aes(year, sum_populist, group = nuts2)) +
-  geom_line(color = "lightgrey") +
-  geom_point(color = "white", fill = "lightgrey", shape = 21, stroke = 0.5, size = 1) +
+  geom_line(color = "grey") +
+  geom_point(color = "white", fill = "grey", shape = 21, stroke = 0.5, size = 1) +
   labs(
     x = "",
     y = "",

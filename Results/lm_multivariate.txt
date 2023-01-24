@@ -5,11 +5,11 @@ model: lm(formula = formula, data = df_lagged_year)
 weights: listw1
  
        statistic parameter   p.value    
-LMerr  71.555221         1 < 2.2e-16 ***
-LMlag  93.072032         1 < 2.2e-16 ***
-RLMerr  0.026693         1    0.8702    
-RLMlag 21.543503         1 3.459e-06 ***
-SARMA  93.098725         2 < 2.2e-16 ***
+LMerr   130.3295         1 < 2.2e-16 ***
+LMlag   126.8652         1 < 2.2e-16 ***
+RLMerr    6.7563         1  0.009342 ** 
+RLMlag    3.2920         1  0.069619 .  
+SARMA   133.6215         2 < 2.2e-16 ***
 ---
 Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
 
@@ -19,14 +19,12 @@ data:
 model: lm(formula = formula, data = df_lagged_year)
 weights: listw1
  
-       statistic parameter p.value    
-LMerr    96.9109         1 < 2e-16 ***
-LMlag   100.0732         1 < 2e-16 ***
-RLMerr    2.6048         1 0.10654    
-RLMlag    5.7671         1 0.01633 *  
-SARMA   102.6780         2 < 2e-16 ***
----
-Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+       statistic parameter p.value
+LMerr         NA         1      NA
+LMlag         NA         1      NA
+RLMerr        NA         1      NA
+RLMlag        NA         1      NA
+SARMA         NA         2      NA
 
 $`Test for 2019`
 	Lagrange multiplier diagnostics for spatial dependence
@@ -34,12 +32,10 @@ data:
 model: lm(formula = formula, data = df_lagged_year)
 weights: listw1
  
-        statistic parameter   p.value    
-LMerr  44.0412801         1 3.215e-11 ***
-LMlag  60.4132355         1 7.661e-15 ***
-RLMerr  0.0016602         1    0.9675    
-RLMlag 16.3736156         1 5.200e-05 ***
-SARMA  60.4148957         2 7.605e-14 ***
----
-Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+       statistic parameter p.value
+LMerr         NA         1      NA
+LMlag         NA         1      NA
+RLMerr        NA         1      NA
+RLMlag        NA         1      NA
+SARMA         NA         2      NA
 

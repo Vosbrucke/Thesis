@@ -1,45 +1,41 @@
 $`Test for 2009`
 	Lagrange multiplier diagnostics for spatial dependence
 data:  
-model: lm(formula = formula_bivariate, data = df_lagged_year)
+model: lm(formula = formula, data = df_lagged_year)
 weights: listw1
  
        statistic parameter   p.value    
-LMerr   131.1868         1 < 2.2e-16 ***
-LMlag   126.0955         1 < 2.2e-16 ***
-RLMerr    7.8316         1  0.005134 ** 
-RLMlag    2.7402         1  0.097850 .  
-SARMA   133.9271         2 < 2.2e-16 ***
+LMerr   130.3295         1 < 2.2e-16 ***
+LMlag   126.8652         1 < 2.2e-16 ***
+RLMerr    6.7563         1  0.009342 ** 
+RLMlag    3.2920         1  0.069619 .  
+SARMA   133.6215         2 < 2.2e-16 ***
 ---
 Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
 
 $`Test for 2014`
 	Lagrange multiplier diagnostics for spatial dependence
 data:  
-model: lm(formula = formula_bivariate, data = df_lagged_year)
+model: lm(formula = formula, data = df_lagged_year)
 weights: listw1
  
-       statistic parameter p.value    
-LMerr   112.8210         1 < 2e-16 ***
-LMlag   112.5552         1 < 2e-16 ***
-RLMerr    3.9200         1 0.04771 *  
-RLMlag    3.6542         1 0.05593 .  
-SARMA   116.4752         2 < 2e-16 ***
----
-Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+       statistic parameter p.value
+LMerr         NA         1      NA
+LMlag         NA         1      NA
+RLMerr        NA         1      NA
+RLMlag        NA         1      NA
+SARMA         NA         2      NA
 
 $`Test for 2019`
 	Lagrange multiplier diagnostics for spatial dependence
 data:  
-model: lm(formula = formula_bivariate, data = df_lagged_year)
+model: lm(formula = formula, data = df_lagged_year)
 weights: listw1
  
-       statistic parameter p.value    
-LMerr    81.1717         1  <2e-16 ***
-LMlag    78.8048         1  <2e-16 ***
-RLMerr    4.7856         1  0.0287 *  
-RLMlag    2.4187         1  0.1199    
-SARMA    83.5904         2  <2e-16 ***
----
-Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+       statistic parameter p.value
+LMerr         NA         1      NA
+LMlag         NA         1      NA
+RLMerr        NA         1      NA
+RLMlag        NA         1      NA
+SARMA         NA         2      NA
 
