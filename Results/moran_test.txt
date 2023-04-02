@@ -1,56 +1,42 @@
-$`Test for 2004`
-
-	Moran I test under randomisation
-
-data:  df_lagged_year %>% pull(sum_populist)  
-weights: listw1    
-
-Moran I statistic standard deviate = 10.106, p-value < 2.2e-16
-alternative hypothesis: greater
-sample estimates:
-Moran I statistic       Expectation          Variance 
-      0.510059000      -0.005076142       0.002598360 
-
-
 $`Test for 2009`
 
 	Moran I test under randomisation
 
-data:  df_lagged_year %>% pull(sum_populist)  
+data:  df_lagged_year$growth_sum_eurosceptic  
 weights: listw1    
 
-Moran I statistic standard deviate = 12.062, p-value < 2.2e-16
+Moran I statistic standard deviate = 28.228, p-value < 2.2e-16
 alternative hypothesis: greater
 sample estimates:
 Moran I statistic       Expectation          Variance 
-      0.585435132      -0.004739336       0.002393976 
+     0.5833488492     -0.0009615385      0.0004284787 
 
 
 $`Test for 2014`
 
 	Moran I test under randomisation
 
-data:  df_lagged_year %>% pull(sum_populist)  
+data:  df_lagged_year$growth_sum_eurosceptic  
 weights: listw1    
 
-Moran I statistic standard deviate = 11.758, p-value < 2.2e-16
+Moran I statistic standard deviate = 29.925, p-value < 2.2e-16
 alternative hypothesis: greater
 sample estimates:
 Moran I statistic       Expectation          Variance 
-      0.570879772      -0.004694836       0.002396173 
+     0.5983470342     -0.0009425071      0.0004010604 
 
 
 $`Test for 2019`
 
 	Moran I test under randomisation
 
-data:  df_lagged_year %>% pull(sum_populist)  
+data:  df_lagged_year$growth_sum_eurosceptic  
 weights: listw1    
 
-Moran I statistic standard deviate = 10.125, p-value < 2.2e-16
+Moran I statistic standard deviate = 28.927, p-value < 2.2e-16
 alternative hypothesis: greater
 sample estimates:
 Moran I statistic       Expectation          Variance 
-      0.492476689      -0.004694836       0.002411280 
+     0.5930604511     -0.0009425071      0.0004216594 
 
 

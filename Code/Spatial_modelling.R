@@ -74,7 +74,7 @@ modelling_per_year <- function(i, formula) {
 vector <- sapply(seq(2004, 2019, by = 5), modelling_per_year, formula = formula_bivariate)
 vector
 
-
+i = 2019
 # Make a function to check if spatial dependency is present
 moran_per_year <- function(i) {
   
@@ -100,10 +100,10 @@ moran_per_year <- function(i) {
 }
 
 # Apply function
-vector_moran <- lapply(seq(2004, 2019, by = 5), moran_per_year)
+vector_moran <- lapply(seq(2004, 2009, by = 5), moran_per_year)
 
 # Apply names
-names(vector_moran) <- paste("Test for", seq(2004, 2019, by = 5))
+names(vector_moran) <- paste("Test for", seq(2004, 2009, by = 5))
 
 vector_moran # There is indeed spatial dependency
 

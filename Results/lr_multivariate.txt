@@ -1,0 +1,99 @@
+$`Test for 2009`
+
+Call:
+lm(formula = formula, data = df %>% filter(year == i))
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-5.0095 -0.3404 -0.1783  0.0561  4.0705 
+
+Coefficients:
+                        Estimate Std. Error t value Pr(>|t|)    
+(Intercept)            1.132e+00  1.129e+00   1.003   0.3162    
+growth_sum_farright    4.744e-01  1.747e-02  27.163  < 2e-16 ***
+gdp                    3.925e-06  3.975e-06   0.987   0.3237    
+population             2.193e-07  3.227e-07   0.680   0.4969    
+employment_rate        2.473e-01  3.673e-01   0.673   0.5009    
+ge65                  -2.103e-06  1.893e-06  -1.111   0.2667    
+elder_rate            -5.996e+00  1.140e+00  -5.262 1.81e-07 ***
+fem_rate               1.496e-04  9.680e-03   0.015   0.9877    
+migration_rate         5.792e-03  5.789e-03   1.000   0.3174    
+pop_density           -5.976e-05  2.836e-05  -2.107   0.0354 *  
+gdp_lag_4              1.871e-01  2.182e-01   0.857   0.3916    
+employment_rate_lag_4 -6.191e-02  5.212e-01  -0.119   0.9055    
+migration_rate_lag_4  -6.357e-03  6.596e-03  -0.964   0.3354    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 0.7405 on 854 degrees of freedom
+  (227 observations deleted due to missingness)
+Multiple R-squared:  0.5359,	Adjusted R-squared:  0.5294 
+F-statistic: 82.17 on 12 and 854 DF,  p-value: < 2.2e-16
+
+
+$`Test for 2014`
+
+Call:
+lm(formula = formula, data = df %>% filter(year == i))
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-53.133  -1.395   1.126   2.422  60.806 
+
+Coefficients:
+                        Estimate Std. Error t value Pr(>|t|)    
+(Intercept)            1.044e+01  9.459e+00   1.103 0.270125    
+growth_sum_farright    5.572e+00  1.045e-01  53.308  < 2e-16 ***
+gdp                   -4.552e-06  2.594e-05  -0.175 0.860736    
+population             1.010e-06  3.273e-06   0.309 0.757593    
+employment_rate        1.089e+00  2.983e+00   0.365 0.715256    
+ge65                  -7.782e-06  1.763e-05  -0.441 0.659052    
+elder_rate             2.037e+01  9.142e+00   2.228 0.026095 *  
+fem_rate              -2.588e-02  8.030e-02  -0.322 0.747299    
+migration_rate         7.610e-02  4.859e-02   1.566 0.117684    
+pop_density            5.885e-04  2.499e-04   2.355 0.018740 *  
+gdp_lag_4              8.423e+00  2.345e+00   3.592 0.000345 ***
+employment_rate_lag_4 -2.371e+01  4.557e+00  -5.204 2.39e-07 ***
+migration_rate_lag_4   4.673e-03  2.842e-02   0.164 0.869454    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 6.799 on 966 degrees of freedom
+  (134 observations deleted due to missingness)
+Multiple R-squared:  0.766,	Adjusted R-squared:  0.7631 
+F-statistic: 263.5 on 12 and 966 DF,  p-value: < 2.2e-16
+
+
+$`Test for 2019`
+
+Call:
+lm(formula = formula, data = df %>% filter(year == i))
+
+Residuals:
+   Min     1Q Median     3Q    Max 
+-4.899 -1.313 -0.367  0.832 52.809 
+
+Coefficients:
+                        Estimate Std. Error t value Pr(>|t|)    
+(Intercept)            5.737e+01  4.109e+00  13.961  < 2e-16 ***
+growth_sum_farright   -2.789e-01  4.873e-02  -5.724 1.36e-08 ***
+gdp                    4.757e-05  9.498e-06   5.008 6.46e-07 ***
+population             4.949e-07  1.389e-06   0.356    0.722    
+employment_rate       -1.148e+01  1.227e+00  -9.355  < 2e-16 ***
+ge65                  -2.528e-06  7.078e-06  -0.357    0.721    
+elder_rate            -1.425e+01  3.466e+00  -4.111 4.24e-05 ***
+fem_rate              -2.808e-01  2.901e-02  -9.679  < 2e-16 ***
+migration_rate        -6.958e-02  1.607e-02  -4.330 1.64e-05 ***
+pop_density           -1.283e-04  1.050e-04  -1.222    0.222    
+gdp_lag_4             -8.567e+00  9.575e-01  -8.947  < 2e-16 ***
+employment_rate_lag_4 -1.039e+01  2.439e+00  -4.259 2.24e-05 ***
+migration_rate_lag_4   6.618e-03  1.115e-02   0.593    0.553    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 2.799 on 1043 degrees of freedom
+  (57 observations deleted due to missingness)
+Multiple R-squared:  0.2601,	Adjusted R-squared:  0.2516 
+F-statistic: 30.55 on 12 and 1043 DF,  p-value: < 2.2e-16
+
+
