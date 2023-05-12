@@ -63,9 +63,13 @@ shp %<>%
 shp_1 <- shp %>% 
   left_join(df, by = c("NUTS_ID" = "nuts2016"))
 
-# Remove regions with no neighbor from data frame. I'm not using shp_1 because of some, unknown for me currently, reason 
+# Remove regions with no neighbor from data frame. 
 df_shp <- df %>% 
   right_join(shp, by = c("nuts2016" = "NUTS_ID"))
 
+
 # Write data with spatial geometry
-st_write(shp, "Processed_data/df_shp.shp", driver = "ESRI Shapefile", append = FALSE)
+sf::st_write(df_shp, "Processed_data/df_shp.shp") #, driver = "ESRI Shapefile", append = FALSE)
+
+# Write column names (shapefiles are limited to 10 characters- column names in st_write funtion get abbreviated)
+write_csv(as.data.frame(colnames(df_shp)), "Processed_data/df_shp_colnames.csv")

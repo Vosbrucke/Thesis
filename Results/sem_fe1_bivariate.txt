@@ -1,0 +1,76 @@
+$coefficients
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+-0.1643  0.3742  0.9127  0.5663  0.9317  0.9507 
+
+$errcomp
+Length  Class   Mode 
+     0   NULL   NULL 
+
+$vcov
+       V1                  V2                  V3           
+ Min.   :0.0000000   Min.   :0.000e+00   Min.   :0.000e+00  
+ 1st Qu.:0.0000000   1st Qu.:0.000e+00   1st Qu.:0.000e+00  
+ Median :0.0000000   Median :0.000e+00   Median :0.000e+00  
+ Mean   :0.0001909   Mean   :1.817e-05   Mean   :5.081e-05  
+ 3rd Qu.:0.0002864   3rd Qu.:2.726e-05   3rd Qu.:7.621e-05  
+ Max.   :0.0005728   Max.   :5.452e-05   Max.   :1.524e-04  
+
+$spat.coef
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+-0.1643  0.1049  0.3742  0.3742  0.6434  0.9127 
+
+$vcov.errcomp
+Length  Class   Mode 
+     0   NULL   NULL 
+
+$residuals
+    Min.  1st Qu.   Median     Mean  3rd Qu.     Max. 
+-38.1938  -2.1321   0.1175   0.0000   2.0362  55.2868 
+
+$fitted.values
+       V1          
+ Min.   :-36.5787  
+ 1st Qu.: -0.4606  
+ Median :  4.5751  
+ Mean   :  5.7878  
+ 3rd Qu.: 10.7762  
+ Max.   : 42.0640  
+
+$sigma2
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+  10.75   10.75   10.75   10.75   10.75   10.75 
+
+$type
+   Length     Class      Mode 
+        1 character character 
+
+$model
+       y           growth_populism_p_perc
+ Min.   :-41.839   Min.   :-38.096       
+ 1st Qu.: -1.357   1st Qu.: -1.044       
+ Median :  3.206   Median :  3.483       
+ Mean   :  4.982   Mean   :  4.584       
+ 3rd Qu.:  9.421   3rd Qu.:  9.498       
+ Max.   : 64.307   Max.   : 40.105       
+
+$call
+Length  Class   Mode 
+     8   call   call 
+
+$logLik
+Length  Class   Mode 
+     0   NULL   NULL 
+
+$method
+   Length     Class      Mode 
+        1 character character 
+
+$effects
+   Length     Class      Mode 
+        1 character character 
+
+$res.eff
+         Length Class  Mode
+         7      -none- list
+res.corr 0      -none- NULL
+

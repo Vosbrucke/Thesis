@@ -1,0 +1,77 @@
+$coefficients
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+ 0.9433  0.9700  0.9966  0.9966  1.0233  1.0500 
+
+$arcoef
+Length  Class   Mode 
+     0   NULL   NULL 
+
+$errcomp
+    Min.  1st Qu.   Median     Mean  3rd Qu.     Max. 
+-0.11550 -0.05775  0.00000  0.25159  0.43514  0.87028 
+
+$vcov
+  (Intercept)         growth_populism_p_perc
+ Min.   :-0.0007305   Min.   :-7.305e-04    
+ 1st Qu.: 0.0659190   1st Qu.:-5.105e-04    
+ Median : 0.1325685   Median :-2.905e-04    
+ Mean   : 0.1325685   Mean   :-2.905e-04    
+ 3rd Qu.: 0.1992180   3rd Qu.:-7.051e-05    
+ Max.   : 0.2658675   Max.   : 1.495e-04    
+
+$vcov.arcoef
+Length  Class   Mode 
+     0   NULL   NULL 
+
+$vcov.errcomp
+      phi                  psi                  rho            
+ Min.   :-2.318e-08   Min.   :-8.118e-06   Min.   :-8.118e-06  
+ 1st Qu.:-1.197e-08   1st Qu.:-4.070e-06   1st Qu.:-4.059e-06  
+ Median :-7.492e-10   Median :-2.318e-08   Median :-7.500e-10  
+ Mean   :-7.978e-09   Mean   :-2.354e-06   Mean   : 1.768e-05  
+ 3rd Qu.:-3.751e-10   3rd Qu.: 5.271e-07   3rd Qu.: 3.058e-05  
+ Max.   :-1.087e-12   Max.   : 1.077e-06   Max.   : 6.116e-05  
+
+$residuals
+    Min.  1st Qu.   Median     Mean  3rd Qu.     Max. 
+-40.9884  -1.2297  -0.8987  -0.3918  -0.3586  66.5153 
+
+$fitted.values
+     Min.   1st Qu.    Median      Mean   3rd Qu.      Max. 
+-34.88634   0.06525   4.33576   5.37407  10.00996  38.88179 
+
+$sigma2
+      Length Class  Mode   
+one   1      -none- numeric
+idios 1      -none- numeric
+id    1      -none- numeric
+
+$model
+       y                 V2         
+ Min.   :-41.839   Min.   :-38.096  
+ 1st Qu.: -1.357   1st Qu.: -1.044  
+ Median :  3.206   Median :  3.483  
+ Mean   :  4.982   Mean   :  4.584  
+ 3rd Qu.:  9.421   3rd Qu.:  9.498  
+ Max.   : 64.307   Max.   : 40.105  
+
+$type
+   Length     Class      Mode 
+        1 character character 
+
+$type.des
+   Length     Class      Mode 
+        1 character character 
+
+$call
+Length  Class   Mode 
+     5   call   call 
+
+$errors
+   Length     Class      Mode 
+        1 character character 
+
+$logLik
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+  -8431   -8431   -8431   -8431   -8431   -8431 
+

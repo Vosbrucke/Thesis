@@ -26,7 +26,13 @@ shp_0 %<>%
   filter(is_neighbor == T)
 
 # Write data with spatial geometry
-df_shp <- st_read("Processed_data/df_shp.shp", driver = "ESRI Shapefile", append = FALSE)
+df_shp <- sf::st_read("Processed_data/df_shp.shp")
+
+# Read data with column names (shapefiles are limited to 10 characters- column names are abbreviated)
+df_shp_colnames <- read_csv("Processed_data/df_shp_colnames.csv") %>% pull()
+
+df_shp %<>% 
+  set_colnames(df_shp_colnames)
 
 # Add a theme map
 theme_map <- function(...) {
@@ -81,32 +87,36 @@ theme_map <- function(...) {
 {
   # Mapping eurosceptism in the selected countries
   map_per_year_eu_scept_dv <- function(i) {
-    ggplot(df_shp %>% filter(year == i)) +
-      geom_sf(data = df_shp %>% filter(!CNTR_CODE %in% c("FR", "PT")), fill = "lightgrey", color = "white") +
-      geom_sf(aes(fill = dev_mean$sum_eurosceptic), color = "white", linewidth = 0.1) +
-      scale_fill_gradient2(limits = c(-40, 40), low = "#3B9AB2", mid = "#F5F5F2", high = "#F21A00") +
-      # scale_fill_gradient2(low = "#3B9AB2", mid = "#F5F5F2", high = "#F21A00") +
+    ggplot(df_shp %>% filter(year == i), aes(geometry = geometry)) +
+      geom_sf(data = df_shp %>% filter(!CNTR_CODE %in% c("FR", "PT", "HR", "RO")), fill = "lightgrey", color = "white") +
+      geom_sf(aes(fill = growth_eurosceptic_p_perc), color = "white", linewidth = 0.1) +
+      # The one below is for relative values (perc only)
+      # scale_fill_gradient2(limits = c(-40, 40), low = "#3B9AB2", mid = "#F5F5F2", high = "#F21A00") +
+      # The one below is for the p_perc one
+      # scale_fill_gradient2(limits = c(-40, 40), low = "#3B9AB2", mid = "#F5F5F2", high = "#F21A00") +
+      # Dunno this one
+      scale_fill_gradient2(low = "#3B9AB2", mid = "#F5F5F2", high = "#F21A00", limits = c(-45, 65)) +
       # (limits = c(-40,40), option = "magma", direction = -1) +
       labs(
         x = "", 
         y = "", 
-        title = paste("Country level deviation from mean of votes on\neurosceptism parties in elections to European Parliament", "in", i),
+        title = paste("Growth of eurosceptic parties in", i),
       ) +
       theme_map() +
-      guides(fill = guide_colourbar(title = "Deviation in ppt"))
+      guides(fill = guide_colourbar(title = "Growth in % points"))
     
-    ggsave(paste0("Plots/Election_results_distribution/Eurosceptism_sd_spatial_distribution_in_", i, ".png"), bg = "white", dpi = 900, width = 20, height = 15, units = "cm")
+    ggsave(paste0("Plots/Election_results_distribution/Growth_eurosceptic_p_perc_", i, ".png"), bg = "white", dpi = 900, width = 20, height = 15, units = "cm")
   }
   
   # Create a plot for each elections separately
-  lapply(seq(2004, 2019, by = 5), map_per_year_eu_scept_dv)
+  lapply(seq(2009, 2019, by = 5), map_per_year_eu_scept_dv)
   
   # Plot without deviation
   map_per_year_eu_scept <- function(i) {
-    ggplot(shp_1 %>% filter(year == i)) +
+    ggplot(shp_1 %>% filter(year == i) %>% mutate(sum_eurosceptic = sum_eurosceptic * 100)) +
       geom_sf(data = shp_0 %>% filter(!CNTR_CODE %in% c("FR", "PT")), fill = "#ECECE9", color = "white") +
       geom_sf(aes(fill = sum_eurosceptic), color = "white", linewidth = 0.1) +
-      scale_fill_viridis_c(limits = c(0,1), option = "magma", direction = -1) +
+      scale_fill_viridis_c(limits = c(0,100), option = "magma", direction = -1) +
       labs(
         x = "", 
         y = "", 

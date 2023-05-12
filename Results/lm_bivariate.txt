@@ -1,45 +1,45 @@
 $`Test for 2009`
 	Lagrange multiplier diagnostics for spatial dependence
 data:  
-model: lm(formula = formula, data = df_lagged_year_2)
+model: lm(formula = formula, data = df_per_year_2)
 weights: listw1
  
-       statistic parameter   p.value    
-LMerr   611.1593         1 < 2.2e-16 ***
-LMlag   605.9364         1 < 2.2e-16 ***
-RLMerr    7.5616         1  0.005963 ** 
-RLMlag    2.3387         1  0.126198    
-SARMA   613.4980         2 < 2.2e-16 ***
+       statistic parameter p.value    
+LMerr   576.6309         1 < 2e-16 ***
+LMlag   464.9908         1 < 2e-16 ***
+RLMerr  115.8197         1 < 2e-16 ***
+RLMlag    4.1796         1 0.04091 *  
+SARMA   580.8105         2 < 2e-16 ***
 ---
 Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
 
 $`Test for 2014`
 	Lagrange multiplier diagnostics for spatial dependence
 data:  
-model: lm(formula = formula, data = df_lagged_year_2)
+model: lm(formula = formula, data = df_per_year_2)
 weights: listw1
  
-        statistic parameter p.value    
-LMerr  452.222656         1  <2e-16 ***
-LMlag  452.042914         1  <2e-16 ***
-RLMerr   0.277593         1  0.5983    
-RLMlag   0.097851         1  0.7544    
-SARMA  452.320507         2  <2e-16 ***
+       statistic parameter p.value    
+LMerr  506.00076         1 < 2e-16 ***
+LMlag  509.14334         1 < 2e-16 ***
+RLMerr   0.63358         1 0.42605    
+RLMlag   3.77616         1 0.05199 .  
+SARMA  509.77692         2 < 2e-16 ***
 ---
 Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
 
 $`Test for 2019`
 	Lagrange multiplier diagnostics for spatial dependence
 data:  
-model: lm(formula = formula, data = df_lagged_year_2)
+model: lm(formula = formula, data = df_per_year_2)
 weights: listw1
  
-       statistic parameter p.value    
-LMerr   867.5307         1 < 2e-16 ***
-LMlag   870.6381         1 < 2e-16 ***
-RLMerr    3.0697         1 0.07977 .  
-RLMlag    6.1770         1 0.01294 *  
-SARMA   873.7078         2 < 2e-16 ***
+       statistic parameter   p.value    
+LMerr    216.120         1 < 2.2e-16 ***
+LMlag     84.620         1 < 2.2e-16 ***
+RLMerr   147.626         1 < 2.2e-16 ***
+RLMlag    16.125         1 5.929e-05 ***
+SARMA    232.245         2 < 2.2e-16 ***
 ---
 Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
 

@@ -2,41 +2,41 @@ $`Test for 2009`
 
 	Moran I test under randomisation
 
-data:  df_lagged_year$growth_sum_eurosceptic  
+data:  df_shp_year$growth_eurosceptic_p_perc  
 weights: listw1    
 
-Moran I statistic standard deviate = 28.228, p-value < 2.2e-16
+Moran I statistic standard deviate = 26.021, p-value < 2.2e-16
 alternative hypothesis: greater
 sample estimates:
 Moran I statistic       Expectation          Variance 
-     0.5833488492     -0.0009615385      0.0004284787 
+     0.5613262145     -0.0010309278      0.0004670466 
 
 
 $`Test for 2014`
 
 	Moran I test under randomisation
 
-data:  df_lagged_year$growth_sum_eurosceptic  
+data:  df_shp_year$growth_eurosceptic_p_perc  
 weights: listw1    
 
-Moran I statistic standard deviate = 29.925, p-value < 2.2e-16
+Moran I statistic standard deviate = 33.928, p-value < 2.2e-16
 alternative hypothesis: greater
 sample estimates:
 Moran I statistic       Expectation          Variance 
-     0.5983470342     -0.0009425071      0.0004010604 
+     0.7016016743     -0.0009615385      0.0004287900 
 
 
 $`Test for 2019`
 
 	Moran I test under randomisation
 
-data:  df_lagged_year$growth_sum_eurosceptic  
+data:  df_shp_year$growth_eurosceptic_p_perc  
 weights: listw1    
 
-Moran I statistic standard deviate = 28.927, p-value < 2.2e-16
+Moran I statistic standard deviate = 30.231, p-value < 2.2e-16
 alternative hypothesis: greater
 sample estimates:
 Moran I statistic       Expectation          Variance 
-     0.5930604511     -0.0009425071      0.0004216594 
+     0.6231461587     -0.0009425071      0.0004261779 
 
 

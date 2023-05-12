@@ -1,0 +1,103 @@
+$coefficients
+     Min.   1st Qu.    Median      Mean   3rd Qu.      Max. 
+-3.552835 -1.886123 -0.000041 -0.665382  0.000007  2.005507 
+
+$arcoef
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+ 0.6725  0.6725  0.6725  0.6725  0.6725  0.6725 
+
+$errcomp
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+  1e-08   1e-08   1e-08   1e-08   1e-08   1e-08 
+
+$vcov
+  (Intercept)             gdp               population         employment_rate           ge65              elder_rate      
+ Min.   :-6.004422   Min.   :-1.661e-05   Min.   :-4.883e-07   Min.   :-1.7591060   Min.   :-1.832e-05   Min.   :-6.00442  
+ 1st Qu.:-1.067725   1st Qu.:-1.711e-07   1st Qu.:-4.863e-09   1st Qu.:-0.0003955   1st Qu.:-4.430e-09   1st Qu.:-0.00260  
+ Median :-0.001906   Median :-4.770e-10   Median :-1.000e-11   Median : 0.0000000   Median : 5.600e-11   Median : 0.00000  
+ Mean   : 0.601299   Mean   : 1.574e-07   Mean   : 2.563e-07   Mean   : 0.0424098   Mean   :-1.374e-06   Mean   : 1.03517  
+ 3rd Qu.: 0.000001   3rd Qu.: 1.960e-10   3rd Qu.: 6.890e-10   3rd Qu.: 0.0146370   3rd Qu.: 3.831e-08   3rd Qu.: 0.02125  
+ Max.   :20.486153   Max.   : 1.723e-05   Max.   : 3.652e-06   Max.   : 2.3650707   Max.   : 8.144e-07   Max.   :19.33585  
+    fem_rate          migration_rate        pop_density           gdp_lag_4          employment_rate_lag_4 migration_rate_lag_4
+ Min.   :-1.433e-01   Min.   :-3.350e-03   Min.   :-9.157e-05   Min.   :-1.3342454   Min.   :-3.694870     Min.   :-1.906e-03  
+ 1st Qu.:-1.700e-07   1st Qu.:-9.036e-04   1st Qu.:-8.205e-06   1st Qu.:-0.0000011   1st Qu.:-0.455185     1st Qu.:-2.236e-05  
+ Median : 1.150e-06   Median :-1.452e-05   Median : 1.700e-10   Median : 0.0000159   Median :-0.000320     Median : 1.600e-09  
+ Mean   :-8.361e-03   Mean   : 6.055e-05   Mean   :-8.745e-06   Mean   :-0.0340970   Mean   : 0.009859     Mean   :-1.351e-04  
+ 3rd Qu.: 1.439e-03   3rd Qu.: 1.000e-09   3rd Qu.: 4.868e-08   3rd Qu.: 0.0061940   3rd Qu.: 0.000000     3rd Qu.: 1.851e-05  
+ Max.   : 2.125e-02   Max.   : 1.023e-02   Max.   : 1.591e-05   Max.   : 1.6198487   Max.   : 6.199949     Max.   : 4.419e-04  
+ growth_populism_p_perc
+ Min.   :-8.105e-03    
+ 1st Qu.:-1.700e-08    
+ Median : 4.900e-08    
+ Mean   :-2.549e-04    
+ 3rd Qu.: 1.315e-04    
+ Max.   : 2.746e-03    
+
+$vcov.arcoef
+     lambda         
+ Min.   :0.0001225  
+ 1st Qu.:0.0001225  
+ Median :0.0001225  
+ Mean   :0.0001225  
+ 3rd Qu.:0.0001225  
+ Max.   :0.0001225  
+
+$vcov.errcomp
+      phi           
+ Min.   :1.008e-15  
+ 1st Qu.:1.008e-15  
+ Median :1.008e-15  
+ Mean   :1.008e-15  
+ 3rd Qu.:1.008e-15  
+ Max.   :1.008e-15  
+
+$residuals
+    Min.  1st Qu.   Median     Mean  3rd Qu.     Max. 
+-39.3105  -0.8019   1.7997   3.0962   5.8721  67.4227 
+
+$fitted.values
+    Min.  1st Qu.   Median     Mean  3rd Qu.     Max. 
+-18.2761  -0.9966   0.8532   1.5955   3.5362  19.6936 
+
+$sigma2
+      Length Class  Mode   
+one   1      -none- numeric
+idios 1      -none- numeric
+id    1      -none- numeric
+
+$model
+       y                gdp           population      employment_rate       ge65           elder_rate         fem_rate     
+ Min.   :-41.839   Min.   :  4100   Min.   :  18814   Min.   :0.2302   Min.   :   3581   Min.   :0.09327   Min.   : 78.89  
+ 1st Qu.: -1.350   1st Qu.: 21200   1st Qu.: 132704   1st Qu.:0.3900   1st Qu.:  28048   1st Qu.:0.18784   1st Qu.: 94.19  
+ Median :  2.790   Median : 27300   Median : 232627   Median :0.4399   Median :  49370   Median :0.20805   Median : 96.28  
+ Mean   :  4.692   Mean   : 29378   Mean   : 387612   Mean   :0.4663   Mean   :  75410   Mean   :0.20832   Mean   : 96.17  
+ 3rd Qu.:  8.720   3rd Qu.: 34400   3rd Qu.: 430030   3rd Qu.:0.5019   3rd Qu.:  88132   3rd Qu.:0.22811   3rd Qu.: 98.24  
+ Max.   : 64.307   Max.   :195800   Max.   :6641649   Max.   :1.2536   Max.   :1186521   Max.   :0.36685   Max.   :106.80  
+ migration_rate     pop_density         gdp_lag_4     employment_rate_lag_4 migration_rate_lag_4 growth_populism_p_perc
+ Min.   :-27.400   Min.   :    1.90   Min.   :0.700   Min.   :0.7446        Min.   :-52.00000    Min.   :-38.096       
+ 1st Qu.: -0.600   1st Qu.:   72.72   1st Qu.:1.044   1st Qu.:0.9949        1st Qu.:  0.02358    1st Qu.: -0.978       
+ Median :  2.400   Median :  140.40   Median :1.094   Median :1.0252        Median :  0.54602    Median :  3.155       
+ Mean   :  2.631   Mean   :  416.15   Mean   :1.095   Mean   :1.0229        Mean   :  0.78119    Mean   :  4.613       
+ 3rd Qu.:  5.700   3rd Qu.:  328.95   3rd Qu.:1.144   3rd Qu.:1.0536        3rd Qu.:  1.38884    3rd Qu.:  8.874       
+ Max.   : 64.800   Max.   :21490.00   Max.   :1.713   Max.   :1.4893        Max.   :131.00000    Max.   : 40.105       
+
+$type
+   Length     Class      Mode 
+        1 character character 
+
+$type.des
+   Length     Class      Mode 
+        1 character character 
+
+$call
+Length  Class   Mode 
+     9   call   call 
+
+$errors
+   Length     Class      Mode 
+        1 character character 
+
+$logLik
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+  -7846   -7846   -7846   -7846   -7846   -7846 
+

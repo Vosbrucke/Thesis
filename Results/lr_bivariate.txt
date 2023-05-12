@@ -5,18 +5,18 @@ lm(formula = formula, data = df %>% filter(year == i))
 
 Residuals:
     Min      1Q  Median      3Q     Max 
--9.2290 -0.3341 -0.3341  0.1807  4.6443 
+-9.2259 -0.3350 -0.3350  0.1844  4.6435 
 
 Coefficients:
                     Estimate Std. Error t value Pr(>|t|)    
-(Intercept)          0.33407    0.03005   11.12   <2e-16 ***
-growth_sum_populist  0.43310    0.01962   22.08   <2e-16 ***
+(Intercept)          0.33496    0.03013   11.12   <2e-16 ***
+growth_sum_populist  0.43292    0.01965   22.03   <2e-16 ***
 ---
 Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
 
-Residual standard error: 0.8552 on 1092 degrees of freedom
-Multiple R-squared:  0.3086,	Adjusted R-squared:  0.308 
-F-statistic: 487.4 on 1 and 1092 DF,  p-value: < 2.2e-16
+Residual standard error: 0.8563 on 1089 degrees of freedom
+Multiple R-squared:  0.3082,	Adjusted R-squared:  0.3076 
+F-statistic: 485.2 on 1 and 1089 DF,  p-value: < 2.2e-16
 
 
 $`Test for 2014`
@@ -26,18 +26,18 @@ lm(formula = formula, data = df %>% filter(year == i))
 
 Residuals:
     Min      1Q  Median      3Q     Max 
--11.564  -2.649  -1.339  -1.263 156.016 
+-11.583  -2.655  -1.343  -1.267 156.007 
 
 Coefficients:
                     Estimate Std. Error t value Pr(>|t|)    
-(Intercept)           1.1646     0.5434   2.143   0.0323 *  
-growth_sum_populist   2.6736     0.4737   5.644 2.11e-08 ***
+(Intercept)           1.1678     0.5449   2.143   0.0323 *  
+growth_sum_populist   2.6773     0.4750   5.637  2.2e-08 ***
 ---
 Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
 
-Residual standard error: 13.99 on 1111 degrees of freedom
+Residual standard error: 14.01 on 1108 degrees of freedom
 Multiple R-squared:  0.02788,	Adjusted R-squared:  0.027 
-F-statistic: 31.86 on 1 and 1111 DF,  p-value: 2.105e-08
+F-statistic: 31.77 on 1 and 1108 DF,  p-value: 2.197e-08
 
 
 $`Test for 2019`
@@ -47,17 +47,17 @@ lm(formula = formula, data = df %>% filter(year == i))
 
 Residuals:
      Min       1Q   Median       3Q      Max 
--10.8995  -0.0086   0.0045   0.1327   2.5842 
+-10.7707  -0.0251  -0.0035   0.1743   2.5554 
 
 Coefficients:
                     Estimate Std. Error t value Pr(>|t|)    
-(Intercept)         0.025954   0.024418   1.063    0.288    
-growth_sum_populist 0.979580   0.005275 185.712   <2e-16 ***
+(Intercept)         0.054800   0.025432   2.155   0.0314 *  
+growth_sum_populist 0.965435   0.006804 141.902   <2e-16 ***
 ---
 Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
 
-Residual standard error: 0.7327 on 1111 degrees of freedom
-Multiple R-squared:  0.9688,	Adjusted R-squared:  0.9688 
-F-statistic: 3.449e+04 on 1 and 1111 DF,  p-value: < 2.2e-16
+Residual standard error: 0.7238 on 1108 degrees of freedom
+Multiple R-squared:  0.9478,	Adjusted R-squared:  0.9478 
+F-statistic: 2.014e+04 on 1 and 1108 DF,  p-value: < 2.2e-16
 
 
