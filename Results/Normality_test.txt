@@ -1,0 +1,96 @@
+# A tibble: 18 × 4
+   var                          W  p.value non_normal
+   <chr>                    <dbl>    <dbl> <lgl>     
+ 1 sum_farright             0.638 1.91e-41 TRUE      
+ 2 sum_eurosceptic          0.840 1.84e-30 TRUE      
+ 3 sum_populist             0.796 1.50e-33 TRUE      
+ 4 dev_mean_sum_farright    0.638 1.91e-41 TRUE      
+ 5 dev_mean_sum_eurosceptic 0.840 1.84e-30 TRUE      
+ 6 dev_mean_sum_populist    0.796 1.50e-33 TRUE      
+ 7 gdp                      0.899 8.80e-24 TRUE      
+ 8 population               0.579 5.04e-42 TRUE      
+ 9 employment               0.508 1.64e-43 TRUE      
+10 employment_rate          0.838 1.15e-28 TRUE      
+11 ge65                     0.623 1.74e-32 TRUE      
+12 elder_rate               0.986 5.61e- 5 TRUE      
+13 fem_rate                 0.982 3.30e- 9 TRUE      
+14 migration_rate           0.886 4.69e-25 TRUE      
+15 pop_density              0.344 2.49e-48 TRUE      
+16 gdp_lag_4                0.854 2.43e-27 TRUE      
+17 employment_rate_lag_4    0.923 1.89e-17 TRUE      
+18 migration_rate_lag_4     0.496 2.99e-39 TRUE      
+# A tibble: 22 × 4
+   var                           W  p.value non_normal
+   <chr>                     <dbl>    <dbl> <lgl>     
+ 1 sum_farright              0.739 6.96e-38 TRUE      
+ 2 sum_eurosceptic           0.802 3.44e-34 TRUE      
+ 3 sum_populist              0.746 1.68e-37 TRUE      
+ 4 growth_sum_farright       0.474 2.73e-48 TRUE      
+ 5 growth_sum_eurosceptic    0.713 3.24e-39 TRUE      
+ 6 growth_sum_populist       0.715 3.98e-39 TRUE      
+ 7 dev_mean_sum_farright     0.739 6.96e-38 TRUE      
+ 8 dev_mean_sum_eurosceptic  0.802 3.44e-34 TRUE      
+ 9 dev_mean_sum_populist     0.746 1.68e-37 TRUE      
+10 gdp                       0.910 1.38e-23 TRUE      
+11 population                0.576 9.64e-44 TRUE      
+12 employment                0.507 2.99e-45 TRUE      
+13 employment_rate           0.831 1.73e-30 TRUE      
+14 ge65                      0.576 9.99e-44 TRUE      
+15 elder_rate                0.997 3.23e- 2 TRUE      
+16 fem_rate                  0.981 5.57e-10 TRUE      
+17 migration_rate            0.962 2.66e-15 TRUE      
+18 pop_density               0.331 8.09e-51 TRUE      
+19 gdp_lag_4                 0.799 1.38e-32 TRUE      
+20 employment_rate_lag_4     0.939 4.64e-19 TRUE      
+21 migration_rate_lag_4      0.376 9.80e-49 TRUE      
+22 growth_eurosceptic_p_perc 0.915 3.52e-23 TRUE      
+# A tibble: 22 × 4
+   var                           W  p.value non_normal
+   <chr>                     <dbl>    <dbl> <lgl>     
+ 1 sum_farright              0.627 2.32e-43 TRUE      
+ 2 sum_eurosceptic           0.860 5.43e-30 TRUE      
+ 3 sum_populist              0.834 3.95e-32 TRUE      
+ 4 growth_sum_farright       0.430 6.34e-50 TRUE      
+ 5 growth_sum_eurosceptic    0.197 1.44e-55 TRUE      
+ 6 growth_sum_populist       0.771 2.30e-36 TRUE      
+ 7 dev_mean_sum_farright     0.627 2.32e-43 TRUE      
+ 8 dev_mean_sum_eurosceptic  0.860 5.43e-30 TRUE      
+ 9 dev_mean_sum_populist     0.834 3.95e-32 TRUE      
+10 gdp                       0.890 9.24e-27 TRUE      
+11 population                0.575 2.96e-45 TRUE      
+12 employment                0.525 1.36e-46 TRUE      
+13 employment_rate           0.830 4.25e-32 TRUE      
+14 ge65                      0.568 1.60e-45 TRUE      
+15 elder_rate                0.998 1.54e- 1 FALSE     
+16 fem_rate                  0.976 2.99e-12 TRUE      
+17 migration_rate            0.912 1.68e-24 TRUE      
+18 pop_density               0.319 9.24e-53 TRUE      
+19 gdp_lag_4                 0.968 3.88e-14 TRUE      
+20 employment_rate_lag_4     0.973 8.67e-13 TRUE      
+21 migration_rate_lag_4      0.573 2.95e-44 TRUE      
+22 growth_eurosceptic_p_perc 0.863 1.98e-29 TRUE      
+# A tibble: 22 × 4
+   var                           W  p.value non_normal
+   <chr>                     <dbl>    <dbl> <lgl>     
+ 1 sum_farright              0.825 8.33e-33 TRUE      
+ 2 sum_eurosceptic           0.863 1.03e-29 TRUE      
+ 3 sum_populist              0.849 6.52e-31 TRUE      
+ 4 growth_sum_farright       0.662 7.12e-42 TRUE      
+ 5 growth_sum_eurosceptic    0.645 1.26e-42 TRUE      
+ 6 growth_sum_populist       0.621 1.35e-43 TRUE      
+ 7 dev_mean_sum_farright     0.825 8.33e-33 TRUE      
+ 8 dev_mean_sum_eurosceptic  0.863 1.03e-29 TRUE      
+ 9 dev_mean_sum_populist     0.849 6.52e-31 TRUE      
+10 gdp                       0.860 1.13e-29 TRUE      
+11 population                0.569 1.70e-45 TRUE      
+12 employment                0.507 3.63e-47 TRUE      
+13 employment_rate           0.844 5.01e-31 TRUE      
+14 ge65                      0.576 3.08e-45 TRUE      
+15 elder_rate                0.997 1.86e- 2 TRUE      
+16 fem_rate                  0.981 9.74e-11 TRUE      
+17 migration_rate            0.858 3.91e-30 TRUE      
+18 pop_density               0.338 2.70e-52 TRUE      
+19 gdp_lag_4                 0.899 8.42e-26 TRUE      
+20 employment_rate_lag_4     0.966 6.50e-15 TRUE      
+21 migration_rate_lag_4      0.308 5.01e-53 TRUE      
+22 growth_eurosceptic_p_perc 0.937 6.02e-21 TRUE      

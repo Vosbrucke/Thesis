@@ -1,16 +1,23 @@
-# Regional electoral results by parties classification in Europe Union
+# Regional electoral results by parties classification in European Union
 
-# Load regional election data set
-elections <- read_csv("Raw_data/eu_ned_ep_nuts2.csv")
+# Load libraries
+library(tidyverse)
+library(rio)
+library(ggplot2)
 
-
+# Source: Schraff, Dominik, Vergioglou, Ioannis, and Demirci, Buket Buse. 2022. The European NUTS-Level Election Dataset: A Tool to Map the European Electoral Geography. Party Politics, Online First. DOI: 10.1177/13540688221083553
+# Link: https://eu-ned.com/datasets/
 # Load European countries codes
-eu_countries <- read.csv("Raw_data/countries_eu_inflation.csv")
+eu_countries <- read_csv("Raw_data/countries_eu_inflation.csv")
 
+# Load election data
+elections <- read_csv("Raw_data/eu_ned_joint.csv")
 
+# Source: Rooduijn, M., Van Kessel, S., Froio, C., Pirro, A., De Lange, S., Halikiopoulou, D., Lewis, P., Mudde, C. & Taggart, P. (2019). The PopuList: An Overview of Populist, Far Right, Far Left and Eurosceptic Parties in Europe. 
+# Link: www.popu-list.org.
 # PopuList 2.0
 populist <- import("https://popu-list.org/wp-content/uploads/2020/06/populist-2.0.xlsx")
-  
+
 # Add partyfacts_id's
 populist_2b_fixed <- populist %>% 
   select(1:4, partyfacts_id, parlgov_id) %>% 
@@ -51,10 +58,6 @@ populist %<>%
 elections_pop <- elections %>% 
   left_join(populist, by = "partyfacts_id") %>% 
   filter(country %in% c(eu_countries$country_name)) %>% 
-  filter(
-    year >= 1990,
-    type == "EP"
-  ) %>% 
   mutate(
     populist = ifelse(year >= populist_start & year <= populist_end, 1,0),
     farright = ifelse(year >= farright_start & year <= farright_end, 1,0),
@@ -66,31 +69,70 @@ elections_pop <- elections %>%
     vote_perc = partyvote / totalvote
   )
 
+# Check which regions of Ireland need a fix
+elections_pop %>% 
+  filter(country == "Ireland", type == "EP") %>% 
+  filter(year > 2003) %>% distinct(regionname)
+
 # Fix Ireland regions code
 elections_pop_ireland_fix <- elections_pop %>% 
   filter(country == "Ireland") %>% 
-  select(-nuts2) %>% 
-  inner_join(tibble(nuts2 = c("IE04", "IE05", "IE061", "IE062", "IE063"), regionname = c("North West", "South", "East", "Dublin", "Midlands North West")), by = "regionname") %>% 
-  relocate(nuts2, .after = nutslevel)
+  select(-nuts2016, -nutslevel) %>% 
+  inner_join(tibble(nutslevel = 3, nuts2016 = c("IE04", "IE05", "IE061", "IE062", "IE063"), regionname = c("North West", "South", "East", "Dublin", "Midlands North West")), by = "regionname") %>% 
+  relocate(nuts2016, .after = nutslevel)
 
+# Add correct Ireland data
 elections_pop <- elections_pop %>% 
   filter(country != "Ireland") %>% 
   bind_rows(elections_pop_ireland_fix)
 
+# Calculate sum different extremes among regions
+elections_extremes <- elections_pop %>% 
+  mutate(
+    vote_perc_farright = farright * vote_perc,
+    vote_perc_eurosceptic = eurosceptic * vote_perc, 
+    vote_perc_populist = populist * vote_perc
+  ) %>% 
+  group_by(country, year, nuts2016, nutslevel, regionname, type) %>%
+  summarise(
+    sum_farright = sum(vote_perc_farright),
+    sum_eurosceptic = sum(vote_perc_eurosceptic),
+    sum_populist = sum(vote_perc_populist),
+  )
+
+# Make a palette for plot
+palette <- wesanderson::wes_palette("Zissou1", n = elections_extremes %>% ungroup() %>% filter(country == "Poland", nutslevel == 2) %>% distinct(regionname) %>% nrow(), type = "continuous")
+
 # Make a test for 2019 elections in Poland. The result is the percentage support of far right parties by nuts 2 regions
-elections_pop %>% 
-  filter(country == "Hungary") %>%
-  group_by(country, year, nuts2, farright) %>% 
-  summarise(sum = sum(vote_perc)) %>% 
-  filter(farright == 1) %>% 
-  ungroup() %>% 
-  ggplot(aes(x = year, y = sum, color = nuts2)) +
-  geom_line() +
+elections_extremes %>% 
+  filter(country == "Poland") %>%
+  # filter(nutslevel == 2) %>%  
+  filter(type == "EP") %>%
+  group_by(year) %>% 
+  mutate(
+    mean = mean(sum_eurosceptic)
+    ) %>% 
+  ggplot(aes(x = year, y = 100 * sum_eurosceptic)) +
+  geom_line(aes(group = nuts2016, color = "1"), size = 0.25, alpha = 0.7) +
+  geom_line(aes(y = 100 * mean, color = "2"), size = 0.5) + 
+  # geom_hline(yintercept = 0, size = 1, color = "black") +
+  scale_color_manual(values = c("lightgrey", "black"), labels = c("NUTS2 regions", "Year average"), name = "") +
+  scale_y_continuous(limits = c(0, 105), expand = c(0, 0), labels = paste0(seq(0, 100, by = 25), "%")) +
+  scale_x_continuous(breaks = seq(2004, 2019, by = 5), expand = c(0, 0)) +
   theme_minimal() +
+  theme(
+    plot.title = element_text(face = "bold"),
+    legend.position = "bottom",
+    panel.grid.major.x = element_blank(),
+    panel.grid.minor.x = element_blank(),
+    axis.ticks.x = element_line(color = "black", lineend = "round"),
+    axis.line.x = element_line(color = "black", lineend = "round"),
+    axis.ticks.length.x = unit(0.1, "in")
+  ) +
   labs(
     x = "",
     y = "",
-    title = "Percentage of farright votes, by nuts-2 regions"
+    title = "Percentage of eurosceptic votes by NUTS2 regions"
   )
 
-write_csv(elections_pop, "Processed_data/elections_pop.csv")
+write_csv(elections_extremes, "Processed_data/elections_extremes.csv")

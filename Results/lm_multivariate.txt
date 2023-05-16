@@ -1,45 +1,66 @@
-$`Test for 2009`
-	Lagrange multiplier diagnostics for spatial dependence
-data:  
-model: lm(formula = formula, data = df_per_year_2)
-weights: listw1
- 
-       statistic parameter   p.value    
-LMerr    490.140         1 < 2.2e-16 ***
-LMlag    354.729         1 < 2.2e-16 ***
-RLMerr   149.601         1 < 2.2e-16 ***
-RLMlag    14.189         1 0.0001653 ***
-SARMA    504.329         2 < 2.2e-16 ***
----
-Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
-
-$`Test for 2014`
-	Lagrange multiplier diagnostics for spatial dependence
-data:  
-model: lm(formula = formula, data = df_per_year_2)
-weights: listw1
- 
-       statistic parameter p.value    
-LMerr    777.032         1 < 2e-16 ***
-LMlag    808.332         1 < 2e-16 ***
-RLMerr    41.635         1 1.1e-10 ***
-RLMlag    72.935         1 < 2e-16 ***
-SARMA    849.967         2 < 2e-16 ***
----
-Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
-
-$`Test for 2019`
-	Lagrange multiplier diagnostics for spatial dependence
-data:  
-model: lm(formula = formula, data = df_per_year_2)
-weights: listw1
- 
-       statistic parameter   p.value    
-LMerr    455.196         1 < 2.2e-16 ***
-LMlag    167.419         1 < 2.2e-16 ***
-RLMerr   310.420         1 < 2.2e-16 ***
-RLMlag    22.643         1 1.951e-06 ***
-SARMA    477.839         2 < 2.2e-16 ***
----
-Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
-
+[1] "Results/lm_multivariate.txt"
+[1] "Results/lm_multivariate.txt"
+[1] "Results/lm_multivariate.txt"
+[1] "Results/lm_multivariate.txt"
+[1] "Results/lm_multivariate.txt"
+[1] "Results/lm_multivariate.txt"
+[1] "Results/lm_multivariate.txt"
+[1] "Results/lm_multivariate.txt"
+function (file = NULL, append = FALSE, type = c("output", "message"), 
+    split = FALSE) 
+{
+    type <- match.arg(type)
+    if (type == "message") {
+        if (is.null(file)) 
+            file <- stderr()
+        else if (!inherits(file, "connection") || !isOpen(file)) 
+            stop("'file' must be NULL or an already open connection")
+        if (split) 
+            stop("cannot split the message connection")
+        .Internal(sink(file, FALSE, TRUE, FALSE))
+    }
+    else {
+        closeOnExit <- FALSE
+        if (is.null(file)) 
+            file <- -1L
+        else if (is.character(file)) {
+            file <- file(file, if (append) 
+                "a"
+            else "w")
+            closeOnExit <- TRUE
+        }
+        else if (!inherits(file, "connection")) 
+            stop("'file' must be NULL, a connection or a character string")
+        .Internal(sink(file, closeOnExit, FALSE, split))
+    }
+}
+<bytecode: 0x7fda3a8e6d48>
+<environment: namespace:base>
+Simple feature collection with 1062 features and 10 fields
+Geometry type: MULTIPOLYGON
+Dimension:     XY
+Bounding box:  xmin: 2640741 ymin: 1454671 xmax: 5849006 ymax: 5301736
+Projected CRS: ETRS89-extended / LAEA Europe
+First 10 features:
+   LEVL_CODE NUTS_ID CNTR_CODE             NAME_LATN             NUTS_NAME MOUNT_TYPE URBN_TYPE COAST_TYPE   FID is_neighbor
+1          3   CZ052        CZ  Královéhradecký kraj  Královéhradecký kraj          4         2          3 CZ052        TRUE
+2          3   CZ053        CZ       Pardubický kraj       Pardubický kraj          4         3          3 CZ053        TRUE
+3          3   CZ063        CZ         Kraj Vysočina         Kraj Vysočina          4         3          3 CZ063        TRUE
+4          3   CZ064        CZ     Jihomoravský kraj     Jihomoravský kraj          4         2          3 CZ064        TRUE
+5          3   CZ071        CZ        Olomoucký kraj        Olomoucký kraj          2         2          3 CZ071        TRUE
+6          3   CZ072        CZ          Zlínský kraj          Zlínský kraj          2         2          3 CZ072        TRUE
+7          3   CZ080        CZ  Moravskoslezský kraj  Moravskoslezský kraj          4         2          3 CZ080        TRUE
+8          3   DE111        DE Stuttgart, Stadtkreis Stuttgart, Stadtkreis          4         1          3 DE111        TRUE
+9          3   DE112        DE             Böblingen             Böblingen          4         1          3 DE112        TRUE
+10         3   DE113        DE             Esslingen             Esslingen          4         1          3 DE113        TRUE
+                         geometry
+1  MULTIPOLYGON (((4752268 307...
+2  MULTIPOLYGON (((4812157 296...
+3  MULTIPOLYGON (((4782782 296...
+4  MULTIPOLYGON (((4841158 293...
+5  MULTIPOLYGON (((4849854 304...
+6  MULTIPOLYGON (((4929608 295...
+7  MULTIPOLYGON (((4895030 302...
+8  MULTIPOLYGON (((4270536 285...
+9  MULTIPOLYGON (((4252218 284...
+10 MULTIPOLYGON (((4284450 284...

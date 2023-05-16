@@ -1,0 +1,68 @@
+$`Number of missing values for the year of 2004`
+# A tibble: 27 × 2
+   name                      na_sum
+   <chr>                      <dbl>
+ 1 growth_eurosceptic_p_perc   1002
+ 2 growth_populism_p_perc      1002
+ 3 ge65                         470
+ 4 elder_rate                   470
+ 5 employment_rate_lag_4        373
+ 6 migration_rate_lag_4         353
+ 7 gdp_lag_4                    149
+ 8 employment                   143
+ 9 employment_rate              143
+10 pop_density                  121
+# ℹ 17 more rows
+# ℹ Use `print(n = ...)` to see more rows
+
+$`Number of missing values for the year of 2009`
+# A tibble: 27 × 2
+   name                  na_sum
+   <chr>                  <dbl>
+ 1 employment_rate_lag_4    147
+ 2 migration_rate_lag_4     133
+ 3 gdp_lag_4                132
+ 4 employment               124
+ 5 employment_rate          124
+ 6 gdp                       92
+ 7 migration_rate            92
+ 8 country_code              82
+ 9 population                82
+10 ge65                      82
+# ℹ 17 more rows
+# ℹ Use `print(n = ...)` to see more rows
+
+$`Number of missing values for the year of 2014`
+# A tibble: 27 × 2
+   name                      na_sum
+   <chr>                      <dbl>
+ 1 employment_rate_lag_4         89
+ 2 gdp_lag_4                     84
+ 3 migration_rate_lag_4          75
+ 4 gdp                           32
+ 5 employment                    32
+ 6 employment_rate               32
+ 7 growth_eurosceptic_p_perc     22
+ 8 growth_populism_p_perc        22
+ 9 country_code                   8
+10 population                     8
+# ℹ 17 more rows
+# ℹ Use `print(n = ...)` to see more rows
+
+$`Number of missing values for the year of 2019`
+# A tibble: 27 × 2
+   name                  na_sum
+   <chr>                  <dbl>
+ 1 gdp                       32
+ 2 employment                32
+ 3 employment_rate           32
+ 4 gdp_lag_4                 32
+ 5 employment_rate_lag_4     32
+ 6 country_code               8
+ 7 population                 8
+ 8 ge65                       8
+ 9 elder_rate                 8
+10 fem_rate                   8
+# ℹ 17 more rows
+# ℹ Use `print(n = ...)` to see more rows
+

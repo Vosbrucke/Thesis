@@ -67,7 +67,6 @@ shp_1 <- shp %>%
 df_shp <- df %>% 
   right_join(shp, by = c("nuts2016" = "NUTS_ID"))
 
-
 # Write data with spatial geometry
 sf::st_write(df_shp, "Processed_data/df_shp.shp") #, driver = "ESRI Shapefile", append = FALSE)
 

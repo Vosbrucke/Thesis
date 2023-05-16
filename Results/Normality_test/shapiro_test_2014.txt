@@ -1,0 +1,16 @@
+# A tibble: 13 × 4
+   var                           W  p.value non_normal
+   <chr>                     <dbl>    <dbl> <lgl>     
+ 1 growth_eurosceptic_p_perc 0.865 1.27e-29 TRUE      
+ 2 gdp                       0.890 8.34e-27 TRUE      
+ 3 population                0.578 7.67e-45 TRUE      
+ 4 employment_rate           0.835 8.69e-32 TRUE      
+ 5 ge65                      0.570 4.02e-45 TRUE      
+ 6 elder_rate                0.993 1.22e- 4 TRUE      
+ 7 fem_rate                  0.977 5.57e-12 TRUE      
+ 8 migration_rate            0.909 1.06e-24 TRUE      
+ 9 pop_density               0.322 2.52e-52 TRUE      
+10 gdp_lag_4                 0.964 6.98e-15 TRUE      
+11 employment_rate_lag_4     0.971 2.63e-13 TRUE      
+12 migration_rate_lag_4      0.573 6.38e-44 TRUE      
+13 growth_populism_p_perc    0.980 5.69e-11 TRUE      

@@ -1,9 +1,10 @@
 # Regional electoral results by parties classification in Europe Union
+library(tidyverse)
+library(rio)
 
 # Load regional election data set
 elections <- read_csv("Raw_data/eu_ned_ep_nuts2.csv")
 
-elections <- read_csv("/Users/mr.fox/Desktop/eu_ned_joint.csv")
 
 
 # Load European countries codes
@@ -17,7 +18,7 @@ populist <- import("https://popu-list.org/wp-content/uploads/2020/06/populist-2.
 populist_2b_fixed <- populist %>% 
   select(1:4, partyfacts_id, parlgov_id) %>% 
   filter(is.na(partyfacts_id)) %>% 
-  as.tibble()
+  as_tibble()
 
 party_name_fixes <- tibble(
   party_name_short = c("Fi+KDNP", "LAM", "FIDESZ", "LR"),
@@ -55,13 +56,11 @@ elections_pop <- elections %>%
   filter(country %in% c(eu_countries$country_name)) %>% 
   filter(
     year >= 1990,
-    # type == "EP"
-    # nutslevel == 2
   ) %>% 
   mutate(
-    populist = ifelse(year >= populist_start & year <= populist_end, 1,0),
-    farright = ifelse(year >= farright_start & year <= farright_end, 1,0),
-    eurosceptic = ifelse(year >= eurosceptic_start & year <= eurosceptic_end, 1,0)
+    populist = ifelse(year >= populist_start & year <= populist_end, 1, 0),
+    farright = ifelse(year >= farright_start & year <= farright_end, 1, 0),
+    eurosceptic = ifelse(year >= eurosceptic_start & year <= eurosceptic_end, 1, 0)
   ) %>% 
   select(1:15, populist, farright, eurosceptic) %>% 
   mutate(
@@ -73,8 +72,8 @@ elections_pop <- elections %>%
 elections_pop_ireland_fix <- elections_pop %>% 
   filter(country == "Ireland") %>% 
   # select(-nuts2) %>%
-  inner_join(tibble(nuts2 = c("IE04", "IE05", "IE061", "IE062", "IE063"), regionname = c("North West", "South", "East", "Dublin", "Midlands North West")), by = "regionname") %>% 
-  relocate(nuts2, .after = nutslevel)
+  inner_join(tibble(nutslevel = 2, nuts2016 = c("IE04", "IE05", "IE061", "IE062", "IE063"), regionname = c("North West", "South", "East", "Dublin", "Midlands North West")), by = "regionname")
+  # relocate(nuts2, .after = nutslevel)
 
 elections_pop <- elections_pop %>% 
   filter(country != "Ireland") %>% 
@@ -85,33 +84,37 @@ elections_pop <- elections_pop %>%
 elections_pop %>% 
   filter(type != "EP")
 
-test <- elections_pop %>% 
+
+test <- elections_pop %>%
   # filter(country == "Poland") %>%
-  # filter(nutslevel == 2) %>% 
-  group_by(country, year, populist, type, nutslevel) %>% 
-  summarise(mean = mean(vote_perc)) %>% 
-  filter(populist == 1) %>% 
-  ungroup() %>% 
-  pivot_wider(names_from = "type", values_from = mean) %>% 
+  # filter(nutslevel == 2) %>%
+  group_by(country, year, populist, type, nutslevel) %>%
+  summarise(mean = mean(vote_perc)) %>%
+  filter(populist == 1) %>%
+  ungroup() %>%
+  pivot_wider(names_from = "type", values_from = mean) %>%
   drop_na()
+
 test %$%
 cor(Parliament, EP)
 
-# Make a test for 2019 elections in Poland. The result is the percentage support of far right parties by nuts 2 regions
+# Make a test for 2019 elections in Austria The result is the percentage support of far right parties by nuts 2 regions
 test <- elections_pop %>% 
-  # filter(country == "Poland") %>%
-  # filter(nutslevel == 2) %>% 
+  filter(country == "Austria") %>%
+  filter(nutslevel == 3) %>%
   group_by(country, year, populist, type, nutslevel) %>% 
-  summarise(mean = mean(vote_perc)) %>% 
+  # summarise(mean = mean(vote_perc)) %>% 
   filter(populist == 1) %>% 
   ungroup()
 
 test %>% 
-  ggplot(aes(x = as.factor(year), y = mean)) +
+  ggplot(aes(x = as.factor(year), y = vote_perc)) +
   geom_boxplot(aes(color = type)) +
   scale_y_continuous(limits = c(0,1)) +
   theme_minimal() +
-  theme(axis.text.x = element_blank()) +
+  theme(
+    # axis.text.x = element_blank()
+    ) +
   labs(
     x = "",
     y = "",
@@ -120,5 +123,24 @@ test %>%
   facet_wrap(~ country)
 
 ggsave("Mean_populist_votes_1991-2021.png", dpi = 900, width = 25, height = 25, units = "cm")
+
+other_test <- elections_pop %>% 
+  filter(country == "Austria") %>%
+  # filter(nutslevel == 2) %>%
+  ggplot(aes(x = year, y = ))
+
+elections_extremes <- elections_pop %>% 
+  mutate(
+    vote_perc_farright = farright * vote_perc,
+    vote_perc_eurosceptic = eurosceptic * vote_perc, 
+    vote_perc_populist = populist * vote_perc
+  ) %>% 
+  group_by(country, year, nuts2, regionname) %>%
+  summarise(
+    sum_farright = sum(vote_perc_farright),
+    sum_eurosceptic = sum(vote_perc_eurosceptic),
+    sum_populist = sum(vote_perc_populist)
+  )
+
 
 write_csv(elections_pop, "Processed_data/elections_pop_nuts3.csv")
