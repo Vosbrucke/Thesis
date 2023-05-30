@@ -9,11 +9,11 @@ library(VIM)
 library(mice)
 library(qqplotr)
 
-# Load european countries codes
+# Load European countries codes
 eu_countries <- read.csv("Raw_data/countries_eu_inflation.csv")
 
 # Data on employees in regions 
-df_employment <- read_csv("/Users/mr.fox/Desktop/Github/Thesis/Raw_data/Nuts3/Employment_by_thousands_of_people.csv") %>% 
+df_employment <- read_csv("Raw_data/Nuts3/Employment_by_thousands_of_people.csv") %>% 
   mutate(country_code = str_sub(geo, 1, 2)) %>% 
   full_join(eu_countries, by = c("country_code" = "code")) %>% 
   group_by(unit, geo) %>%
@@ -23,7 +23,7 @@ df_employment <- read_csv("/Users/mr.fox/Desktop/Github/Thesis/Raw_data/Nuts3/Em
   select(geo, time_period, employment = obs_value)
 
 # Reading population data on feminity and elderly rates
-df_pop_groups <- read_csv("/Users/mr.fox/Desktop/Github/Thesis/Raw_data/Nuts3/Population_with_groups.csv") %>% 
+df_pop_groups <- read_csv("Raw_data/Nuts3/Population_with_groups.csv") %>% 
   set_colnames(make_clean_names(colnames(.))) %>% 
   dplyr::mutate(country_code = str_sub(geo, 1, 2)) %>% 
   select(-obs_flag) %>% 
@@ -41,14 +41,14 @@ df_pop_groups <- read_csv("/Users/mr.fox/Desktop/Github/Thesis/Raw_data/Nuts3/Po
   select(country_code, geo, time_period, population = total, employment, employment_rate, ge65, elder_rate, fem_rate)
 
 # GDP of regions
-df_gdp <- read_csv("/Users/mr.fox/Desktop/Github/Thesis/Raw_data/Nuts3/GDP.csv") %>% 
+df_gdp <- read_csv("Raw_data/Nuts3/GDP.csv") %>% 
   set_colnames(make_clean_names(colnames(.))) %>% 
   select(-obs_flag) %>% 
   full_join(df_pop_groups, by = c("geo", "time_period")) %>% 
   select(country_code, geo, time_period, gdp = obs_value, population, employment, employment_rate, ge65, elder_rate, fem_rate)
 
 # Migration in regions
-df_migration <- read_csv("/Users/mr.fox/Desktop/Github/Thesis/Raw_data/Nuts3/Rate_of_migration.csv") %>% 
+df_migration <- read_csv("Raw_data/Nuts3/Rate_of_migration.csv") %>% 
   set_colnames(make_clean_names(colnames(.))) %>% 
   select(-obs_flag) %>% 
   # Filter for crude rate of net migration 
@@ -57,7 +57,7 @@ df_migration <- read_csv("/Users/mr.fox/Desktop/Github/Thesis/Raw_data/Nuts3/Rat
   select(country_code, geo, time_period, gdp, population, employment, employment_rate, ge65, elder_rate, fem_rate, migration_rate = obs_value)
 
 # Population density in regions
-df_density <- read_csv("/Users/mr.fox/Desktop/Github/Thesis/Raw_data/Nuts3/Pop_density.csv") %>% 
+df_density <- read_csv("Raw_data/Nuts3/Pop_density.csv") %>% 
   set_colnames(make_clean_names(colnames(.))) %>% 
   select(-obs_flag) %>% 
   full_join(df_migration, by = c("geo", "time_period")) %>% 
@@ -102,11 +102,14 @@ df <- df_elections %>%
   mutate(
     growth_eurosceptic_p_perc = 100 * (sum_eurosceptic - dplyr::lag(sum_eurosceptic)),
     growth_populism_p_perc = 100 * (sum_populist - dplyr::lag(sum_populist)),
+    growth_farright_p_perc = 100 * (sum_farright - dplyr::lag(sum_farright))
   ) %>% 
   # Remove abrod votes
   filter(regionname != "Abroad votes", nutslevel == 3) %>% 
   filter(!str_detect(nuts2016, "FRZZZ|FRY")) %>% 
-  relocate(country_code, .before = country)
+  relocate(country_code, .before = country) %>% 
+  # Change gdp value to gdp per capita
+  mutate(gdp = gdp / population)
 
 # Write the df
 write_csv(df, "Processed_data/df.csv")
@@ -115,12 +118,12 @@ write_csv(df, "Processed_data/df.csv")
 df_lagged_na <- function(i) {
   df %>% 
     filter(year == i) %>% 
-    select(!contains("dev")) %>% 
+    select(-contains("dev")) %>% 
     ungroup() %>% 
     mutate(is_na = across(everything(), is.na)) %>% 
     select(contains("is_na")) %>% 
     dplyr::summarise(colSums(.)) %>% 
-    mutate(name = colnames(df %>% select(!contains("dev")))) %>%
+    mutate(name = colnames(df %>% select(-contains("dev")))) %>%
     rename(na_sum = "colSums(.)") %>% 
     select(name, na_sum) %>% 
     arrange(desc(na_sum))
@@ -138,8 +141,7 @@ df_lagged_na_res
 sink("Results/NA's_full_join.txt")
 print(df_lagged_na_res)
 sink()
-country_list[2]
-x = 2
+
 
 # Adding missing data 
 palette <- wesanderson::wes_palette("Zissou1", n = 5)[1, 5]
@@ -186,7 +188,7 @@ df_nas_plot <- df_nas %>%
   group_by(country) %>% 
   mutate(is_color = max(perc_is_na) > 18)
 
-palette <- wesanderson::wes_palette("Zissou1", n = sum(df_nas_plot[test_g$year == 2019, ]$is_color), type = "continuous")
+palette <- wesanderson::wes_palette("Zissou1", n = sum(df_nas_plot[df_nas_plot$year == 2019, ]$is_color), type = "continuous")
 
 df_nas_plot_color <- df_nas_plot %>% 
   filter(is_color == T)
@@ -350,5 +352,5 @@ ggplot(data = df_log, mapping = aes(sample = population)) +
   )
 
 # Write the log df
-write_csv(df, "Processed_data/df_log.csv")
+write_csv(df_log, "Processed_data/df_log.csv")
 

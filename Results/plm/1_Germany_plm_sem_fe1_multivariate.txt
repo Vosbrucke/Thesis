@@ -1,0 +1,63 @@
+ growth_eurosceptic_p_perc growth_farright_p_perc growth_populism_p_perc
+ Min.   :-38.0959          Min.   : 0.000         Min.   :-38.0959      
+ 1st Qu.: -0.9322          1st Qu.: 0.000         1st Qu.: -0.9322      
+ Median :  2.5051          Median : 0.000         Median :  2.5051      
+ Mean   :  1.9491          Mean   : 3.566         Mean   :  1.9491      
+ 3rd Qu.:  6.5034          3rd Qu.: 7.983         3rd Qu.:  6.5034      
+ Max.   : 21.0257          Max.   :30.225         Max.   : 21.0257      
+
+Oneway (individual) effect Within Model
+
+Call:
+plm(formula = formula_univariate, data = panel, effect = "individual", 
+    model = "within", listw = listw1, lag = T, spatial.error = "b")
+
+Balanced Panel: n = 371, T = 3, N = 1113
+
+Residuals:
+    Min.  1st Qu.   Median  3rd Qu.     Max. 
+-12.6244  -3.7100  -1.9854   5.5236  14.9129 
+
+Coefficients: (1 dropped because of singularities)
+                       Estimate Std. Error t-value  Pr(>|t|)    
+growth_populism_p_perc 0.246647   0.025541   9.657 < 2.2e-16 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Total Sum of Squares:    33543
+Residual Sum of Squares: 29794
+R-Squared:      0.11178
+Adj. R-Squared: -0.33292
+F-statistic: 93.2572 on 1 and 741 DF, p-value: < 2.22e-16
+
+Oneway (individual) effect Within Model
+
+Call:
+plm(formula = formula_multivariate, data = panel, effect = "individual", 
+    model = "within", listw = listw1, lag = T, spatial.error = "b")
+
+Balanced Panel: n = 371, T = 3, N = 1113
+
+Residuals:
+     Min.   1st Qu.    Median   3rd Qu.      Max. 
+-26.95362  -2.18104   0.40397   2.66700  19.88684 
+
+Coefficients:
+                         Estimate  Std. Error t-value  Pr(>|t|)    
+gdp                    15.2216752   5.7258541  2.6584  0.008022 ** 
+employment_rate         1.9785572  15.5713470  0.1271  0.898925    
+elder_rate            263.3302280  34.7309717  7.5820 1.031e-13 ***
+fem_rate               -1.9215051   0.2558132 -7.5114 1.706e-13 ***
+migration_rate          0.6118070   0.0568793 10.7562 < 2.2e-16 ***
+pop_density             0.0212322   0.0065054  3.2638  0.001150 ** 
+gdp_lag_4              12.3195799   3.9925474  3.0856  0.002108 ** 
+employment_rate_lag_4 -55.0924173   9.8104537 -5.6157 2.780e-08 ***
+migration_rate_lag_4   -0.0057412   0.0379908 -0.1511  0.879922    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Total Sum of Squares:    61636
+Residual Sum of Squares: 33767
+R-Squared:      0.45216
+Adj. R-Squared: 0.16889
+F-statistic: 67.219 on 9 and 733 DF, p-value: < 2.22e-16

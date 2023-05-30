@@ -1,0 +1,24 @@
+Oneway (individual) effect Within Model
+
+Call:
+plm(formula = formula_univariate, data = panel, effect = "individual", 
+    model = "within", listw = listw1, lag = T, spatial.error = "b")
+
+Balanced Panel: n = 371, T = 3, N = 1113
+
+Residuals:
+       Min.     1st Qu.      Median     3rd Qu.        Max. 
+-2.9856e-15 -8.6014e-17  8.6878e-18  1.1421e-16  3.2210e-14 
+
+Coefficients:
+                          Estimate  Std. Error     t-value Pr(>|t|)    
+growth_populism_p_perc  1.0000e+00  5.5879e-18  1.7896e+17   <2e-16 ***
+growth_farright_p_perc -1.4326e-18  7.5747e-18 -1.8910e-01     0.85    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Total Sum of Squares:    61636
+Residual Sum of Squares: 1.265e-27
+R-Squared:      1
+Adj. R-Squared: 1
+F-statistic: 1.80282e+34 on 2 and 740 DF, p-value: < 2.22e-16

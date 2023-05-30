@@ -15,8 +15,6 @@ library(plm)
 library(janitor)
 library(zoo)
 
-# Loading data
-
 # Spatial mapping data preparation
 
 # Load data frame of elections and other variables
@@ -72,3 +70,26 @@ sf::st_write(df_shp, "Processed_data/df_shp.shp") #, driver = "ESRI Shapefile", 
 
 # Write column names (shapefiles are limited to 10 characters- column names in st_write funtion get abbreviated)
 write_csv(as.data.frame(colnames(df_shp)), "Processed_data/df_shp_colnames.csv")
+
+# # I will need to impute missing data. For this I will use Hmisc package. The graphs of missing values per country enable to understand what the scope of imputation per country is done
+# # Because of the high chance of error countries with the highest percentage of missing value will not be taken into consideration in the imputation and thus in the analysis
+# 
+# library(Hmisc)
+# 
+# impute_arg <- aregImpute(~ gdp, data = df_shp %>% filter(year == 2009) %>% pull(gdp), n.impute = 5)
+# 
+# library(imputeTS)
+# 
+# df_shp_imputated<- na_interpolation(df_shp %>% filter(year == 2009, country != "Ireland") %>% pull(gdp))
+# summary(df_shp)
+# summary(df_shp_imputated)
+# ggplot_na_imputations(df_shp %>% filter(year == 2009) %>% pull(gdp), df_shp_imputated)
+# 
+# library(mi)
+# 
+# imputation <- function(i) {
+#   mi(df_shp %>% filter(country == i, year == 2019) %>% as.data.frame() %>% select(r_side), seed = 335)
+# }
+# 
+# test_imputation <- lapply(df_shp$country %>% unique(), imputation)
+# summary(mi_data)

@@ -13,6 +13,9 @@ eu_countries <- read_csv("Raw_data/countries_eu_inflation.csv")
 # Load election data
 elections <- read_csv("Raw_data/eu_ned_joint.csv")
 
+# Load NUTS2 election data
+elections_nuts2 <- read_csv("Raw_data/Nuts2/eu_ned_joint_nuts2.csv")
+
 # Source: Rooduijn, M., Van Kessel, S., Froio, C., Pirro, A., De Lange, S., Halikiopoulou, D., Lewis, P., Mudde, C. & Taggart, P. (2019). The PopuList: An Overview of Populist, Far Right, Far Left and Eurosceptic Parties in Europe. 
 # Link: www.popu-list.org.
 # PopuList 2.0
@@ -100,6 +103,58 @@ elections_extremes <- elections_pop %>%
     sum_populist = sum(vote_perc_populist),
   )
 
+write_csv(elections_extremes, "Processed_data/elections_extremes.csv")
+
+
+# Follow the same steps for NUTS2 classification
+
+# Join regional (NUTS 2/3) election results with populist data set
+elections_pop <- elections_nuts2 %>% 
+  left_join(populist, by = "partyfacts_id") %>% 
+  filter(country %in% c(eu_countries$country_name)) %>% 
+  mutate(
+    populist = ifelse(year >= populist_start & year <= populist_end, 1,0),
+    farright = ifelse(year >= farright_start & year <= farright_end, 1,0),
+    eurosceptic = ifelse(year >= eurosceptic_start & year <= eurosceptic_end, 1,0)
+  ) %>% 
+  select(1:15, populist, farright, eurosceptic) %>% 
+  mutate(
+    across(.cols = c(populist, farright, eurosceptic), ~ ifelse(is.na(.x), 0, .x)),
+    vote_perc = partyvote / totalvote
+  )
+
+# Check which regions of Ireland need a fix
+elections_pop %>% 
+  filter(country == "Ireland", type == "EP") %>% 
+  filter(year > 2003) %>% distinct(regionname)
+
+# Fix Ireland regions code
+elections_pop_ireland_fix <- elections_pop %>% 
+  filter(country == "Ireland") %>% 
+  select(-nuts2, -nutslevel) %>% 
+  inner_join(tibble(nuts2 = c("IE04", "IE05", "IE061", "IE062", "IE063"), nutslevel = 2, regionname = c("North West", "South", "East", "Dublin", "Midlands North West")), by = "regionname")
+
+# Add correct Ireland data
+elections_pop <- elections_pop %>% 
+  filter(country != "Ireland") %>% 
+  bind_rows(elections_pop_ireland_fix)
+
+# Calculate sum different extremes among regions
+elections_extremes <- elections_pop %>% 
+  mutate(
+    vote_perc_farright = farright * vote_perc,
+    vote_perc_eurosceptic = eurosceptic * vote_perc, 
+    vote_perc_populist = populist * vote_perc
+  ) %>% 
+  group_by(country, year, nuts2, nutslevel, regionname, type) %>%
+  summarise(
+    sum_farright = sum(vote_perc_farright),
+    sum_eurosceptic = sum(vote_perc_eurosceptic),
+    sum_populist = sum(vote_perc_populist),
+  )
+
+write_csv(elections_extremes, "Processed_data/elections_extremes_nuts2.csv")
+
 # Make a palette for plot
 palette <- wesanderson::wes_palette("Zissou1", n = elections_extremes %>% ungroup() %>% filter(country == "Poland", nutslevel == 2) %>% distinct(regionname) %>% nrow(), type = "continuous")
 
@@ -135,4 +190,3 @@ elections_extremes %>%
     title = "Percentage of eurosceptic votes by NUTS2 regions"
   )
 
-write_csv(elections_extremes, "Processed_data/elections_extremes.csv")

@@ -1,0 +1,27 @@
+ML panel with spatial lag, random effects, spatial error correlation 
+
+Call:
+spreml(formula = formula, data = data, index = index, w = listw2mat(listw), 
+    w2 = listw2mat(listw2), lag = lag, errors = errors, cl = cl)
+
+Residuals:
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+ -40.12   -3.89   -1.06   -1.03    1.16   40.20 
+
+Error variance parameters:
+      Estimate Std. Error t-value  Pr(>|t|)    
+phi 0.00000001        NaN     NaN       NaN    
+rho 0.89539945 0.00824187  108.64 < 2.2e-16 ***
+
+Spatial autoregressive coefficient:
+         Estimate Std. Error t-value  Pr(>|t|)    
+lambda -0.1753553  0.0080705 -21.728 < 2.2e-16 ***
+
+Coefficients:
+                       Estimate Std. Error t-value Pr(>|t|)    
+(Intercept)            0.516913   0.605098  0.8543    0.393    
+growth_populism_p_perc 0.702766   0.013834 50.8003   <2e-16 ***
+growth_farright_p_perc 0.404622   0.016473 24.5634   <2e-16 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+

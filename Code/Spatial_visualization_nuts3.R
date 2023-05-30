@@ -26,7 +26,8 @@ shp_0 %<>%
   filter(is_neighbor == T)
 
 # Write data with spatial geometry
-df_shp <- sf::st_read("Processed_data/df_shp.shp")
+df_shp <- sf::st_read("Processed_data/df_shp.shp") %>% 
+  relocate(c(36, 37), .before = "LEVL_CO") 
 
 # Read data with column names (shapefiles are limited to 10 characters- column names are abbreviated)
 df_shp_colnames <- read_csv("Processed_data/df_shp_colnames.csv") %>% pull()
@@ -54,9 +55,9 @@ theme_map <- function(...) {
       legend.background = element_rect(fill = "white",
                                        color = "white"),
       # borders and margins
-      plot.margin = unit(c(.5, .5, .2, .5), "cm"),
-      panel.border = element_blank(),
-      panel.spacing = unit(c(-.1, 0.2, .2, 0.2), "cm"),
+      # plot.margin = unit(c(.5, .5, .2, .5), "cm"),
+      # panel.border = element_blank(),
+      # panel.spacing = unit(c(-.1, 0.2, .2, 0.2), "cm"),
       # titles
       legend.title = element_text(size = 11, color = "black"),
       legend.text = element_text(size = 9, hjust = 0,
@@ -87,30 +88,53 @@ theme_map <- function(...) {
 {
   # Mapping eurosceptism in the selected countries
   map_per_year_eu_scept_dv <- function(i) {
-    ggplot(df_shp %>% filter(year == i), aes(geometry = geometry)) +
-      geom_sf(data = df_shp %>% filter(!CNTR_CODE %in% c("FR", "PT", "HR", "RO")), fill = "lightgrey", color = "white") +
+    ggplot(df_shp %>% filter(year %in% seq(2009, 2019, by = 5)), aes(geometry = geometry)) +
+    # ggplot(df_shp %>% filter(year %in% i), aes(geometry = geometry)) +
+      geom_sf(data = shp_0 %>% filter(LEVL_CODE == 3, !str_detect(NUTS_ID, "FRY|PT300|PT200|ES7")), fill = "lightgrey", color = "lightgrey", linewidth = 0.1) +
+      geom_sf(data = df_shp %>% filter(year %in% seq(2009, 2019, by = 5), !CNTR_CODE %in% c("FR", "PT", "HR", "RO")), fill = "lightgrey", color = "white") +
+      # geom_sf(data = df_shp %>% filter(year %in% i, !CNTR_CODE %in% c("FR", "PT", "HR", "RO")), fill = "lightgrey", color = "white") +
       geom_sf(aes(fill = growth_eurosceptic_p_perc), color = "white", linewidth = 0.1) +
+      # scale_fill_gradient(name = "") +
       # The one below is for relative values (perc only)
       # scale_fill_gradient2(limits = c(-40, 40), low = "#3B9AB2", mid = "#F5F5F2", high = "#F21A00") +
       # The one below is for the p_perc one
       # scale_fill_gradient2(limits = c(-40, 40), low = "#3B9AB2", mid = "#F5F5F2", high = "#F21A00") +
       # Dunno this one
-      scale_fill_gradient2(low = "#3B9AB2", mid = "#F5F5F2", high = "#F21A00", limits = c(-45, 65)) +
+      # scale_fill_gradient2(low = "#3B9AB2", mid = "#F5F5F2", high = "#F21A00", limits = c(-65, 65)) +
+      scale_fill_gradient2(low = "#3B9AB2", mid = "#F5F5F2", high = "#F21A00", name = "") +
       # (limits = c(-40,40), option = "magma", direction = -1) +
       labs(
         x = "", 
         y = "", 
-        title = paste("Growth of eurosceptic parties in", i),
+        title = paste("Growth of eurosceptic parties in Europe Union"),
       ) +
       theme_map() +
-      guides(fill = guide_colourbar(title = "Growth in % points"))
-    
-    ggsave(paste0("Plots/Election_results_distribution/Growth_eurosceptic_p_perc_", i, ".png"), bg = "white", dpi = 900, width = 20, height = 15, units = "cm")
+      theme(
+        plot.title = element_text(hjust = 0.5),
+        legend.position = "bottom",
+        legend.key.width = unit(2, "cm"),
+        legend.key.height = unit(0.4, "cm"),
+        legend.text = element_text(hjust = 0.5),
+        legend.spacing = unit(0.4, "cm"),
+      )  +
+      # guides(fill = guide_colourbar(
+      #   title.position = "top",
+      #   title.hjust = 0.5, 
+      #   title = "Growth in % points",
+      #   # reverse = -1
+      #   )
+      # ) +
+    facet_wrap(~year)
+      
   }
   
   # Create a plot for each elections separately
-  lapply(seq(2009, 2019, by = 5), map_per_year_eu_scept_dv)
+  plots <- lapply(seq(2009, 2019, by = 5), map_per_year_eu_scept_dv)
   
+  library(patchwork)
+  t <- patchwork::wrap_plots(plots, ncol = 1) + plot_annotation(title = paste("Growth of eurosceptic parties in Europe Union"), theme = theme(plot.title = element_text(hjust = 0.5)))
+  
+  ggsave(paste0("Plots/Election_results_distribution/Growth_eurosceptic_p_perc_facets", ".png"), bg = "white", dpi = 900, width = 20, height = 15, units = "cm")
   # Plot without deviation
   map_per_year_eu_scept <- function(i) {
     ggplot(shp_1 %>% filter(year == i) %>% mutate(sum_eurosceptic = sum_eurosceptic * 100)) +

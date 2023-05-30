@@ -1,8 +1,11 @@
 colnames(df_shp)
+country_code
 country
 year
 nuts2016
+nutslevel
 regionname
+type
 sum_farright
 sum_eurosceptic
 sum_populist
@@ -12,7 +15,6 @@ growth_sum_populist
 dev_mean_sum_farright
 dev_mean_sum_eurosceptic
 dev_mean_sum_populist
-country_code
 gdp
 population
 employment
@@ -27,6 +29,7 @@ employment_rate_lag_4
 migration_rate_lag_4
 growth_eurosceptic_p_perc
 growth_populism_p_perc
+growth_farright_p_perc
 LEVL_CODE
 CNTR_CODE
 NAME_LATN

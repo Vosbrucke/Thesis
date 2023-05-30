@@ -1,0 +1,41 @@
+ growth_eurosceptic_p_perc growth_farright_p_perc growth_populism_p_perc
+ Min.   :-15.613           Min.   :0              Min.   :0             
+ 1st Qu.: -5.641           1st Qu.:0              1st Qu.:0             
+ Median : -4.355           Median :0              Median :0             
+ Mean   : -1.780           Mean   :0              Mean   :0             
+ 3rd Qu.:  6.747           3rd Qu.:0              3rd Qu.:0             
+ Max.   : 11.662           Max.   :0              Max.   :0             
+
+[1] "No development of either populism nor farright"
+
+Oneway (individual) effect Within Model
+
+Call:
+plm(formula = formula_multivariate, data = panel, effect = "individual", 
+    model = "within", listw = listw1, lag = T, spatial.error = "b")
+
+Balanced Panel: n = 23, T = 3, N = 69
+
+Residuals:
+     Min.   1st Qu.    Median   3rd Qu.      Max. 
+-4.698946 -1.268665  0.057812  1.436846  3.926784 
+
+Coefficients:
+                         Estimate  Std. Error t-value  Pr(>|t|)    
+gdp                   -2.3491e+02  4.2969e+01 -5.4671 3.308e-06 ***
+employment_rate        1.6910e+02  3.0970e+01  5.4601 3.381e-06 ***
+elder_rate            -2.0003e+02  7.9999e+01 -2.5005 0.0169614 *  
+fem_rate              -7.1636e-05  1.0966e+00 -0.0001 0.9999482    
+migration_rate         5.7009e-01  1.4495e-01  3.9330 0.0003549 ***
+pop_density           -8.1503e-02  4.1038e-02 -1.9860 0.0544741 .  
+gdp_lag_4              1.5750e+01  7.2849e+00  2.1620 0.0371547 *  
+employment_rate_lag_4 -8.5674e+01  1.6549e+01 -5.1770 8.153e-06 ***
+migration_rate_lag_4   1.5518e-01  8.4006e-02  1.8473 0.0727103 .  
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Total Sum of Squares:    3905.3
+Residual Sum of Squares: 272.09
+R-Squared:      0.93033
+Adj. R-Squared: 0.87196
+F-statistic: 54.897 on 9 and 37 DF, p-value: < 2.22e-16
