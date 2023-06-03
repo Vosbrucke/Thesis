@@ -1,0 +1,92 @@
+$`Linear regression model for EP elections in 2009`
+
+Call:
+lm(formula = formula_hungary, data = df_hungary %>% filter(type == 
+    type, year == i))
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-2.0340 -0.5217 -0.1339  0.6284  2.0222 
+
+Coefficients:
+                               Estimate Std. Error t value Pr(>|t|)   
+(Intercept)                  -2.049e+01  4.617e+01  -0.444  0.66886   
+gdp                           9.511e-04  9.588e-04   0.992  0.35027   
+employment_rate              -3.805e+01  2.805e+01  -1.356  0.21199   
+ge65                          6.245e-05  2.551e-05   2.448  0.04005 * 
+elder_rate                   -3.298e+00  4.507e+01  -0.073  0.94346   
+fem_rate                      3.449e-01  4.249e-01   0.812  0.44036   
+migration_rate               -4.074e-01  1.517e-01  -2.685  0.02770 * 
+pop_density                  -2.336e-03  3.446e-03  -0.678  0.51695   
+gdp_lag_4                    -1.325e+01  1.040e+01  -1.273  0.23860   
+employment_rate_lag_4         1.663e+01  1.919e+01   0.866  0.41153   
+migration_rate_lag_4          5.210e-01  1.315e-01   3.963  0.00416 **
+perc_foreign_born_population -4.934e+00  1.394e+02  -0.035  0.97263   
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 1.597 on 8 degrees of freedom
+Multiple R-squared:  0.9113,	Adjusted R-squared:  0.7893 
+F-statistic: 7.469 on 11 and 8 DF,  p-value: 0.004234
+
+
+$`Linear regression model for EP elections in 2014`
+
+Call:
+lm(formula = formula_hungary, data = df_hungary %>% filter(type == 
+    type, year == i))
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-34.016 -29.911   0.042  29.057  35.847 
+
+Coefficients:
+                               Estimate Std. Error t value Pr(>|t|)
+(Intercept)                  -7.675e+01  7.001e+02  -0.110    0.913
+gdp                           4.736e-05  2.164e-02   0.002    0.998
+employment_rate               3.639e+00  7.915e+02   0.005    0.996
+ge65                         -2.874e-05  2.874e-04  -0.100    0.921
+elder_rate                    1.846e+01  6.739e+02   0.027    0.978
+fem_rate                      6.977e-01  6.446e+00   0.108    0.915
+migration_rate               -1.499e-02  2.845e+00  -0.005    0.996
+pop_density                  -1.471e-03  4.022e-02  -0.037    0.971
+gdp_lag_4                     9.916e+00  1.053e+02   0.094    0.926
+employment_rate_lag_4         1.928e+01  3.121e+02   0.062    0.951
+migration_rate_lag_4          9.175e-03  2.569e+00   0.004    0.997
+perc_foreign_born_population  3.150e+02  2.186e+03   0.144    0.886
+
+Residual standard error: 35.54 on 28 degrees of freedom
+Multiple R-squared:  0.007897,	Adjusted R-squared:  -0.3819 
+F-statistic: 0.02026 on 11 and 28 DF,  p-value: 1
+
+
+$`Linear regression model for EP elections in 2019`
+
+Call:
+lm(formula = formula_hungary, data = df_hungary %>% filter(type == 
+    type, year == i))
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-1.46937 -0.64288  0.06758  0.53601  1.36691 
+
+Coefficients:
+                               Estimate Std. Error t value Pr(>|t|)
+(Intercept)                   3.887e+01  5.115e+01   0.760    0.469
+gdp                           4.144e-04  8.415e-04   0.492    0.636
+employment_rate              -1.736e+01  2.753e+01  -0.631    0.546
+ge65                         -3.305e-05  1.965e-05  -1.682    0.131
+elder_rate                   -3.968e+01  5.517e+01  -0.719    0.492
+fem_rate                     -2.693e-01  4.374e-01  -0.616    0.555
+migration_rate               -1.745e-02  1.293e-01  -0.135    0.896
+pop_density                   3.203e-03  3.796e-03   0.844    0.423
+gdp_lag_4                    -1.384e+00  1.109e+01  -0.125    0.904
+employment_rate_lag_4        -5.790e+00  1.992e+01  -0.291    0.779
+migration_rate_lag_4         -1.953e-01  1.808e-01  -1.080    0.311
+perc_foreign_born_population -8.257e+01  8.322e+01  -0.992    0.350
+
+Residual standard error: 1.229 on 8 degrees of freedom
+Multiple R-squared:  0.7039,	Adjusted R-squared:  0.2967 
+F-statistic: 1.729 on 11 and 8 DF,  p-value: 0.2235
+
+

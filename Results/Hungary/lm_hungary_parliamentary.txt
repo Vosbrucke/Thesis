@@ -1,0 +1,124 @@
+$`Linear regression model for Parliamentary elections in 2006`
+
+Call:
+lm(formula = formula_hungary, data = df_hungary %>% filter(type == 
+    type, year == i))
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-0.36235 -0.13240 -0.00760  0.09589  0.53145 
+
+Coefficients:
+                               Estimate Std. Error t value Pr(>|t|)   
+(Intercept)                  -1.135e+01  1.034e+01  -1.098  0.30412   
+gdp                          -8.860e-05  2.067e-04  -0.429  0.67956   
+employment_rate               7.149e-02  5.762e+00   0.012  0.99040   
+ge65                         -1.270e-05  4.778e-06  -2.658  0.02891 * 
+elder_rate                   -1.294e+01  1.166e+01  -1.110  0.29941   
+fem_rate                      1.143e-01  9.516e-02   1.202  0.26390   
+migration_rate               -9.694e-02  2.617e-02  -3.704  0.00601 **
+pop_density                  -9.626e-05  6.636e-04  -0.145  0.88825   
+gdp_lag_4                     4.282e+00  1.718e+00   2.493  0.03736 * 
+employment_rate_lag_4        -5.241e+00  2.365e+00  -2.216  0.05755 . 
+migration_rate_lag_4         -9.175e-02  3.232e-02  -2.839  0.02185 * 
+perc_foreign_born_population  8.176e+01  3.455e+01   2.366  0.04551 * 
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 0.3219 on 8 degrees of freedom
+Multiple R-squared:  0.9525,	Adjusted R-squared:  0.8872 
+F-statistic: 14.58 on 11 and 8 DF,  p-value: 0.0004065
+
+
+$`Linear regression model for Parliamentary elections in 2010`
+
+Call:
+lm(formula = formula_hungary, data = df_hungary %>% filter(type == 
+    type, year == i))
+
+Residuals:
+   Min     1Q Median     3Q    Max 
+-5.935 -1.265 -0.218  1.882  4.872 
+
+Coefficients:
+                               Estimate Std. Error t value Pr(>|t|)
+(Intercept)                   1.304e+02  2.031e+02   0.642    0.539
+gdp                          -1.067e-03  3.282e-03  -0.325    0.754
+employment_rate               8.919e+00  9.519e+01   0.094    0.928
+ge65                         -6.925e-06  6.913e-05  -0.100    0.923
+elder_rate                   -8.104e+01  1.221e+02  -0.664    0.526
+fem_rate                     -5.877e-01  1.819e+00  -0.323    0.755
+migration_rate                3.149e-01  1.164e+00   0.270    0.794
+pop_density                   6.440e-04  1.196e-02   0.054    0.958
+gdp_lag_4                     1.549e+01  2.483e+01   0.624    0.550
+employment_rate_lag_4         2.688e+00  5.435e+01   0.049    0.962
+migration_rate_lag_4          7.804e-02  3.397e-01   0.230    0.824
+perc_foreign_born_population -3.395e+02  5.214e+02  -0.651    0.533
+
+Residual standard error: 4.31 on 8 degrees of freedom
+Multiple R-squared:  0.6403,	Adjusted R-squared:  0.1458 
+F-statistic: 1.295 on 11 and 8 DF,  p-value: 0.3652
+
+
+$`Linear regression model for Parliamentary elections in 2014`
+
+Call:
+lm(formula = formula_hungary, data = df_hungary %>% filter(type == 
+    type, year == i))
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-34.016 -29.911   0.042  29.057  35.847 
+
+Coefficients:
+                               Estimate Std. Error t value Pr(>|t|)
+(Intercept)                  -7.675e+01  7.001e+02  -0.110    0.913
+gdp                           4.736e-05  2.164e-02   0.002    0.998
+employment_rate               3.639e+00  7.915e+02   0.005    0.996
+ge65                         -2.874e-05  2.874e-04  -0.100    0.921
+elder_rate                    1.846e+01  6.739e+02   0.027    0.978
+fem_rate                      6.977e-01  6.446e+00   0.108    0.915
+migration_rate               -1.499e-02  2.845e+00  -0.005    0.996
+pop_density                  -1.471e-03  4.022e-02  -0.037    0.971
+gdp_lag_4                     9.916e+00  1.053e+02   0.094    0.926
+employment_rate_lag_4         1.928e+01  3.121e+02   0.062    0.951
+migration_rate_lag_4          9.175e-03  2.569e+00   0.004    0.997
+perc_foreign_born_population  3.150e+02  2.186e+03   0.144    0.886
+
+Residual standard error: 35.54 on 28 degrees of freedom
+Multiple R-squared:  0.007897,	Adjusted R-squared:  -0.3819 
+F-statistic: 0.02026 on 11 and 28 DF,  p-value: 1
+
+
+$`Linear regression model for Parliamentary elections in 2018`
+
+Call:
+lm(formula = formula_hungary, data = df_hungary %>% filter(type == 
+    type, year == i))
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-1.00879 -0.45055  0.01359  0.51360  1.04529 
+
+Coefficients:
+                               Estimate Std. Error t value Pr(>|t|)  
+(Intercept)                   1.193e+01  3.370e+01   0.354   0.7326  
+gdp                          -1.244e-03  7.852e-04  -1.584   0.1519  
+employment_rate               3.993e+01  3.282e+01   1.217   0.2585  
+ge65                         -1.100e-05  1.245e-05  -0.884   0.4025  
+elder_rate                   -1.019e+01  2.999e+01  -0.340   0.7426  
+fem_rate                     -1.279e-01  2.794e-01  -0.458   0.6593  
+migration_rate                1.464e-01  7.187e-02   2.038   0.0759 .
+pop_density                   6.744e-04  1.878e-03   0.359   0.7288  
+gdp_lag_4                     1.821e+01  1.097e+01   1.661   0.1353  
+employment_rate_lag_4        -1.812e+01  1.752e+01  -1.034   0.3312  
+migration_rate_lag_4         -1.145e-01  1.643e-01  -0.697   0.5055  
+perc_foreign_born_population -1.514e+01  5.135e+01  -0.295   0.7756  
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 0.9221 on 8 degrees of freedom
+Multiple R-squared:  0.8095,	Adjusted R-squared:  0.5477 
+F-statistic: 3.091 on 11 and 8 DF,  p-value: 0.06004
+
+

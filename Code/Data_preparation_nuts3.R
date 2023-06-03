@@ -77,8 +77,8 @@ df_density <- read_csv("Raw_data/Nuts3/Pop_density.csv") %>%
 
 # Elections data frame
 df_elections <- read_csv("Processed_data/elections_extremes.csv") %>% 
-  filter(type == "EP", year >= 2004) %>% 
-  filter(!year %in% c(2007, 2013)) %>% 
+  # filter(type == "EP", year >= 2004) %>% 
+  # filter(!year %in% c(2007, 2013)) %>% 
   group_by(nuts2016) %>% 
   # Add a column for growth rate
   dplyr::mutate(
@@ -98,21 +98,23 @@ df_elections <- read_csv("Processed_data/elections_extremes.csv") %>%
 df <- df_elections %>% 
   group_by(country, year) %>% 
   full_join(df_density, by = c("nuts2016" = "geo", "year" = "time_period")) %>% 
-  group_by(nuts2016) %>% 
+  group_by(nuts2016, type) %>% 
   mutate(
     growth_eurosceptic_p_perc = 100 * (sum_eurosceptic - dplyr::lag(sum_eurosceptic)),
     growth_populism_p_perc = 100 * (sum_populist - dplyr::lag(sum_populist)),
     growth_farright_p_perc = 100 * (sum_farright - dplyr::lag(sum_farright))
   ) %>% 
-  # Remove abrod votes
+  # Remove abroad votes and limit the dataset to nuts3 level
   filter(regionname != "Abroad votes", nutslevel == 3) %>% 
+  # Remove French regions outside of Europe
   filter(!str_detect(nuts2016, "FRZZZ|FRY")) %>% 
-  relocate(country_code, .before = country) %>% 
+  relocate(country_code, .before = country)
   # Change gdp value to gdp per capita
-  mutate(gdp = gdp / population)
 
 # Write the df
 write_csv(df, "Processed_data/df.csv")
+# Addition of foreign-born population 
+df_romania <- readxl::read_xlsx("Raw_data/Foreign-born population/DE.xlsx", sheet = 2)
 
 # Checking how many NAs there are in the data frame per year
 df_lagged_na <- function(i) {

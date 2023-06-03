@@ -1,0 +1,103 @@
+$`Linear regression model for EP elections in 2009`
+
+Call:
+lm(formula = formula_sweden, data = df_sweden %>% filter(type == 
+    type, year == i))
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-1.26366 -0.31386 -0.08104  0.43402  1.87139 
+
+Coefficients:
+                                                                            Estimate Std. Error t value Pr(>|t|)
+(Intercept)                                                               -1.965e+01  1.160e+03  -0.017    0.987
+gdp                                                                       -2.443e-05  3.346e-04  -0.073    0.944
+employment_rate                                                            1.006e+01  1.918e+01   0.525    0.619
+ge65                                                                       5.078e-06  6.887e-06   0.737    0.489
+elder_rate                                                                 4.134e+01  1.489e+02   0.278    0.791
+fem_rate                                                                   4.121e-01  5.568e-01   0.740    0.487
+migration_rate                                                             2.769e-01  1.273e+00   0.218    0.835
+pop_density                                                               -7.584e-03  2.547e-02  -0.298    0.776
+gdp_lag_4                                                                 -2.292e+01  2.894e+01  -0.792    0.459
+employment_rate_lag_4                                                     -1.058e+01  1.787e+01  -0.592    0.576
+migration_rate_lag_4                                                      -9.108e-02  2.052e-01  -0.444    0.673
+foreign_born                                                               3.924e+01  1.168e+03   0.034    0.974
+born_in_sweden_with_two_foreign_born_parents                              -1.406e+01  1.220e+03  -0.012    0.991
+born_in_sweden_with_one_parent_born_in_sweden_and_one_foreign_born_parent -5.747e+01  1.201e+03  -0.048    0.963
+born_in_sweden_with_two_parents_born_in_sweden                             7.504e-01  1.183e+03   0.001    1.000
+
+Residual standard error: 1.224 on 6 degrees of freedom
+Multiple R-squared:  0.8198,	Adjusted R-squared:  0.3993 
+F-statistic:  1.95 on 14 and 6 DF,  p-value: 0.211
+
+
+$`Linear regression model for EP elections in 2014`
+
+Call:
+lm(formula = formula_sweden, data = df_sweden %>% filter(type == 
+    type, year == i))
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-2.56729 -0.42600 -0.01113  0.53624  1.60966 
+
+Coefficients:
+                                                                            Estimate Std. Error t value Pr(>|t|)  
+(Intercept)                                                               -3.193e+02  5.711e+02  -0.559   0.5807  
+gdp                                                                        1.634e-04  1.510e-04   1.082   0.2887  
+employment_rate                                                           -8.121e+00  1.589e+01  -0.511   0.6136  
+ge65                                                                       2.354e-06  3.676e-06   0.640   0.5273  
+elder_rate                                                                 7.234e+01  5.118e+01   1.413   0.1690  
+fem_rate                                                                  -1.018e-01  2.878e-01  -0.354   0.7261  
+migration_rate                                                            -2.765e-01  6.323e-01  -0.437   0.6654  
+pop_density                                                               -2.008e-02  7.797e-03  -2.575   0.0158 *
+gdp_lag_4                                                                 -3.569e+00  5.878e+00  -0.607   0.5488  
+employment_rate_lag_4                                                     -2.335e+01  2.425e+01  -0.963   0.3441  
+migration_rate_lag_4                                                      -9.376e-02  1.016e-01  -0.923   0.3643  
+foreign_born                                                               3.531e+02  5.534e+02   0.638   0.5288  
+born_in_sweden_with_two_foreign_born_parents                               4.066e+02  5.647e+02   0.720   0.4776  
+born_in_sweden_with_one_parent_born_in_sweden_and_one_foreign_born_parent  2.910e+02  5.539e+02   0.525   0.6036  
+born_in_sweden_with_two_parents_born_in_sweden                             3.474e+02  5.592e+02   0.621   0.5396  
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 1.004 on 27 degrees of freedom
+Multiple R-squared:  0.7175,	Adjusted R-squared:  0.571 
+F-statistic: 4.898 on 14 and 27 DF,  p-value: 0.0002042
+
+
+$`Linear regression model for EP elections in 2019`
+
+Call:
+lm(formula = formula_sweden, data = df_sweden %>% filter(type == 
+    type, year == i))
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-0.68452 -0.27296 -0.08055  0.23969  1.07444 
+
+Coefficients:
+                                                                            Estimate Std. Error t value Pr(>|t|)  
+(Intercept)                                                                1.627e+02  6.758e+02   0.241   0.8178  
+gdp                                                                       -2.876e-04  1.439e-04  -1.998   0.0927 .
+employment_rate                                                            1.427e+01  1.776e+01   0.803   0.4525  
+ge65                                                                       1.864e-06  4.137e-06   0.451   0.6681  
+elder_rate                                                                -6.809e+00  6.571e+01  -0.104   0.9209  
+fem_rate                                                                   6.939e-03  3.281e-01   0.021   0.9838  
+migration_rate                                                             1.987e-01  7.967e-01   0.249   0.8113  
+pop_density                                                                9.331e-03  9.637e-03   0.968   0.3703  
+gdp_lag_4                                                                  3.191e-01  1.012e+01   0.032   0.9759  
+employment_rate_lag_4                                                      1.132e+00  2.330e+01   0.049   0.9628  
+migration_rate_lag_4                                                      -1.945e+00  9.305e-01  -2.090   0.0816 .
+foreign_born                                                              -1.354e+02  6.587e+02  -0.206   0.8440  
+born_in_sweden_with_two_foreign_born_parents                              -2.303e+02  6.654e+02  -0.346   0.7410  
+born_in_sweden_with_one_parent_born_in_sweden_and_one_foreign_born_parent -9.180e+01  6.749e+02  -0.136   0.8963  
+born_in_sweden_with_two_parents_born_in_sweden                            -1.560e+02  6.625e+02  -0.235   0.8217  
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 0.7907 on 6 degrees of freedom
+Multiple R-squared:  0.8453,	Adjusted R-squared:  0.4843 
+F-statistic: 2.342 on 14 and 6 DF,  p-value: 0.151
+
+

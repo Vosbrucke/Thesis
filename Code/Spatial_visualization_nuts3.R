@@ -86,14 +86,17 @@ theme_map <- function(...) {
 
 # Mapping the variables
 {
+  
+  pallet <- wesanderson::wes_palette("Zissou1")
+  pallet[3]
   # Mapping eurosceptism in the selected countries
-  map_per_year_eu_scept_dv <- function(i) {
-    ggplot(df_shp %>% filter(year %in% seq(2009, 2019, by = 5)), aes(geometry = geometry)) +
+  map_per_year_farright <- function(i) {
+    ggplot(df_shp %>% filter(year > 2003, type == "Parliament"), aes(geometry = geometry)) +
     # ggplot(df_shp %>% filter(year %in% i), aes(geometry = geometry)) +
       geom_sf(data = shp_0 %>% filter(LEVL_CODE == 3, !str_detect(NUTS_ID, "FRY|PT300|PT200|ES7")), fill = "lightgrey", color = "lightgrey", linewidth = 0.1) +
-      geom_sf(data = df_shp %>% filter(year %in% seq(2009, 2019, by = 5), !CNTR_CODE %in% c("FR", "PT", "HR", "RO")), fill = "lightgrey", color = "white") +
+      geom_sf(data = df_shp %>% filter(year > 2003, type == "Parliament", !CNTR_CODE %in% c("FR", "PT", "HR", "RO")), fill = "lightgrey", color = "white") +
       # geom_sf(data = df_shp %>% filter(year %in% i, !CNTR_CODE %in% c("FR", "PT", "HR", "RO")), fill = "lightgrey", color = "white") +
-      geom_sf(aes(fill = growth_eurosceptic_p_perc), color = "white", linewidth = 0.1) +
+      geom_sf(aes(fill = 100*sum_farright), linewidth = 0) +
       # scale_fill_gradient(name = "") +
       # The one below is for relative values (perc only)
       # scale_fill_gradient2(limits = c(-40, 40), low = "#3B9AB2", mid = "#F5F5F2", high = "#F21A00") +
@@ -101,12 +104,17 @@ theme_map <- function(...) {
       # scale_fill_gradient2(limits = c(-40, 40), low = "#3B9AB2", mid = "#F5F5F2", high = "#F21A00") +
       # Dunno this one
       # scale_fill_gradient2(low = "#3B9AB2", mid = "#F5F5F2", high = "#F21A00", limits = c(-65, 65)) +
-      scale_fill_gradient2(low = "#3B9AB2", mid = "#F5F5F2", high = "#F21A00", name = "") +
+      # This lower one is for growth graphs
+      # scale_fill_gradient2(low = "#3B9AB2", mid = "#F5F5F2", high = "#F21A00", name = "") +
+      # This one is for sum_farright so from 0 to 100
+    # scale_fill_gradient2(low = "#3B9AB2", mid = "#EBCC2A", high = "#F21A00", name = "", limits = c(0, 100), midpoint = 50) +
+    # scale_fill_binned() +
+      scale_fill_gradient(low = "#FEF8F7", high = "#F21A00", name = "", limits = c(0, 100)) +
       # (limits = c(-40,40), option = "magma", direction = -1) +
       labs(
         x = "", 
         y = "", 
-        title = paste("Growth of eurosceptic parties in Europe Union"),
+        title = paste("Far right movements support in Europe in parliament elections"),
       ) +
       theme_map() +
       theme(
@@ -125,16 +133,15 @@ theme_map <- function(...) {
       #   )
       # ) +
     facet_wrap(~year)
-      
   }
   
   # Create a plot for each elections separately
   plots <- lapply(seq(2009, 2019, by = 5), map_per_year_eu_scept_dv)
   
   library(patchwork)
-  t <- patchwork::wrap_plots(plots, ncol = 1) + plot_annotation(title = paste("Growth of eurosceptic parties in Europe Union"), theme = theme(plot.title = element_text(hjust = 0.5)))
+  t <- patchwork::wrap_plots(plots, ncol = 1) + plot_annotation(title = paste("Growth of farright parties in European Union"), theme = theme(plot.title = element_text(hjust = 0.5)))
   
-  ggsave(paste0("Plots/Election_results_distribution/Growth_eurosceptic_p_perc_facets", ".png"), bg = "white", dpi = 900, width = 20, height = 15, units = "cm")
+  ggsave(paste0("Plots/Election_results_distribution/Farright_support_facets", ".png"), bg = "white", dpi = 900, width = 20, height = 15, units = "cm")
   # Plot without deviation
   map_per_year_eu_scept <- function(i) {
     ggplot(shp_1 %>% filter(year == i) %>% mutate(sum_eurosceptic = sum_eurosceptic * 100)) +

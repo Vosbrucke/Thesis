@@ -1,0 +1,13 @@
+Sources:
+
+Sweden population: https://www.statistikdatabasen.scb.se/pxweb/en/ssd/START__BE__BE0101__BE0101Q/UtlSvBakgFin/table/tableViewLayout1/
+
+Germany population: https://www-genesis.destatis.de/genesis//online?operation=table&code=12521-0044&bypass=true&levelindex=0&levelid=1685660794067#abreadcrumb
+
+Spain population: https://www.ine.es/jaxiT3/Tabla.htm?t=9689
+
+Italy population: https://esploradati.istat.it/databrowser/#/it/dw/categories/IT1,POP,1.0/POP_FOREIGNIM/DCIS_POPSTRRES1/IT1,29_7_DF_DCIS_POPSTRRES1_1,1.0
+
+Italy administrative division: https://www.istat.it/it/archivio/6789
+
+Hungary	population: https://www.ksh.hu/stadat_files/nep/en/nep0050.html

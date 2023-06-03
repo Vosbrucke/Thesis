@@ -1,0 +1,31 @@
+[1] "Linear regression model for EP in 2019"
+
+Call:
+lm(formula = formula_italy, data = df_italy)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-8.0790 -3.2817 -0.0136  2.4367 11.9036 
+
+Coefficients:
+                               Estimate Std. Error t value Pr(>|t|)   
+(Intercept)                  -1.045e+02  4.646e+01  -2.249  0.02703 * 
+gdp                          -3.797e-04  2.508e-04  -1.514  0.13367   
+employment_rate               2.972e+01  2.582e+01   1.151  0.25287   
+ge65                         -1.290e-07  5.432e-06  -0.024  0.98111   
+elder_rate                    9.979e+01  3.035e+01   3.287  0.00146 **
+fem_rate                      8.912e-01  3.648e-01   2.443  0.01658 * 
+migration_rate                3.076e-01  2.044e-01   1.505  0.13592   
+pop_density                  -1.150e-03  1.517e-03  -0.758  0.45044   
+gdp_lag_4                     2.533e+00  1.934e+01   0.131  0.89608   
+employment_rate_lag_4         1.826e+01  2.047e+01   0.892  0.37479   
+migration_rate_lag_4          7.630e-02  6.546e-02   1.166  0.24696   
+perc_foreign_born_population  4.517e+01  2.460e+01   1.837  0.06970 . 
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 4.442 on 87 degrees of freedom
+  (4 observations deleted due to missingness)
+Multiple R-squared:  0.4211,	Adjusted R-squared:  0.3479 
+F-statistic: 5.754 on 11 and 87 DF,  p-value: 6.579e-07
+
