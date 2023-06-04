@@ -6,28 +6,27 @@ lm(formula = formula_hungary, data = df_hungary %>% filter(type ==
 
 Residuals:
      Min       1Q   Median       3Q      Max 
--0.36235 -0.13240 -0.00760  0.09589  0.53145 
+-0.42387 -0.19522 -0.06486  0.24834  0.51515 
 
 Coefficients:
                                Estimate Std. Error t value Pr(>|t|)   
-(Intercept)                  -1.135e+01  1.034e+01  -1.098  0.30412   
-gdp                          -8.860e-05  2.067e-04  -0.429  0.67956   
-employment_rate               7.149e-02  5.762e+00   0.012  0.99040   
-ge65                         -1.270e-05  4.778e-06  -2.658  0.02891 * 
-elder_rate                   -1.294e+01  1.166e+01  -1.110  0.29941   
-fem_rate                      1.143e-01  9.516e-02   1.202  0.26390   
-migration_rate               -9.694e-02  2.617e-02  -3.704  0.00601 **
-pop_density                  -9.626e-05  6.636e-04  -0.145  0.88825   
-gdp_lag_4                     4.282e+00  1.718e+00   2.493  0.03736 * 
-employment_rate_lag_4        -5.241e+00  2.365e+00  -2.216  0.05755 . 
-migration_rate_lag_4         -9.175e-02  3.232e-02  -2.839  0.02185 * 
-perc_foreign_born_population  8.176e+01  3.455e+01   2.366  0.04551 * 
+(Intercept)                  -1.418e+01  1.330e+01  -1.066  0.31419   
+gdp                          -2.951e-04  2.479e-04  -1.191  0.26427   
+employment_rate               8.550e+00  6.208e+00   1.377  0.20170   
+elder_rate                   -7.324e+00  1.484e+01  -0.494  0.63341   
+fem_rate                      1.225e-01  1.230e-01   0.995  0.34564   
+migration_rate               -1.143e-01  3.279e-02  -3.485  0.00688 **
+pop_density                  -1.370e-03  5.939e-04  -2.306  0.04652 * 
+gdp_lag_4                     3.598e+00  2.197e+00   1.638  0.13592   
+employment_rate_lag_4        -5.258e+00  3.060e+00  -1.718  0.11985   
+migration_rate_lag_4         -8.616e-02  4.172e-02  -2.065  0.06892 . 
+perc_foreign_born_population  7.193e+01  4.445e+01   1.618  0.14005   
 ---
 Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
 
-Residual standard error: 0.3219 on 8 degrees of freedom
-Multiple R-squared:  0.9525,	Adjusted R-squared:  0.8872 
-F-statistic: 14.58 on 11 and 8 DF,  p-value: 0.0004065
+Residual standard error: 0.4164 on 9 degrees of freedom
+Multiple R-squared:  0.9105,	Adjusted R-squared:  0.8112 
+F-statistic: 9.161 on 10 and 9 DF,  p-value: 0.001344
 
 
 $`Linear regression model for Parliamentary elections in 2010`
@@ -37,27 +36,26 @@ lm(formula = formula_hungary, data = df_hungary %>% filter(type ==
     type, year == i))
 
 Residuals:
-   Min     1Q Median     3Q    Max 
--5.935 -1.265 -0.218  1.882  4.872 
+    Min      1Q  Median      3Q     Max 
+-5.9170 -1.3441 -0.1348  1.9817  4.8550 
 
 Coefficients:
                                Estimate Std. Error t value Pr(>|t|)
-(Intercept)                   1.304e+02  2.031e+02   0.642    0.539
-gdp                          -1.067e-03  3.282e-03  -0.325    0.754
-employment_rate               8.919e+00  9.519e+01   0.094    0.928
-ge65                         -6.925e-06  6.913e-05  -0.100    0.923
-elder_rate                   -8.104e+01  1.221e+02  -0.664    0.526
-fem_rate                     -5.877e-01  1.819e+00  -0.323    0.755
-migration_rate                3.149e-01  1.164e+00   0.270    0.794
-pop_density                   6.440e-04  1.196e-02   0.054    0.958
-gdp_lag_4                     1.549e+01  2.483e+01   0.624    0.550
-employment_rate_lag_4         2.688e+00  5.435e+01   0.049    0.962
-migration_rate_lag_4          7.804e-02  3.397e-01   0.230    0.824
-perc_foreign_born_population -3.395e+02  5.214e+02  -0.651    0.533
+(Intercept)                   1.246e+02  1.837e+02   0.678    0.515
+gdp                          -1.055e-03  3.095e-03  -0.341    0.741
+employment_rate               1.207e+01  8.475e+01   0.142    0.890
+elder_rate                   -7.555e+01  1.029e+02  -0.734    0.482
+fem_rate                     -5.429e-01  1.664e+00  -0.326    0.752
+migration_rate                2.478e-01  8.981e-01   0.276    0.789
+pop_density                  -2.417e-04  7.603e-03  -0.032    0.975
+gdp_lag_4                     1.617e+01  2.254e+01   0.717    0.491
+employment_rate_lag_4         8.378e-01  4.822e+01   0.017    0.987
+migration_rate_lag_4          7.337e-02  3.174e-01   0.231    0.822
+perc_foreign_born_population -3.233e+02  4.675e+02  -0.691    0.507
 
-Residual standard error: 4.31 on 8 degrees of freedom
-Multiple R-squared:  0.6403,	Adjusted R-squared:  0.1458 
-F-statistic: 1.295 on 11 and 8 DF,  p-value: 0.3652
+Residual standard error: 4.066 on 9 degrees of freedom
+Multiple R-squared:  0.6399,	Adjusted R-squared:  0.2397 
+F-statistic: 1.599 on 10 and 9 DF,  p-value: 0.2463
 
 
 $`Linear regression model for Parliamentary elections in 2014`
@@ -68,26 +66,25 @@ lm(formula = formula_hungary, data = df_hungary %>% filter(type ==
 
 Residuals:
     Min      1Q  Median      3Q     Max 
--34.016 -29.911   0.042  29.057  35.847 
+-33.921 -29.760  -0.023  28.853  35.679 
 
 Coefficients:
                                Estimate Std. Error t value Pr(>|t|)
-(Intercept)                  -7.675e+01  7.001e+02  -0.110    0.913
-gdp                           4.736e-05  2.164e-02   0.002    0.998
-employment_rate               3.639e+00  7.915e+02   0.005    0.996
-ge65                         -2.874e-05  2.874e-04  -0.100    0.921
-elder_rate                    1.846e+01  6.739e+02   0.027    0.978
-fem_rate                      6.977e-01  6.446e+00   0.108    0.915
-migration_rate               -1.499e-02  2.845e+00  -0.005    0.996
-pop_density                  -1.471e-03  4.022e-02  -0.037    0.971
-gdp_lag_4                     9.916e+00  1.053e+02   0.094    0.926
-employment_rate_lag_4         1.928e+01  3.121e+02   0.062    0.951
-migration_rate_lag_4          9.175e-03  2.569e+00   0.004    0.997
-perc_foreign_born_population  3.150e+02  2.186e+03   0.144    0.886
+(Intercept)                  -9.424e+01  6.662e+02  -0.141    0.888
+gdp                          -1.081e-03  1.815e-02  -0.060    0.953
+employment_rate               4.833e+01  6.420e+02   0.075    0.941
+elder_rate                    2.908e+01  6.541e+02   0.044    0.965
+fem_rate                      7.719e-01  6.293e+00   0.123    0.903
+migration_rate               -6.039e-02  2.760e+00  -0.022    0.983
+pop_density                  -4.628e-03  2.450e-02  -0.189    0.852
+gdp_lag_4                     9.959e+00  1.035e+02   0.096    0.924
+employment_rate_lag_4         1.979e+01  3.067e+02   0.065    0.949
+migration_rate_lag_4          2.270e-02  2.522e+00   0.009    0.993
+perc_foreign_born_population  3.033e+02  2.145e+03   0.141    0.889
 
-Residual standard error: 35.54 on 28 degrees of freedom
-Multiple R-squared:  0.007897,	Adjusted R-squared:  -0.3819 
-F-statistic: 0.02026 on 11 and 28 DF,  p-value: 1
+Residual standard error: 34.93 on 29 degrees of freedom
+Multiple R-squared:  0.007542,	Adjusted R-squared:  -0.3347 
+F-statistic: 0.02204 on 10 and 29 DF,  p-value: 1
 
 
 $`Linear regression model for Parliamentary elections in 2018`
@@ -97,28 +94,27 @@ lm(formula = formula_hungary, data = df_hungary %>% filter(type ==
     type, year == i))
 
 Residuals:
-     Min       1Q   Median       3Q      Max 
--1.00879 -0.45055  0.01359  0.51360  1.04529 
+    Min      1Q  Median      3Q     Max 
+-1.1614 -0.4927  0.0259  0.4879  1.1136 
 
 Coefficients:
                                Estimate Std. Error t value Pr(>|t|)  
-(Intercept)                   1.193e+01  3.370e+01   0.354   0.7326  
-gdp                          -1.244e-03  7.852e-04  -1.584   0.1519  
-employment_rate               3.993e+01  3.282e+01   1.217   0.2585  
-ge65                         -1.100e-05  1.245e-05  -0.884   0.4025  
-elder_rate                   -1.019e+01  2.999e+01  -0.340   0.7426  
-fem_rate                     -1.279e-01  2.794e-01  -0.458   0.6593  
-migration_rate                1.464e-01  7.187e-02   2.038   0.0759 .
-pop_density                   6.744e-04  1.878e-03   0.359   0.7288  
-gdp_lag_4                     1.821e+01  1.097e+01   1.661   0.1353  
-employment_rate_lag_4        -1.812e+01  1.752e+01  -1.034   0.3312  
-migration_rate_lag_4         -1.145e-01  1.643e-01  -0.697   0.5055  
-perc_foreign_born_population -1.514e+01  5.135e+01  -0.295   0.7756  
+(Intercept)                   8.692e+00  3.310e+01   0.263   0.7988  
+gdp                          -1.435e-03  7.454e-04  -1.925   0.0863 .
+employment_rate               5.060e+01  3.015e+01   1.678   0.1276  
+elder_rate                    5.178e-01  2.709e+01   0.019   0.9852  
+fem_rate                     -9.125e-02  2.729e-01  -0.334   0.7458  
+migration_rate                1.165e-01  6.260e-02   1.861   0.0957 .
+pop_density                  -7.426e-04  9.658e-04  -0.769   0.4617  
+gdp_lag_4                     2.022e+01  1.060e+01   1.909   0.0887 .
+employment_rate_lag_4        -2.502e+01  1.549e+01  -1.616   0.1406  
+migration_rate_lag_4         -1.686e-01  1.506e-01  -1.119   0.2920  
+perc_foreign_born_population -1.290e+01  5.066e+01  -0.255   0.8047  
 ---
 Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
 
-Residual standard error: 0.9221 on 8 degrees of freedom
-Multiple R-squared:  0.8095,	Adjusted R-squared:  0.5477 
-F-statistic: 3.091 on 11 and 8 DF,  p-value: 0.06004
+Residual standard error: 0.9109 on 9 degrees of freedom
+Multiple R-squared:  0.7909,	Adjusted R-squared:  0.5586 
+F-statistic: 3.405 on 10 and 9 DF,  p-value: 0.03952
 
 

@@ -1,0 +1,76 @@
+$`SAR model for EP elections in 2014`
+
+Call:lagsarlm(formula = formula_spain, data = shp_spain_year_type,     listw = listw_spain)
+
+Residuals:
+      Min        1Q    Median        3Q       Max 
+-0.881892 -0.398454 -0.096888  0.109194  1.327300 
+
+Type: lag 
+Coefficients: (asymptotic standard errors) 
+                                     Estimate  Std. Error z value Pr(>|z|)
+(Intercept)                        5.6694e+00  5.9579e+00  0.9516 0.341314
+gdp                               -8.2090e-05  7.7193e-05 -1.0634 0.287585
+employment_rate                    1.3499e+01  7.5686e+00  1.7835 0.074506
+elder_rate                        -5.5423e+00  3.4906e+00 -1.5878 0.112339
+fem_rate                          -2.4217e-02  4.9302e-02 -0.4912 0.623292
+migration_rate                    -3.9989e-02  4.5370e-02 -0.8814 0.378108
+pop_density                       -6.2355e-04  7.7915e-04 -0.8003 0.423540
+gdp_lag_4                         -5.8470e+00  4.8822e+00 -1.1976 0.231071
+employment_rate_lag_4              8.5767e-01  5.2963e+00  0.1619 0.871356
+migration_rate_lag_4               6.8746e-03  9.4766e-03  0.7254 0.468188
+country_of_the_eu28_without_spain  1.0423e+01  5.1555e+00  2.0218 0.043202
+from_africa                       -2.6805e+01  9.0895e+00 -2.9491 0.003188
+
+Rho: 0.60887, LR test value: 11.632, p-value: 0.00064833
+Asymptotic standard error: 0.12938
+    z-value: 4.706, p-value: 2.5257e-06
+Wald statistic: 22.147, p-value: 2.5257e-06
+
+Log likelihood: -42.75868 for lag model
+ML residual variance (sigma squared): 0.32616, (sigma: 0.5711)
+Number of observations: 47 
+Number of parameters estimated: 14 
+AIC: 113.52, (AIC for lm: 123.15)
+LM test for residual autocorrelation
+test value: 0.091907, p-value: 0.76177
+
+
+$`SAR model for EP elections in 2019`
+
+Call:lagsarlm(formula = formula_spain, data = shp_spain_year_type,     listw = listw_spain)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-9.3794 -5.1503 -2.2032  5.7711 14.4480 
+
+Type: lag 
+Coefficients: (asymptotic standard errors) 
+                                     Estimate  Std. Error z value Pr(>|z|)
+(Intercept)                       -2.3050e+01  4.3535e+01 -0.5295   0.5965
+gdp                               -6.9221e-04  4.4342e-04 -1.5611   0.1185
+employment_rate                    3.0343e+01  4.2169e+01  0.7196   0.4718
+elder_rate                        -3.1145e+01  2.6368e+01 -1.1812   0.2375
+fem_rate                           1.7399e-01  3.2722e-01  0.5317   0.5949
+migration_rate                    -2.2203e-01  2.6934e-01 -0.8244   0.4097
+pop_density                        1.8034e-03  5.7038e-03  0.3162   0.7519
+gdp_lag_4                          1.8924e+01  2.4452e+01  0.7739   0.4390
+employment_rate_lag_4              4.5636e+00  4.1287e+01  0.1105   0.9120
+migration_rate_lag_4              -2.3416e-02  2.5963e-02 -0.9019   0.3671
+country_of_the_eu28_without_spain  6.0628e+01  4.7654e+01  1.2723   0.2033
+from_africa                       -8.6450e+00  6.5639e+01 -0.1317   0.8952
+
+Rho: 0.0095235, LR test value: 0.0018068, p-value: 0.9661
+Asymptotic standard error: 0.2012
+    z-value: 0.047334, p-value: 0.96225
+Wald statistic: 0.0022405, p-value: 0.96225
+
+Log likelihood: -302.9203 for lag model
+ML residual variance (sigma squared): 36.864, (sigma: 6.0715)
+Number of observations: 94 
+Number of parameters estimated: 14 
+AIC: 633.84, (AIC for lm: 631.84)
+LM test for residual autocorrelation
+test value: 4.8682, p-value: 0.027356
+
+

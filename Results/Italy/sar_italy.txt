@@ -4,34 +4,33 @@ Call:lagsarlm(formula = formula_italy, data = shp_italy, listw = listw_italy)
 
 Residuals:
      Min       1Q   Median       3Q      Max 
--7.85204 -2.10310  0.49116  1.85573 10.80376 
+-7.86911 -2.05194  0.40549  1.92205 10.67527 
 
 Type: lag 
 Coefficients: (asymptotic standard errors) 
                                 Estimate  Std. Error z value Pr(>|z|)
-(Intercept)                  -7.4431e+01  3.3527e+01 -2.2200  0.02642
-gdp                          -2.7804e-04  1.8158e-04 -1.5312  0.12572
-employment_rate               4.8585e+00  1.8719e+01  0.2596  0.79521
-ge65                         -2.3626e-06  3.9229e-06 -0.6023  0.54701
-elder_rate                    5.7551e+01  2.2534e+01  2.5540  0.01065
-fem_rate                      6.4259e-01  2.6324e-01  2.4411  0.01464
-migration_rate                2.5354e-01  1.4783e-01  1.7151  0.08632
-pop_density                  -6.9321e-04  1.0946e-03 -0.6333  0.52652
-gdp_lag_4                    -4.8430e+00  1.3964e+01 -0.3468  0.72873
-employment_rate_lag_4         1.8326e+01  1.4772e+01  1.2406  0.21476
-migration_rate_lag_4          9.1730e-02  4.7241e-02  1.9417  0.05217
-perc_foreign_born_population  3.3965e+01  1.7964e+01  1.8907  0.05866
+(Intercept)                  -8.2162e+01  3.1161e+01 -2.6367 0.008373
+gdp                          -3.0939e-04  1.7450e-04 -1.7730 0.076233
+employment_rate               5.7147e+00  1.8722e+01  0.3052 0.760185
+elder_rate                    6.3724e+01  2.0285e+01  3.1414 0.001682
+fem_rate                      7.1329e-01  2.3725e-01  3.0065 0.002643
+migration_rate                2.7788e-01  1.4259e-01  1.9488 0.051319
+pop_density                  -9.4010e-04  1.0190e-03 -0.9226 0.356234
+gdp_lag_4                    -3.7894e+00  1.3898e+01 -0.2727 0.785121
+employment_rate_lag_4         1.7173e+01  1.4688e+01  1.1692 0.242323
+migration_rate_lag_4          9.4873e-02  4.7065e-02  2.0158 0.043823
+perc_foreign_born_population  3.3611e+01  1.8003e+01  1.8670 0.061898
 
-Rho: 0.64553, LR test value: 39.153, p-value: 3.9193e-10
-Asymptotic standard error: 0.075373
-    z-value: 8.5645, p-value: < 2.22e-16
-Wald statistic: 73.35, p-value: < 2.22e-16
+Rho: 0.64148, LR test value: 38.793, p-value: 4.7115e-10
+Asymptotic standard error: 0.075327
+    z-value: 8.5159, p-value: < 2.22e-16
+Wald statistic: 72.521, p-value: < 2.22e-16
 
-Log likelihood: -262.1305 for lag model
-ML residual variance (sigma squared): 10.277, (sigma: 3.2058)
+Log likelihood: -262.3105 for lag model
+ML residual variance (sigma squared): 10.336, (sigma: 3.2149)
 Number of observations: 99 
-Number of parameters estimated: 14 
-AIC: 552.26, (AIC for lm: 589.41)
+Number of parameters estimated: 13 
+AIC: 550.62, (AIC for lm: 587.41)
 LM test for residual autocorrelation
-test value: 0.045394, p-value: 0.83128
+test value: 0.0088022, p-value: 0.92525
 

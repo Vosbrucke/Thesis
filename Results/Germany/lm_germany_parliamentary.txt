@@ -1,0 +1,22 @@
+[1] "Linear regression model for Parliamentary elections in 2017"
+
+Call:
+lm(formula = formula_germany, data = df_germany %>% filter(year == 
+    2017))
+
+Coefficients:
+                                   (Intercept)                                             gdp  
+                                    -7.650e+01                                      -4.972e-05  
+                               employment_rate                                      elder_rate  
+                                     4.497e+00                                       1.118e+02  
+                                      fem_rate                                  migration_rate  
+                                     7.172e-01                                       1.309e-01  
+                                   pop_density                                       gdp_lag_4  
+                                     9.774e-04                                       7.652e+00  
+                         employment_rate_lag_4                            migration_rate_lag_4  
+                                    -1.472e+01                                      -1.009e-01  
+third_countries_to_eu_28_until_january_31_2020                                          africa  
+                                    -8.062e+00                                       3.834e+01  
+                                       america                                            asia  
+                                    -7.717e+00                                       1.213e+01  
+

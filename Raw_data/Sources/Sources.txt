@@ -4,6 +4,8 @@ Sweden population: https://www.statistikdatabasen.scb.se/pxweb/en/ssd/START__BE_
 
 Germany population: https://www-genesis.destatis.de/genesis//online?operation=table&code=12521-0044&bypass=true&levelindex=0&levelid=1685660794067#abreadcrumb
 
+Germany administrative division (IDEU to NUTS3): https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&ved=2ahUKEwiZnKXW36n_AhW2xAIHHed4B_UQFnoECDAQAQ&url=https%3A%2F%2Fwww.destatis.de%2FDE%2FThemen%2FLaender-Regionen%2FRegionales%2FGemeindeverzeichnis%2FAdministrativ%2F04-kreise.xlsx%3F__blob%3DpublicationFile&usg=AOvVaw3sDFeY7tn30pRqp7nDu9eu
+
 Spain population: https://www.ine.es/jaxiT3/Tabla.htm?t=9689
 
 Italy population: https://esploradati.istat.it/databrowser/#/it/dw/categories/IT1,POP,1.0/POP_FOREIGNIM/DCIS_POPSTRRES1/IT1,29_7_DF_DCIS_POPSTRRES1_1,1.0

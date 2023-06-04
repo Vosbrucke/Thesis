@@ -3,37 +3,36 @@ $`SAR model for Parliamentary elections in 2006`
 Call:lagsarlm(formula = formula_hungary, data = shp_hungary_year_type,     listw = listw_hungary)
 
 Residuals:
-       Min         1Q     Median         3Q        Max 
--0.3292080 -0.1420957  0.0085222  0.0784410  0.5771382 
+      Min        1Q    Median        3Q       Max 
+-0.369149 -0.211447 -0.055045  0.233034  0.607278 
 
 Type: lag 
 Coefficients: (asymptotic standard errors) 
                                 Estimate  Std. Error z value  Pr(>|z|)
-(Intercept)                  -1.0466e+01  6.4552e+00 -1.6213 0.1049534
-gdp                          -9.2115e-05  1.2999e-04 -0.7086 0.4785454
-employment_rate              -1.0273e+00  3.5930e+00 -0.2859 0.7749464
-ge65                         -1.4070e-05  3.1533e-06 -4.4619 8.123e-06
-elder_rate                   -1.2383e+01  7.2426e+00 -1.7097 0.0873146
-fem_rate                      1.0916e-01  5.9148e-02  1.8455 0.0649648
-migration_rate               -8.5771e-02  1.9889e-02 -4.3126 1.613e-05
-pop_density                   2.9006e-04  5.2471e-04  0.5528 0.5804021
-gdp_lag_4                     4.8146e+00  1.1447e+00  4.2059 2.601e-05
-employment_rate_lag_4        -5.2799e+00  1.4654e+00 -3.6030 0.0003146
-migration_rate_lag_4         -8.6537e-02  2.0407e-02 -4.2405 2.230e-05
-perc_foreign_born_population  7.8210e+01  2.1630e+01  3.6157 0.0002995
+(Intercept)                  -1.4934e+01  8.7100e+00 -1.7146 0.0864235
+gdp                          -2.6172e-04  1.6831e-04 -1.5551 0.1199317
+employment_rate               8.7888e+00  4.0651e+00  2.1620 0.0306168
+elder_rate                   -8.8282e+00  9.7178e+00 -0.9085 0.3636357
+fem_rate                      1.2802e-01  8.0364e-02  1.5930 0.1111571
+migration_rate               -1.2632e-01  2.5387e-02 -4.9758 6.499e-07
+pop_density                  -1.6919e-03  4.7957e-04 -3.5279 0.0004189
+gdp_lag_4                     3.0045e+00  1.5046e+00  1.9969 0.0458364
+employment_rate_lag_4        -5.2060e+00  1.9969e+00 -2.6071 0.0091320
+migration_rate_lag_4         -9.3679e-02  2.7625e-02 -3.3911 0.0006962
+perc_foreign_born_population  7.7902e+01  2.9875e+01  2.6076 0.0091182
 
-Rho: 0.179, LR test value: 0.67229, p-value: 0.41225
-Asymptotic standard error: 0.17604
-    z-value: 1.0168, p-value: 0.30924
-Wald statistic: 1.0339, p-value: 0.30924
+Rho: -0.23161, LR test value: 0.8714, p-value: 0.35057
+Asymptotic standard error: 0.22295
+    z-value: -1.0388, p-value: 0.29888
+Wald statistic: 1.0792, p-value: 0.29888
 
-Log likelihood: 3.793482 for lag model
-ML residual variance (sigma squared): 0.039751, (sigma: 0.19938)
+Log likelihood: -2.435459 for lag model
+ML residual variance (sigma squared): 0.07379, (sigma: 0.27164)
 Number of observations: 20 
-Number of parameters estimated: 14 
-AIC: 20.413, (AIC for lm: 19.085)
+Number of parameters estimated: 13 
+AIC: 30.871, (AIC for lm: 29.742)
 LM test for residual autocorrelation
-test value: 1.851, p-value: 0.17366
+test value: 2.932, p-value: 0.086841
 
 
 $`SAR model for Parliamentary elections in 2014`
@@ -42,36 +41,35 @@ Call:lagsarlm(formula = formula_hungary, data = shp_hungary_year_type,     listw
 
 Residuals:
        Min         1Q     Median         3Q        Max 
--29.497397 -24.416474   0.057646  24.353311  31.514918 
+-29.729226 -24.059506   0.080453  24.139720  31.403389 
 
 Type: lag 
 Coefficients: (asymptotic standard errors) 
                                 Estimate  Std. Error z value Pr(>|z|)
-(Intercept)                  -1.1315e+02  4.7566e+02 -0.2379   0.8120
-gdp                          -1.9476e-03  1.4703e-02 -0.1325   0.8946
-employment_rate               9.5808e+01  5.3776e+02  0.1782   0.8586
-ge65                         -1.8884e-05  1.9525e-04 -0.0967   0.9230
-elder_rate                    2.6696e+01  4.5792e+02  0.0583   0.9535
-fem_rate                      1.4107e+00  4.3811e+00  0.3220   0.7474
-migration_rate               -1.6978e-01  1.9334e+00 -0.0878   0.9300
-pop_density                  -9.1633e-03  2.7342e-02 -0.3351   0.7375
-gdp_lag_4                     1.2189e+01  7.1550e+01  0.1704   0.8647
-employment_rate_lag_4         7.5162e+00  2.1204e+02  0.0354   0.9717
-migration_rate_lag_4         -1.1024e-01  1.7468e+00 -0.0631   0.9497
-perc_foreign_born_population  6.3450e+02  1.4857e+03  0.4271   0.6693
+(Intercept)                  -1.2465e+02  4.6059e+02 -0.2706   0.7867
+gdp                          -2.6896e-03  1.2546e-02 -0.2144   0.8302
+employment_rate               1.2519e+02  4.4386e+02  0.2821   0.7779
+elder_rate                    3.3675e+01  4.5223e+02  0.0745   0.9406
+fem_rate                      1.4596e+00  4.3524e+00  0.3354   0.7374
+migration_rate               -1.9965e-01  1.9087e+00 -0.1046   0.9167
+pop_density                  -1.1239e-02  1.6953e-02 -0.6629   0.5074
+gdp_lag_4                     1.2218e+01  7.1555e+01  0.1707   0.8644
+employment_rate_lag_4         7.8509e+00  2.1203e+02  0.0370   0.9705
+migration_rate_lag_4         -1.0139e-01  1.7448e+00 -0.0581   0.9537
+perc_foreign_born_population  6.2689e+02  1.4836e+03  0.4225   0.6726
 
-Rho: -1.5674, LR test value: 7.9674, p-value: 0.0047628
-Asymptotic standard error: 0.32032
-    z-value: -4.8932, p-value: 9.919e-07
-Wald statistic: 23.944, p-value: 9.919e-07
+Rho: -1.5678, LR test value: 7.9723, p-value: 0.0047498
+Asymptotic standard error: 0.32029
+    z-value: -4.8949, p-value: 9.8366e-07
+Wald statistic: 23.96, p-value: 9.8366e-07
 
-Log likelihood: -188.4693 for lag model
-ML residual variance (sigma squared): 583.07, (sigma: 24.147)
+Log likelihood: -188.474 for lag model
+ML residual variance (sigma squared): 583.14, (sigma: 24.148)
 Number of observations: 40 
-Number of parameters estimated: 14 
-AIC: 404.94, (AIC for lm: 410.91)
+Number of parameters estimated: 13 
+AIC: 402.95, (AIC for lm: 408.92)
 LM test for residual autocorrelation
-test value: 6.7043, p-value: 0.009618
+test value: 6.6939, p-value: 0.0096743
 
 
 $`SAR model for Parliamentary elections in 2018`
@@ -80,35 +78,34 @@ Call:lagsarlm(formula = formula_hungary, data = shp_hungary_year_type,     listw
 
 Residuals:
       Min        1Q    Median        3Q       Max 
--0.984650 -0.432900 -0.013514  0.526693  1.014829 
+-1.131119 -0.491508  0.035697  0.430986  1.077224 
 
 Type: lag 
 Coefficients: (asymptotic standard errors) 
-                                Estimate  Std. Error z value  Pr(>|z|)
-(Intercept)                   1.1554e+01  2.1067e+01  0.5484 0.5833877
-gdp                          -1.2851e-03  4.9073e-04 -2.6188 0.0088230
-employment_rate               4.1869e+01  2.0508e+01  2.0417 0.0411859
-ge65                         -1.0688e-05  7.8727e-06 -1.3576 0.1745994
-elder_rate                   -1.0159e+01  1.8933e+01 -0.5366 0.5915338
-fem_rate                     -1.1554e-01  1.7480e-01 -0.6610 0.5086178
-migration_rate                1.4967e-01  4.4960e-02  3.3290 0.0008717
-pop_density                   4.3444e-04  1.2301e-03  0.3532 0.7239632
-gdp_lag_4                     1.9090e+01  6.9148e+00  2.7607 0.0057686
-employment_rate_lag_4        -1.9634e+01  1.1014e+01 -1.7826 0.0746444
-migration_rate_lag_4         -9.9545e-02  1.0340e-01 -0.9627 0.3357084
-perc_foreign_born_population -8.7946e+00  3.3121e+01 -0.2655 0.7905984
+                                Estimate  Std. Error z value Pr(>|z|)
+(Intercept)                   8.3808e+00  2.1878e+01  0.3831 0.701669
+gdp                          -1.4756e-03  4.9510e-04 -2.9804 0.002879
+employment_rate               5.2428e+01  2.0022e+01  2.6185 0.008832
+elder_rate                    2.1075e-01  1.8065e+01  0.0117 0.990692
+fem_rate                     -7.8595e-02  1.8043e-01 -0.4356 0.663123
+migration_rate                1.2106e-01  4.1679e-02  2.9047 0.003676
+pop_density                  -9.6567e-04  6.5909e-04 -1.4651 0.142881
+gdp_lag_4                     2.1141e+01  7.0148e+00  3.0137 0.002581
+employment_rate_lag_4        -2.6497e+01  1.0239e+01 -2.5879 0.009657
+migration_rate_lag_4         -1.5007e-01  1.0029e-01 -1.4963 0.134564
+perc_foreign_born_population -5.8583e+00  3.4381e+01 -0.1704 0.864702
 
-Rho: -0.18338, LR test value: 0.33015, p-value: 0.56557
-Asymptotic standard error: 0.27779
-    z-value: -0.66013, p-value: 0.50917
-Wald statistic: 0.43577, p-value: 0.50917
+Rho: -0.20547, LR test value: 0.39479, p-value: 0.52979
+Asymptotic standard error: 0.27718
+    z-value: -0.74129, p-value: 0.45852
+Wald statistic: 0.54951, p-value: 0.45852
 
-Log likelihood: -17.42918 for lag model
-ML residual variance (sigma squared): 0.33199, (sigma: 0.57619)
+Log likelihood: -18.32879 for lag model
+ML residual variance (sigma squared): 0.36254, (sigma: 0.60211)
 Number of observations: 20 
-Number of parameters estimated: 14 
-AIC: 62.858, (AIC for lm: 61.189)
+Number of parameters estimated: 13 
+AIC: 62.658, (AIC for lm: 61.052)
 LM test for residual autocorrelation
-test value: 0.2677, p-value: 0.60488
+test value: 0.00044975, p-value: 0.98308
 
 

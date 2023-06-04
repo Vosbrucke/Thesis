@@ -1,0 +1,66 @@
+$`Linear regression model for EP elections in 2014`
+
+Call:
+lm(formula = formula_spain, data = df_spain %>% filter(type == 
+    type, year == i))
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-2.04699 -0.50761 -0.05804  0.36236  1.75180 
+
+Coefficients:
+                                    Estimate Std. Error t value Pr(>|t|)   
+(Intercept)                        1.146e+00  8.265e+00   0.139  0.89043   
+gdp                               -7.498e-05  1.208e-04  -0.620  0.53875   
+employment_rate                    1.112e+01  1.191e+01   0.934  0.35654   
+elder_rate                         3.438e+00  4.838e+00   0.711  0.48180   
+fem_rate                           5.124e-02  6.210e-02   0.825  0.41458   
+migration_rate                     2.564e-02  6.948e-02   0.369  0.71424   
+pop_density                        6.787e-04  1.966e-04   3.452  0.00141 **
+gdp_lag_4                         -1.085e+01  7.752e+00  -1.400  0.16990   
+employment_rate_lag_4              2.560e+00  8.413e+00   0.304  0.76261   
+migration_rate_lag_4               1.899e-05  1.484e-02   0.001  0.99899   
+country_of_the_eu28_without_spain  9.353e+00  7.510e+00   1.245  0.22083   
+from_africa                       -1.653e+01  1.276e+01  -1.296  0.20303   
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 0.9113 on 37 degrees of freedom
+  (2 observations deleted due to missingness)
+Multiple R-squared:  0.3914,	Adjusted R-squared:  0.2104 
+F-statistic: 2.163 on 11 and 37 DF,  p-value: 0.03948
+
+
+$`Linear regression model for EP elections in 2019`
+
+Call:
+lm(formula = formula_spain, data = df_spain %>% filter(type == 
+    type, year == i))
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-11.739  -4.956  -1.315   5.386  15.805 
+
+Coefficients:
+                                    Estimate Std. Error t value Pr(>|t|)  
+(Intercept)                       -6.445e+00  4.538e+01  -0.142   0.8874  
+gdp                               -8.053e-04  4.770e-04  -1.688   0.0950 .
+employment_rate                    4.832e+01  4.546e+01   1.063   0.2907  
+elder_rate                        -5.595e+01  2.488e+01  -2.249   0.0271 *
+fem_rate                           2.804e-01  3.254e-01   0.862   0.3912  
+migration_rate                    -3.039e-01  2.710e-01  -1.121   0.2653  
+pop_density                       -1.426e-04  1.309e-03  -0.109   0.9135  
+gdp_lag_4                          3.613e+01  2.580e+01   1.400   0.1650  
+employment_rate_lag_4             -3.560e+01  4.163e+01  -0.855   0.3949  
+migration_rate_lag_4              -1.280e-02  2.812e-02  -0.455   0.6501  
+country_of_the_eu28_without_spain  6.228e+01  5.274e+01   1.181   0.2409  
+from_africa                       -7.345e+01  6.388e+01  -1.150   0.2534  
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 6.728 on 86 degrees of freedom
+  (2 observations deleted due to missingness)
+Multiple R-squared:  0.2793,	Adjusted R-squared:  0.1872 
+F-statistic:  3.03 on 11 and 86 DF,  p-value: 0.001838
+
+

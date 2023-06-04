@@ -1,0 +1,36 @@
+[1] "Spatial panel SEM model with fixed effects and one direction for EP elections in 2014 and 2019 years"
+Spatial panel fixed effects sarar model
+ 
+
+Call:
+spml(formula = formula_spain, data = panel_spain_ep, listw = listw_spain, 
+    model = "within", effect = "individual", lag = T, spatial.error = "b")
+
+Residuals:
+     Min.   1st Qu.    Median   3rd Qu.      Max. 
+-1.536283 -0.342071 -0.036759  0.241636  2.155498 
+
+Spatial error parameter:
+    Estimate Std. Error t-value Pr(>|t|)
+rho 0.047852   0.166427  0.2875   0.7737
+
+Spatial autoregressive coefficient:
+       Estimate Std. Error t-value  Pr(>|t|)    
+lambda  0.85651    0.04778  17.926 < 2.2e-16 ***
+
+Coefficients:
+                                     Estimate  Std. Error t-value Pr(>|t|)  
+gdp                                0.00001445  0.00004226  0.3419  0.73241  
+employment_rate                   -0.16155787  4.14724988 -0.0390  0.96893  
+elder_rate                         4.88495576  6.69634632  0.7295  0.46570  
+fem_rate                          -0.03282901  0.07825135 -0.4195  0.67483  
+migration_rate                    -0.00874597  0.01436216 -0.6090  0.54255  
+pop_density                        0.00083996  0.00587995  0.1429  0.88641  
+gdp_lag_4                         -0.42707432  1.05231300 -0.4058  0.68486  
+employment_rate_lag_4              3.41737336  1.55455432  2.1983  0.02793 *
+migration_rate_lag_4              -0.00209755  0.00286760 -0.7315  0.46450  
+country_of_the_eu28_without_spain  4.77142253  9.24120936  0.5163  0.60563  
+from_africa                       14.71443471 16.33233374  0.9009  0.36762  
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+

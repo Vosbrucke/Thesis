@@ -1,35 +1,38 @@
 [1] "SARAR model for EP in 2019"
 
-Call:errorsarlm(formula = formula_italy, data = shp_italy, listw = listw_italy)
+Call:sacsarlm(formula = formula_italy, data = shp_italy, listw = listw_italy,     type = "sac")
 
 Residuals:
      Min       1Q   Median       3Q      Max 
--8.46472 -1.59799  0.35714  2.02119 10.17998 
+-7.90622 -2.08008  0.37434  1.93131 10.71034 
 
-Type: error 
+Type: sac 
 Coefficients: (asymptotic standard errors) 
                                 Estimate  Std. Error z value Pr(>|z|)
-(Intercept)                  -2.6042e+00  3.4799e+01 -0.0748  0.94034
-gdp                          -1.8666e-04  2.0966e-04 -0.8903  0.37331
-employment_rate              -5.4757e+00  2.1518e+01 -0.2545  0.79913
-ge65                         -4.1602e-06  3.9123e-06 -1.0634  0.28762
-elder_rate                    6.4952e+01  2.5710e+01  2.5263  0.01153
-fem_rate                      2.1938e-01  2.8707e-01  0.7642  0.44473
-migration_rate                2.1537e-01  1.5666e-01  1.3748  0.16920
-pop_density                  -6.9718e-04  1.0869e-03 -0.6414  0.52123
-gdp_lag_4                    -6.4559e+00  1.2625e+01 -0.5113  0.60911
-employment_rate_lag_4         7.6794e+00  1.3665e+01  0.5620  0.57414
-migration_rate_lag_4          8.1765e-02  4.2854e-02  1.9080  0.05639
-perc_foreign_born_population  5.2116e+01  2.2362e+01  2.3306  0.01978
+(Intercept)                  -8.1398e+01  3.1410e+01 -2.5915 0.009557
+gdp                          -3.1123e-04  1.7721e-04 -1.7563 0.079041
+employment_rate               5.7950e+00  1.9099e+01  0.3034 0.761572
+elder_rate                    6.5127e+01  2.2410e+01  2.9062 0.003658
+fem_rate                      7.0961e-01  2.3948e-01  2.9631 0.003045
+migration_rate                2.7992e-01  1.4409e-01  1.9427 0.052057
+pop_density                  -9.3383e-04  1.0273e-03 -0.9090 0.363357
+gdp_lag_4                    -3.7340e+00  1.3937e+01 -0.2679 0.788763
+employment_rate_lag_4         1.6820e+01  1.4733e+01  1.1416 0.253617
+migration_rate_lag_4          9.4895e-02  4.7096e-02  2.0150 0.043910
+perc_foreign_born_population  3.4254e+01  1.8941e+01  1.8085 0.070530
 
-Lambda: 0.72669, LR test value: 38.69, p-value: 4.9684e-10
-Asymptotic standard error: 0.067972
-    z-value: 10.691, p-value: < 2.22e-16
-Wald statistic: 114.3, p-value: < 2.22e-16
+Rho: 0.62613
+Asymptotic standard error: 0.15763
+    z-value: 3.9721, p-value: 7.1228e-05
+Lambda: 0.033537
+Asymptotic standard error: 0.28746
+    z-value: 0.11667, p-value: 0.90712
 
-Log likelihood: -262.362 for error model
-ML residual variance (sigma squared): 9.8611, (sigma: 3.1402)
+LR test value: 38.804, p-value: 3.7477e-09
+
+Log likelihood: -262.305 for sac model
+ML residual variance (sigma squared): 10.408, (sigma: 3.2261)
 Number of observations: 99 
 Number of parameters estimated: 14 
-AIC: 552.72, (AIC for lm: 589.41)
+AIC: 552.61, (AIC for lm: 587.41)
 

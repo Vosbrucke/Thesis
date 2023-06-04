@@ -1,0 +1,36 @@
+$`SEM model for Parliamentary elections in 2019`
+
+Call:errorsarlm(formula = formula_spain, data = shp_spain_year_type,     listw = listw_spain)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-9.9182 -4.6296 -1.6886  4.5882 14.7006 
+
+Type: error 
+Coefficients: (asymptotic standard errors) 
+                                     Estimate  Std. Error z value Pr(>|z|)
+(Intercept)                       -3.4822e+01  3.7911e+01 -0.9185  0.35835
+gdp                               -7.9782e-04  3.6158e-04 -2.2065  0.02735
+employment_rate                    3.9218e+01  3.7221e+01  1.0536  0.29205
+elder_rate                        -2.4233e+01  2.0677e+01 -1.1720  0.24120
+fem_rate                           2.4066e-01  2.7954e-01  0.8609  0.38928
+migration_rate                    -4.5933e-01  2.5956e-01 -1.7697  0.07678
+pop_density                        4.1361e-03  5.0665e-03  0.8164  0.41429
+gdp_lag_4                          2.5748e+01  2.1359e+01  1.2055  0.22801
+employment_rate_lag_4             -1.2971e-01  3.7457e+01 -0.0035  0.99724
+migration_rate_lag_4              -3.0706e-02  2.3831e-02 -1.2885  0.19757
+country_of_the_eu28_without_spain  1.0299e+02  4.6424e+01  2.2185  0.02652
+from_africa                       -6.8904e+00  5.1105e+01 -0.1348  0.89275
+
+Lambda: -0.69494, LR test value: 2.8521, p-value: 0.091252
+Asymptotic standard error: 0.28142
+    z-value: -2.4694, p-value: 0.013532
+Wald statistic: 6.0981, p-value: 0.013532
+
+Log likelihood: -301.4952 for error model
+ML residual variance (sigma squared): 34.368, (sigma: 5.8624)
+Number of observations: 94 
+Number of parameters estimated: 14 
+AIC: 630.99, (AIC for lm: 631.84)
+
+

@@ -4,32 +4,31 @@ Call:errorsarlm(formula = formula_italy, data = shp_italy, listw = listw_italy)
 
 Residuals:
      Min       1Q   Median       3Q      Max 
--8.46472 -1.59799  0.35714  2.02119 10.17998 
+-8.38628 -1.70027  0.42422  1.99211 10.20943 
 
 Type: error 
 Coefficients: (asymptotic standard errors) 
                                 Estimate  Std. Error z value Pr(>|z|)
-(Intercept)                  -2.6042e+00  3.4799e+01 -0.0748  0.94034
-gdp                          -1.8666e-04  2.0966e-04 -0.8903  0.37331
-employment_rate              -5.4757e+00  2.1518e+01 -0.2545  0.79913
-ge65                         -4.1602e-06  3.9123e-06 -1.0634  0.28762
-elder_rate                    6.4952e+01  2.5710e+01  2.5263  0.01153
-fem_rate                      2.1938e-01  2.8707e-01  0.7642  0.44473
-migration_rate                2.1537e-01  1.5666e-01  1.3748  0.16920
-pop_density                  -6.9718e-04  1.0869e-03 -0.6414  0.52123
-gdp_lag_4                    -6.4559e+00  1.2625e+01 -0.5113  0.60911
-employment_rate_lag_4         7.6794e+00  1.3665e+01  0.5620  0.57414
-migration_rate_lag_4          8.1765e-02  4.2854e-02  1.9080  0.05639
-perc_foreign_born_population  5.2116e+01  2.2362e+01  2.3306  0.01978
+(Intercept)                  -1.7980e+01  3.2110e+01 -0.5599 0.575519
+gdp                          -2.3468e-04  2.0554e-04 -1.1417 0.253562
+employment_rate              -5.4458e+00  2.1648e+01 -0.2516 0.801380
+elder_rate                    7.7219e+01  2.3243e+01  3.3222 0.000893
+fem_rate                      3.6830e-01  2.5389e-01  1.4506 0.146880
+migration_rate                2.4484e-01  1.5545e-01  1.5750 0.115245
+pop_density                  -1.0617e-03  1.0403e-03 -1.0206 0.307465
+gdp_lag_4                    -6.3024e+00  1.2726e+01 -0.4952 0.620424
+employment_rate_lag_4         6.8163e+00  1.3744e+01  0.4960 0.619928
+migration_rate_lag_4          8.8181e-02  4.2773e-02  2.0616 0.039244
+perc_foreign_born_population  5.0620e+01  2.2424e+01  2.2574 0.023986
 
-Lambda: 0.72669, LR test value: 38.69, p-value: 4.9684e-10
-Asymptotic standard error: 0.067972
-    z-value: 10.691, p-value: < 2.22e-16
-Wald statistic: 114.3, p-value: < 2.22e-16
+Lambda: 0.72183, LR test value: 37.57, p-value: 8.8204e-10
+Asymptotic standard error: 0.068825
+    z-value: 10.488, p-value: < 2.22e-16
+Wald statistic: 110, p-value: < 2.22e-16
 
-Log likelihood: -262.362 for error model
-ML residual variance (sigma squared): 9.8611, (sigma: 3.1402)
+Log likelihood: -262.9223 for error model
+ML residual variance (sigma squared): 10.005, (sigma: 3.163)
 Number of observations: 99 
-Number of parameters estimated: 14 
-AIC: 552.72, (AIC for lm: 589.41)
+Number of parameters estimated: 13 
+AIC: 551.84, (AIC for lm: 587.41)
 

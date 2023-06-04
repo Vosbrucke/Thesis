@@ -1,0 +1,22 @@
+[1] "Linear regression model for EP elections in 2019"
+
+Call:
+lm(formula = formula_germany, data = df_germany %>% filter(year == 
+    2019))
+
+Coefficients:
+                                   (Intercept)                                             gdp  
+                                    -4.623e+01                                      -1.211e-05  
+                               employment_rate                                      elder_rate  
+                                    -2.763e+00                                       1.289e+02  
+                                      fem_rate                                  migration_rate  
+                                     5.991e-01                                      -6.446e-02  
+                                   pop_density                                       gdp_lag_4  
+                                     1.568e-03                                      -2.182e-01  
+                         employment_rate_lag_4                            migration_rate_lag_4  
+                                    -2.689e+01                                       1.815e-01  
+third_countries_to_eu_28_until_january_31_2020                                          africa  
+                                    -1.033e+01                                       4.485e+01  
+                                       america                                            asia  
+                                    -1.785e+01                                       1.373e+01  
+
