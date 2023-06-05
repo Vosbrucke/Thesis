@@ -167,7 +167,8 @@ df_spain_fixed <- df_spain %>%
   pivot_wider(names_from = nationality, values_from = total) %>% 
   select(2, 6:17) %>% 
   mutate(
-    across(3:12, ~ .x / Total)
+    across(3:12, ~ .x / Total),
+    foreign_born_population = 1 - Spanish
     )
 
 # Get the column names to translator
@@ -175,7 +176,7 @@ colnames(df_spain_fixed) %>%
   paste(., collapse = ", ")
 
 # Set English column names
-colnames(df_spain_fixed) <- c('year', 'regionname', 'Total', 'Spanish', 'Country of the EU28 without Spain', 'Country of Europe minus the EU28', 'From Africa', 'From North America', 'From Central America and the Caribbean', 'From South America', 'From Asia', 'From Oceania', 'Stateless persons')
+colnames(df_spain_fixed) <- c('year', 'regionname', 'Total', 'Spanish', 'Country of the EU28 without Spain', 'Country of Europe minus the EU28', 'From Africa', 'From North America', 'From Central America and the Caribbean', 'From South America', 'From Asia', 'From Oceania', 'Stateless persons', 'foreign_born_population')
 
 df_spain <- df %>% 
   inner_join(df_spain_fixed, by = c("year", "regionname")) %>% 
@@ -524,7 +525,7 @@ ggsave("Plots/Countries_analysis/Sweden_parliamentary.png", dpi = 600, width = 2
 {
 # Spain case
 r_side_spain <- df_spain %>% 
-  select(17, 20, 22:28, 34, 36) %>%
+  select(17, 20, 22:28, 43) %>%
   colnames()
 
 formula_spain <- as.formula(paste("growth_farright_p_perc ~", paste0(r_side_spain, collapse = " + ")))
@@ -640,11 +641,11 @@ listw_spain <- nb2listw(queen_neighbour, style = "W", zero.policy = TRUE)
 
 sem_fe1 <- spml(formula_spain, data = panel_spain_ep, listw = listw_spain, model = "within", lag = T, effect = "individual", spatial.error = "b")
 
-# Save results in txt format
-sink("Results/Spain/sem_fe1_ep.txt")
-  print("Spatial panel SEM model with fixed effects and one direction for EP elections in 2014 and 2019 years")
-  print(summary(sem_fe1))
-sink()
+# # Save results in txt format
+# sink("Results/Spain/sem_fe1_ep.txt")
+#   print("Spatial panel SEM model with fixed effects and one direction for EP elections in 2014 and 2019 years")
+#   print(summary(sem_fe1))
+# sink()
 
 # It cannot be done as we lack more time periods to analyse. So far there's only 2019 year where the far-right movements grew
 # # Spatial panel analysis for Parliamentary elections
@@ -1184,3 +1185,669 @@ sink("Results/Hungary/sem_fe1_parliamentary.txt")
   print(summary(sem_fe1))
 sink()
 }
+
+# Panel analysis but only for migration data
+{
+  # Spain case
+  r_side_spain <- df_spain %>% 
+    select(43) %>%
+    colnames()
+  
+  formula_spain <- as.formula(paste("growth_farright_p_perc ~", paste0(r_side_spain, collapse = " + ")))
+  
+  spain_per_year <- function(i, type) {
+    lm_spain <- lm(formula_spain, df_spain %>% filter(type == type, year == i))
+    summary(lm_spain)
+  }
+  
+  lm_spain_ep <- lapply(seq(2014, 2019, 5), spain_per_year, type = "EP")
+  names(lm_spain_ep) <- paste0("Linear regression model for EP elections in ", seq(2014, 2019, 5))
+  
+  # Save results in txt format
+  sink("Results/Spain/Migration_only/lm_spain_ep.txt")
+  print(lm_spain_ep)
+  sink()
+  
+  df_spain %>% filter(type == "Parliament") %>% pull(year) %>% unique()
+  
+  lm_spain_parliamentary <- lapply(2019, spain_per_year, type = "Parliament")
+  names(lm_spain_parliamentary) <- paste0("Linear regression model for Parliamentary elections in ", 2019)
+  
+  # Save results in txt format
+  sink("Results/Spain/Migration_only/lm_spain_parliamentary.txt")
+  print(lm_spain_parliamentary)
+  sink()
+  
+  # SAR
+  sar_spain_per_year <- function(i, type) {
+    
+    shp_spain_year_type <- shp_spain %>%
+      filter(type == type, year == i)
+    
+    # Construct neighbors list from polygon list
+    queen_neighbour <- poly2nb(shp_spain_year_type, queen = T)
+    
+    # Create spatial weights for neighbors lists
+    listw_spain <- nb2listw(queen_neighbour, style = "W", zero.policy = TRUE)
+    
+    
+    sar_spain <- lagsarlm(formula_spain, data = shp_spain_year_type, listw = listw_spain)
+    
+    summary(sar_spain)
+  }
+  
+  sar_spain_ep <- lapply(seq(2014, 2019, 5), sar_spain_per_year, type = "EP")
+  names(sar_spain_ep) <- paste0("SAR model for EP elections in ", seq(2014, 2019, 5))
+  sar_spain_ep
+  
+  # Save results in txt format
+  sink("Results/Spain/Migration_only/sar_spain_ep.txt")
+  print(sar_spain_ep)
+  sink()
+  
+  
+  # For 2010 the analysis doesn't work
+  sar_spain_parliamentary <- lapply(c(2019), sar_spain_per_year, type = "Parliamentary")
+  names(sar_spain_parliamentary) <- paste0("SAR model for Parliamentary elections in ", 2019)
+  sar_spain_parliamentary
+  
+  # Save results in txt format
+  sink("Results/Spain/Migration_only/sar_spain_parliamentary.txt")
+  print(sar_spain_parliamentary)
+  sink()
+  
+  
+  # SEM
+  sem_spain_per_year <- function(i, type) {
+    
+    shp_spain_year_type <- shp_spain %>%
+      filter(type == type, year == i)
+    
+    # Construct neighbors list from polygon list
+    queen_neighbour <- poly2nb(shp_spain_year_type, queen = T)
+    
+    # Create spatial weights for neighbors lists
+    listw_spain <- nb2listw(queen_neighbour, style = "W", zero.policy = TRUE)
+    
+    sem_spain <- errorsarlm(formula_spain, data = shp_spain_year_type, listw = listw_spain)
+    
+    summary(sem_spain)
+  }
+  
+  sem_spain_ep <- lapply(seq(2014, 2019, 5), sem_spain_per_year, type = "EP")
+  names(sem_spain_ep) <- paste0("SEM model for EP elections in ", seq(2014, 2019, 5))
+  
+  # Save results in txt format
+  sink("Results/Spain/Migration_only/sem_spain_ep.txt")
+  print(sem_spain_ep)
+  sink()
+  
+  
+  # SEM model for Parliamentary elections in 2019
+  sem_spain_parliamentary <- lapply(2019, sem_spain_per_year, type = "Parliamentary")
+  names(sem_spain_parliamentary) <- "SEM model for Parliamentary elections in 2019"
+  
+  # Save results in txt format
+  sink("Results/Spain/Migration_only/sem_spain_parliamentary.txt")
+  print(sem_spain_parliamentary)
+  sink()
+  
+  # Spatial panel analysis for EP elections
+  panel_spain_ep <- pdata.frame(shp_spain %>% filter(type == "EP"), c("NUTS_ID", "year")) %>% 
+    relocate(c(NUTS_ID, year), .before = LEVL_CODE)
+  
+  
+  # Construct neighbors list from polygon list
+  queen_neighbour <- poly2nb(shp_spain %>% filter(type == "EP", year == 2019), queen = T)
+  
+  # Create spatial weights for neighbors lists
+  listw_spain <- nb2listw(queen_neighbour, style = "W", zero.policy = TRUE)
+  
+  
+  sem_fe1 <- spml(formula_spain, data = panel_spain_ep, listw = listw_spain, model = "within", lag = T, effect = "individual", spatial.error = "b")
+
+  # # Save results in txt format
+  # sink("Results/Spain/Migration_only/sem_fe1_ep.txt")
+  #   print("Spatial panel SEM model with fixed effects and one direction for EP elections in 2014 and 2019 years")
+  #   print(summary(sem_fe1))
+  # sink()
+  
+  # It cannot be done as we lack more time periods to analyse. So far there's only 2019 year where the far-right movements grew
+  # # Spatial panel analysis for Parliamentary elections
+  # panel_spain_parliamentary <- pdata.frame(shp_spain %>% filter(type == "Parliament"), c("NUTS_ID", "year")) %>% 
+  #   relocate(c(NUTS_ID, year), .before = LEVL_CODE)
+  # 
+  # 
+  # # Construct neighbors list from polygon list
+  # queen_neighbour <- poly2nb(shp_spain %>% filter(type == "Parliament", year == 2019), queen = T)
+  # 
+  # # Create spatial weights for neighbors lists
+  # listw_spain <- nb2listw(queen_neighbour, style = "W", zero.policy = TRUE)
+  # 
+  # 
+  # sem_fe1 <- spml(formula_spain, data = panel_spain_parliamentary, listw = listw_spain, model = "within", lag = T, effect = "individual", spatial.error = "b")
+  # 
+  # # Save results in txt format
+  # sink("Results/Spain/sem_fe1_parliamentary.txt")
+  # print("Spatial panel SEM model with fixed effects and one direction for Parliament elections in 2006-2018 period")
+  # print(summary(sem_fe1))
+  # sink()
+  
+  
+  
+  # Germany case
+  r_side_germany <- df_germany %>% 
+    select(36, 37, 43, 47) %>%
+    colnames()
+  
+  formula_germany <- as.formula(paste("growth_farright_p_perc ~", paste0(r_side_germany, collapse = " + ")))
+  
+  
+  # EP elections LM 
+  lm_germany_ep <- lm(formula_germany, df_germany %>% filter(year == 2019))
+  
+  # Save results in txt format
+  sink("Results/Germany/Migration_only/lm_germany_ep.txt")
+  print("Linear regression model for EP elections in 2019")
+  print(lm_germany_ep)
+  glance(lm_germany_ep)
+  sink()
+  
+  
+  # Parliamentary elections LM 
+  lm_germany_parliamentary <- lm(formula_germany, df_germany %>% filter(year == 2017))
+  
+  # Save results in txt format
+  sink("Results/Germany/Migration_only/lm_germany_parliamentary.txt")
+  print("Linear regression model for Parliamentary elections in 2017")
+  print(lm_germany_parliamentary)
+  glance(lm_germany_parliamentary)
+  sink()
+  
+  # Preparation to spatial analysis for EP elections in 2019
+  shp_germany_ep <- shp_germany %>%
+    filter(year == 2019)
+  
+  # Construct neighbors list from polygon list
+  queen_neighbour <- poly2nb(shp_germany_ep, queen = T)
+  
+  # Create spatial weights for neighbors lists
+  listw_germany_ep <- nb2listw(queen_neighbour, style = "W", zero.policy = TRUE)
+  
+  
+  # Preparation to spatial analysis for Parliamentary elections in 2017
+  shp_germany_parliamentary <- shp_germany %>%
+    filter(year == 2017)
+  
+  # Construct neighbors list from polygon list
+  queen_neighbour <- poly2nb(shp_germany_parliamentary, queen = T)
+  
+  # Create spatial weights for neighbors lists
+  listw_germany_parliamentary <- nb2listw(queen_neighbour, style = "W", zero.policy = TRUE)
+  
+  
+  # SAR EP model
+  sar_germany_ep <- lagsarlm(formula_germany, data = shp_germany_ep, listw = listw_germany_ep)
+  
+  # Save results in txt format
+  sink("Results/Germany/Migration_only/sar_germany_ep.txt")
+  print("SAR model for EP elections in 2019")
+  print(sar_germany_ep)
+  glance(sar_germany_ep)
+  sink()
+  
+  
+  # SAR model for Parliamentary elections in 2017
+  sar_germany_parliamentary <- lagsarlm(formula_germany, data = shp_germany_parliamentary, listw = listw_germany_parliamentary)
+  
+  # Save results in txt format
+  sink("Results/Germany/Migration_only/sar_germany_parliamentary.txt")
+  print("SAR model for Parliamentary elections in 2017")
+  print(summary(sar_germany_parliamentary))
+  glance(summary(sar_germany_parliamentary))
+  sink()
+  
+  
+  # SEM model for 2019 EP elections
+  sem_germany_ep <- errorsarlm(formula_germany, data = shp_germany_ep, listw = listw_germany_ep)
+  
+  # Save results in txt format
+  sink("Results/Germany/Migration_only/sem_germany_ep.txt")
+  print("SEM model for EP in 2019")
+  print(summary(sarar_germany_ep))
+  glance(summary(sarar_germany_ep))
+  sink()
+  
+  
+  # SEM model for 2017 Parliamentary elections
+  sem_germany_parliamentary <- errorsarlm(formula_germany, data = shp_germany_parliamentary, listw = listw_germany_parliamentary)
+  
+  # Save results in txt format
+  sink("Results/Germany/Migration_only/sem_germany_ep.txt")
+  print("SEM model for Parliamentary elections in 2017")
+  print(summary(sem_germany_parliamentary))
+  glance(summary(sem_germany_parliamentary))
+  sink()
+  
+  
+  # SARAR for EP elections in 2019
+  sarar_germany_ep <- sacsarlm(formula_germany, data = shp_germany_ep, listw = listw_germany_ep, type="sac") 
+  
+  # Save results in txt format
+  sink("Results/Germany/Migration_only/sarar_germany_ep.txt")
+  print("SARAR model for EP in 2019")
+  print(summary(sarar_germany_ep))
+  glance(summary(sarar_germany_ep))
+  sink()
+  
+  
+  # SARAR for Parliamentary elections in 2017
+  sarar_germany_parliamentary <- sacsarlm(formula_germany, data = shp_germany_parliamentary, listw = listw_germany_parliamentary, type="sac") 
+  
+  # Save results in txt format
+  sink("Results/Germany/Migration_only/sarar_germany_parliamentary.txt")
+  print("SARAR model for Parliamentary elections in 2017")
+  print(summary(sarar_germany_parliamentary))
+  glance(summary(sarar_germany_parliamentary))
+  sink()
+  
+  # Spatial panel analysis for EP elections
+  panel_germany <- pdata.frame(shp_germany %>% filter(type == "EP", year > 2004), c("NUTS_ID", "year")) %>% 
+    relocate(c(NUTS_ID, year), .before = LEVL_CODE)
+  
+  
+  # Construct neighbors list from polygon list
+  queen_neighbour <- poly2nb(shp_germany %>% filter(year == 2019), queen = T)
+  
+  # Create spatial weights for neighbors lists
+  listw_germany <- nb2listw(queen_neighbour, style = "W", zero.policy = TRUE)
+  
+  # I cannot do a panel spatial analysis due to lack of data on migration. It starts from only 2015 enabling only two years, yet 1 year per election type
+  # sem_fe1 <- spml(formula_germany, data = panel_germany, listw = listw_germany, model = "within", lag = T, effect = "individual", spatial.error = "b")
+  # 
+  # # Save results in txt format
+  # sink("Results/Germany/sem_fe1_ep.txt")
+  #   print("Spatial panel SEM model with fixed effects and one direction for EP elections in 2017 period")
+  #   print(summary(sem_fe1))
+  # sink()
+  # 
+  # 
+  # # Spatial panel analysis for Parliamentary elections
+  # shp_germany_parliament <- shp_germany %>% filter(type == "Parliament", year > 2004)
+  # 
+  # # Construct neighbors list from polygon list
+  # queen_neighbour <- poly2nb(shp_germany_parliament, queen = T)
+  # 
+  # # Create spatial weights for neighbors lists
+  # listw_germany <- nb2listw(queen_neighbour, style = "W", zero.policy = TRUE)
+  # 
+  # # Check which regions had no neighbors
+  # which_regions <- data.frame(is_neighbor_2 = lapply(queen_neighbour, sum) > 0)
+  # 
+  # # Remove regions with no neighbor in shapefile
+  # shp_germany_parliament %<>%
+  #   bind_cols(which_regions) %>%
+  #   filter(is_neighbor_2 == T)
+  # 
+  # # Construct neighbors list from polygon list
+  # queen_neighbour <- poly2nb(shp_germany_parliament, queen = T)
+  # 
+  # # Create spatial weights for neighbors lists
+  # listw_germany <- nb2listw(queen_neighbour, style = "W", zero.policy = TRUE)
+  # 
+  # set.ZeroPolicyOption(TRUE)
+  # 
+  # get.ZeroPolicyOption()
+  # 
+  # panel_germany <- pdata.frame(shp_germany_parliament, c("NUTS_ID", "year")) %>% 
+  #   relocate(c(NUTS_ID, year), .before = LEVL_CODE)
+  # 
+  # sem_fe1 <- spml(formula_germany, data = panel_germany, listw = listw_germany, model = "within", lag = T, effect = "individual", spatial.error = "b")
+  # 
+  # # Save results in txt format
+  # sink("Results/Germany/sem_fe1_parliamentary.txt")
+  # print("Spatial panel SEM model with fixed effects and one direction for Parliament elections in 2006-2018 period")
+  # print(summary(sem_fe1))
+  # sink()
+  
+  
+  # Year specific analysis for Sweden, Italy and Hungary
+  # Sweden case
+  r_side_sweden <- df_sweden %>% 
+    select(4:7) %>%
+    colnames()
+  
+  formula_sweden <- as.formula(paste("growth_farright_p_perc ~", paste0(r_side_sweden, collapse = " + ")))
+  
+  sweden_per_year <- function(i, type) {
+    lm_sweden <- lm(formula_sweden, df_sweden %>% filter(type == type, year == i))
+    summary(lm_sweden)
+  }
+  
+  lm_sweden_ep <- lapply(seq(2009, 2019, 5), sweden_per_year, type = "EP")
+  names(lm_sweden_ep) <- paste0("Linear regression model for EP elections in ", seq(2009, 2019, 5))
+  
+  # Save results in txt format
+  sink("Results/Sweden/Migration_only/lm_sweden_ep.txt")
+  print(lm_sweden_ep)
+  sink()
+  
+  
+  lm_sweden_parliamentary <- lapply(seq(2006, 2018, 4), sweden_per_year, type = "Parliament")
+  names(lm_sweden_parliamentary) <- paste0("Linear regression model for Parliamentary elections in ", seq(2006, 2018, 4))
+  
+  # Save results in txt format
+  sink("Results/Sweden/Migration_only/lm_sweden_parliamentary.txt")
+  print(lm_sweden_parliamentary)
+  sink()
+  
+  # SAR
+  sar_sweden_per_year <- function(i, type) {
+    
+    shp_sweden_year_type <- shp_sweden %>%
+      filter(type == type, year == i)
+    
+    # Construct neighbors list from polygon list
+    queen_neighbour <- poly2nb(shp_sweden_year_type, queen = T)
+    
+    # Create spatial weights for neighbors lists
+    listw_sweden <- nb2listw(queen_neighbour, style = "W", zero.policy = TRUE)
+    
+    
+    sar_sweden <- lagsarlm(formula_sweden, data = shp_sweden_year_type, listw = listw_sweden)
+    
+    summary(sar_sweden)
+  }
+  
+  sar_sweden_ep <- lapply(seq(2009, 2019, 5), sar_sweden_per_year, type = "EP")
+  names(sar_sweden_ep) <- paste0("SAR model for EP elections in ", seq(2009, 2019, 5))
+  sar_sweden_ep
+  
+  # Save results in txt format
+  sink("Results/Sweden/Migration_only/sar_sweden_ep.txt")
+  print(sar_sweden_ep)
+  sink()
+  
+  
+  # For 2010 the analysis doesn't work
+  sar_sweden_parliamentary <- lapply(c(2006, 2010, 2014, 2018), sar_sweden_per_year, type = "Parliamentary")
+  names(sar_sweden_parliamentary) <- paste0("SAR model for Parliamentary elections in ", c(2006, 2010, 2014, 2018))
+  sar_sweden_parliamentary
+  
+  # Save results in txt format
+  sink("Results/Sweden/Migration_only/sar_sweden_parliamentary.txt")
+  print(sar_sweden_parliamentary)
+  sink()
+  
+  
+  # # SEM
+  # sem_sweden_per_year <- function(i, type) {
+  # 
+  #   shp_sweden_year_type <- shp_sweden %>%
+  #     filter(type == type, year == i)
+  # 
+  #   # Construct neighbors list from polygon list
+  #   queen_neighbour <- poly2nb(shp_sweden_year_type, queen = T)
+  # 
+  #   # Create spatial weights for neighbors lists
+  #   listw_sweden <- nb2listw(queen_neighbour, style = "W", zero.policy = TRUE)
+  # 
+  # 
+  #   sem_sweden <- errorsarlm(formula_sweden, data = shp_sweden_year_type, listw = listw_sweden)
+  # 
+  #   # tidy(summary(sar_sweden)) %>% arrange(p.value)
+  # 
+  #   summary(sem_sweden)
+  # }
+  # 
+  # sem_sweden_ep <- lapply(seq(2019, 2019, 5), sem_sweden_per_year, type = "EP")
+  # names(sem_sweden_ep) <- paste0("SEM model for EP elections in ", seq(2009, 2019, 5))
+  # sem_sweden_ep
+  # 
+  # sem_sweden_parliamentary <- lapply(c(2006, 2014, 2018), sem_sweden_per_year, type = "Parliamentary")
+  # names(sem_sweden_parliamentary) <- c(2006, 2014, 2018)
+  # sem_sweden_parliamentary
+  
+  # Spatial panel analysis for EP elections
+  panel_sweden <- pdata.frame(shp_sweden %>% filter(type == "EP", year > 2004), c("NUTS_ID", "year")) %>% 
+    relocate(c(NUTS_ID, year), .before = LEVL_CODE)
+  
+  
+  # Construct neighbors list from polygon list
+  queen_neighbour <- poly2nb(shp_sweden %>% filter(type == "EP", year == 2019), queen = T)
+  
+  # Create spatial weights for neighbors lists
+  listw_sweden <- nb2listw(queen_neighbour, style = "W", zero.policy = TRUE)
+  
+  
+  # SEM model with fixed effects, one directional
+  sem_fe1 <- spml(formula_sweden, data = panel_sweden, listw = listw_sweden, model = "within", lag = T, effect = "individual", spatial.error = "b")
+  
+  # Save results in txt format
+  sink("Results/Sweden/Migration_only/sem_fe1_ep.txt")
+  print("Spatial panel SEM model with fixed effects and one direction for EP elections in 2009-2019 period")
+  print(summary(sem_fe1))
+  sink()
+  
+  # Spatial panel analysis for Parliamentary elections
+  panel_sweden <- pdata.frame(shp_sweden %>% filter(type == "Parliament", year > 2004), c("NUTS_ID", "year")) %>% 
+    relocate(c(NUTS_ID, year), .before = LEVL_CODE)
+  
+  
+  # Construct neighbors list from polygon list
+  queen_neighbour <- poly2nb(shp_sweden %>% filter(type == "Parliament", year == 2018), queen = T)
+  
+  # Create spatial weights for neighbors lists
+  listw_sweden <- nb2listw(queen_neighbour, style = "W", zero.policy = TRUE)
+  
+  
+  # SEM model with fixed effects, one directional
+  sem_fe1 <- spml(formula_sweden, data = panel_sweden, listw = listw_sweden, model = "within", lag = T, effect = "individual", spatial.error = "b")
+  
+  # Save results in txt format
+  sink("Results/Sweden/Migration_only/sem_fe1_parliamentary.txt")
+  print("Spatial panel SEM model with fixed effects and one direction for Parliament elections in 2006-2018 period")
+  print(summary(sem_fe1))
+  sink()
+  
+  
+  
+  # Italy case
+  r_side_italy <- df_italy %>% 
+    select(34) %>%
+    colnames()
+  
+  formula_italy <- as.formula(paste("growth_farright_p_perc ~", paste0(r_side_italy, collapse = " + ")))
+  
+  lm_italy <- lm(formula_italy, df_italy)
+  
+  # Save results in txt format
+  sink("Results/Italy/Migration_only/lr_italy.txt")
+  print("Linear regression model for EP in 2019")
+  print(summary(lm_italy))
+  sink()
+  
+  # SAR 
+  sar_italy <- lagsarlm(formula_italy, data = shp_italy, listw = listw_italy) 
+  
+  tidy(summary(sar_italy)) %>% arrange(p.value)
+  glance(summary(sar_italy))
+  
+  # Save results in txt format
+  sink("Results/Italy/Migration_only/sar_italy.txt")
+  print("SAR model for EP in 2019")
+  print(summary(sar_italy))
+  glance(summary(sar_italy))
+  sink()
+  closeAllConnections()
+  
+  
+  # SEM
+  sem_italy <- errorsarlm(formula_italy, data = shp_italy, listw = listw_italy) 
+  
+  tidy(summary(sem_italy)) %>% arrange(p.value)
+  glance(summary(sem_italy))
+  
+  # Save results in txt format
+  sink("Results/Italy/Migration_only/sem_italy.txt")
+  print("SEM model for EP in 2019")
+  print(summary(sem_italy))
+  glance(summary(sem_italy))
+  sink()
+  
+  
+  # SARAR
+  sarar_italy <- sacsarlm(formula_italy, data = shp_italy, listw = listw_italy, type="sac") 
+  
+  tidy(summary(sarar_italy)) %>% arrange(p.value)
+  glance(summary(sarar_italy))
+  
+  # Save results in txt format
+  sink("Results/Italy/Migration_only/sarar_italy.txt")
+  print("SARAR model for EP in 2019")
+  print(summary(sarar_italy))
+  glance(summary(sarar_italy))
+  sink()
+  
+  # It won't work due to only one year data
+  # spml_italy <- spml(formula_italy, data = shp_italy, listw = listw_italy)
+  
+  # Hungary case
+  r_side_hungary <- df_hungary %>% 
+    select(34) %>%
+    colnames()
+  
+  formula_hungary <- as.formula(paste("growth_farright_p_perc ~", paste0(r_side_hungary, collapse = " + ")))
+  
+  hungary_per_year <- function(i, type) {
+    lm_hungary <- lm(formula_hungary, df_hungary %>% filter(type == type, year == i))
+    summary(lm_hungary)
+  }
+  
+  lm_hungary_ep <- lapply(seq(2009, 2019, 5), hungary_per_year, type = "EP")
+  names(lm_hungary_ep) <- paste0("Linear regression model for EP elections in ", seq(2009, 2019, 5))
+  
+  # Save results in txt format
+  sink("Results/Hungary/Migration_only/lm_hungary_ep.txt")
+  print(lm_hungary_ep)
+  sink()
+  
+  
+  lm_hungary_parliamentary <- lapply(seq(2006, 2018, 4), hungary_per_year, type = "Parliament")
+  names(lm_hungary_parliamentary) <- paste0("Linear regression model for Parliamentary elections in ", seq(2006, 2018, 4))
+  
+  # Save results in txt format
+  sink("Results/Hungary/Migration_only/lm_hungary_parliamentary.txt")
+  print(lm_hungary_parliamentary)
+  sink()
+  
+  # SAR 
+  sar_hungary_per_year <- function(i, type) {
+    
+    shp_hungary_year_type <- shp_hungary %>% 
+      filter(type == type, year == i)
+    
+    # Construct neighbors list from polygon list
+    queen_neighbour <- poly2nb(shp_hungary_year_type, queen = T)
+    
+    # Create spatial weights for neighbors lists
+    listw_hungary <- nb2listw(queen_neighbour, style = "W", zero.policy = TRUE)
+    
+    
+    sar_hungary <- lagsarlm(formula_hungary, data = shp_hungary_year_type, listw = listw_hungary) 
+    
+    summary(sar_hungary)
+  }
+  
+  sar_hungary_ep <- lapply(seq(2009, 2019, 5), sar_hungary_per_year, type = "EP")
+  names(sar_hungary_ep) <- paste0("SAR model for EP elections in ", seq(2009, 2019, 5))
+  sar_hungary_ep
+  
+  # Save results in txt format
+  sink("Results/Hungary/Migration_only/sar_hungary_ep.txt")
+  print(sar_hungary_ep)
+  sink()
+  
+  
+  # For 2010 the analysis doesn't work
+  sar_hungary_parliamentary <- lapply(c(2006, 2014, 2018), sar_hungary_per_year, type = "Parliamentary")
+  names(sar_hungary_parliamentary) <- paste0("SAR model for Parliamentary elections in ", c(2006, 2014, 2018))
+  sar_hungary_parliamentary
+  
+  # Save results in txt format
+  sink("Results/Hungary/Migration_only/sar_hungary_parliamentary.txt")
+  print(sar_hungary_parliamentary)
+  sink()
+  
+  
+  # Doesn't work due to a correlation between variables
+  # # SEM
+  # sem_hungary_per_year <- function(i, type) {
+  # 
+  #   shp_hungary_year_type <- shp_hungary %>%
+  #     filter(type == type, year == i)
+  # 
+  #   # Construct neighbors list from polygon list
+  #   queen_neighbour <- poly2nb(shp_hungary_year_type, queen = T)
+  # 
+  #   # Create spatial weights for neighbors lists
+  #   listw_hungary <- nb2listw(queen_neighbour, style = "W", zero.policy = TRUE)
+  # 
+  # 
+  #   sem_hungary <- errorsarlm(formula_hungary, data = shp_hungary_year_type, listw = listw_hungary)
+  # 
+  #   # tidy(summary(sar_hungary)) %>% arrange(p.value)
+  # 
+  #   summary(sem_hungary)
+  # }
+  # 
+  # sem_hungary_ep <- lapply(seq(2009, 2019, 5), sem_hungary_per_year, type = "EP")
+  # names(sem_hungary_ep) <- paste0("SEM model for ", seq(2009, 2019, 5))
+  # sem_hungary_ep
+  # 
+  # # For 2010 the analysis doesn't work
+  # sem_hungary_parliamentary <- lapply(c(2006, 2014, 2018), sem_hungary_per_year, type = "Parliamentary")
+  # names(sem_hungary_parliamentary) <- c(2006, 2014, 2018)
+  # sem_hungary_parliamentary
+  
+  # Spatial panel analysis for EP elections
+  panel_hungary <- pdata.frame(shp_hungary %>% filter(type == "EP", year > 2004), c("NUTS_ID", "year")) %>% 
+    relocate(c(NUTS_ID, year), .before = LEVL_CODE)
+  
+  
+  # Construct neighbors list from polygon list
+  queen_neighbour <- poly2nb(shp_hungary %>% filter(type == "EP", year == 2019), queen = T)
+  
+  # Create spatial weights for neighbors lists
+  listw_hungary <- nb2listw(queen_neighbour, style = "W", zero.policy = TRUE)
+  
+  
+  sem_fe1 <- spml(formula_hungary, data = panel_hungary, listw = listw_hungary, model = "within", lag = T, effect = "individual", spatial.error = "b")
+  
+  # Save results in txt format
+  sink("Results/Hungary/Migration_only/sem_fe1_ep.txt")
+  print("Spatial panel SEM model with fixed effects and one direction for EP elections in 2009-2019 period")
+  print(summary(sem_fe1))
+  sink()
+  
+  # Spatial panel analysis for Parliamentary elections
+  panel_hungary <- pdata.frame(shp_hungary %>% filter(type == "Parliament", year > 2004), c("NUTS_ID", "year")) %>% 
+    relocate(c(NUTS_ID, year), .before = LEVL_CODE)
+  
+  
+  # Construct neighbors list from polygon list
+  queen_neighbour <- poly2nb(shp_hungary %>% filter(type == "Parliament", year == 2018), queen = T)
+  
+  # Create spatial weights for neighbors lists
+  listw_hungary <- nb2listw(queen_neighbour, style = "W", zero.policy = TRUE)
+  
+  
+  sem_fe1 <- spml(formula_hungary, data = panel_hungary, listw = listw_hungary, model = "within", lag = T, effect = "individual", spatial.error = "b")
+  
+  # Save results in txt format
+  sink("Results/Hungary/Migration_only/sem_fe1_parliamentary.txt")
+  print("Spatial panel SEM model with fixed effects and one direction for Parliament elections in 2006-2018 period")
+  print(summary(sem_fe1))
+  sink()
+}
+

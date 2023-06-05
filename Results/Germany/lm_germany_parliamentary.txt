@@ -20,3 +20,7 @@ third_countries_to_eu_28_until_january_31_2020                                  
                                        america                                            asia  
                                     -7.717e+00                                       1.213e+01  
 
+# A tibble: 1 × 12
+  r.squared adj.r.squared sigma statistic  p.value    df logLik   AIC   BIC deviance df.residual  nobs
+      <dbl>         <dbl> <dbl>     <dbl>    <dbl> <dbl>  <dbl> <dbl> <dbl>    <dbl>       <int> <int>
+1     0.456         0.437  3.91      24.3 3.06e-42    13 -1078. 2186. 2246.    5753.         376   390

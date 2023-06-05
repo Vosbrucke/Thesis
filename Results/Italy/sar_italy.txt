@@ -34,3 +34,7 @@ AIC: 550.62, (AIC for lm: 587.41)
 LM test for residual autocorrelation
 test value: 0.0088022, p-value: 0.92525
 
+# A tibble: 1 × 6
+  r.squared   AIC   BIC deviance logLik  nobs
+      <dbl> <dbl> <dbl>    <dbl>  <dbl> <int>
+1     0.660  551.  584.    1023.  -262.    99

@@ -1,0 +1,36 @@
+[1] "SARAR model for EP in 2019"
+
+Call:sacsarlm(formula = formula_germany, data = shp_germany_ep, listw = listw_germany_ep,     type = "sac")
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-7.37328 -1.25028 -0.27599  0.84534  9.35143 
+
+Type: sac 
+Coefficients: (asymptotic standard errors) 
+                                                Estimate Std. Error z value  Pr(>|z|)
+(Intercept)                                     17.30654    1.46462 11.8164 < 2.2e-16
+third_countries_to_eu_28_until_january_31_2020  -4.57399    2.32609 -1.9664   0.04925
+africa                                          -0.71538    6.69701 -0.1068   0.91493
+america                                        -59.68928    8.70349 -6.8581 6.979e-12
+asia                                             5.25951    3.04303  1.7284   0.08392
+
+Rho: -0.26903
+Asymptotic standard error: 0.086901
+    z-value: -3.0959, p-value: 0.0019623
+Lambda: 0.92678
+Asymptotic standard error: 0.022411
+    z-value: 41.353, p-value: < 2.22e-16
+
+LR test value: 446.74, p-value: < 2.22e-16
+
+Log likelihood: -927.981 for sac model
+ML residual variance (sigma squared): 4.9483, (sigma: 2.2245)
+Number of observations: 393 
+Number of parameters estimated: 8 
+AIC: 1872, (AIC for lm: 2314.7)
+
+# A tibble: 1 × 6
+  r.squared   AIC   BIC deviance logLik  nobs
+      <dbl> <dbl> <dbl>    <dbl>  <dbl> <int>
+1     0.843 1872. 1904.    1945.  -928.   393

@@ -1,0 +1,26 @@
+[1] "Spatial panel SEM model with fixed effects and one direction for EP elections in 2009-2019 period"
+Spatial panel fixed effects sarar model
+ 
+
+Call:
+spml(formula = formula_hungary, data = panel_hungary, listw = listw_hungary, 
+    model = "within", effect = "individual", lag = T, spatial.error = "b")
+
+Residuals:
+   Min. 1st Qu.  Median 3rd Qu.    Max. 
+-55.163 -50.161 -14.642  60.600  74.142 
+
+Spatial error parameter:
+    Estimate Std. Error t-value  Pr(>|t|)    
+rho 0.986900   0.005643  174.89 < 2.2e-16 ***
+
+Spatial autoregressive coefficient:
+       Estimate Std. Error t-value  Pr(>|t|)    
+lambda -0.87442    0.16237 -5.3854 7.228e-08 ***
+
+Coefficients:
+                             Estimate Std. Error t-value Pr(>|t|)  
+perc_foreign_born_population   260.53     132.11  1.9721   0.0486 *
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+

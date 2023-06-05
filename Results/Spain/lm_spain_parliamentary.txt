@@ -6,28 +6,27 @@ lm(formula = formula_spain, data = df_spain %>% filter(type ==
 
 Residuals:
     Min      1Q  Median      3Q     Max 
--11.739  -4.956  -1.315   5.386  15.805 
+-13.240  -4.967  -1.457   6.269  16.758 
 
 Coefficients:
-                                    Estimate Std. Error t value Pr(>|t|)  
-(Intercept)                       -6.445e+00  4.538e+01  -0.142   0.8874  
-gdp                               -8.053e-04  4.770e-04  -1.688   0.0950 .
-employment_rate                    4.832e+01  4.546e+01   1.063   0.2907  
-elder_rate                        -5.595e+01  2.488e+01  -2.249   0.0271 *
-fem_rate                           2.804e-01  3.254e-01   0.862   0.3912  
-migration_rate                    -3.039e-01  2.710e-01  -1.121   0.2653  
-pop_density                       -1.426e-04  1.309e-03  -0.109   0.9135  
-gdp_lag_4                          3.613e+01  2.580e+01   1.400   0.1650  
-employment_rate_lag_4             -3.560e+01  4.163e+01  -0.855   0.3949  
-migration_rate_lag_4              -1.280e-02  2.812e-02  -0.455   0.6501  
-country_of_the_eu28_without_spain  6.228e+01  5.274e+01   1.181   0.2409  
-from_africa                       -7.345e+01  6.388e+01  -1.150   0.2534  
+                          Estimate Std. Error t value Pr(>|t|)  
+(Intercept)             -1.105e+01  4.475e+01  -0.247   0.8056  
+gdp                     -8.403e-04  4.770e-04  -1.762   0.0816 .
+employment_rate          4.459e+01  4.632e+01   0.963   0.3384  
+elder_rate              -4.370e+01  2.427e+01  -1.801   0.0752 .
+fem_rate                 1.829e-01  3.156e-01   0.580   0.5636  
+migration_rate          -3.032e-01  3.216e-01  -0.943   0.3484  
+pop_density             -8.861e-04  1.333e-03  -0.665   0.5080  
+gdp_lag_4                3.583e+01  2.582e+01   1.387   0.1688  
+employment_rate_lag_4   -2.311e+01  4.147e+01  -0.557   0.5788  
+migration_rate_lag_4    -1.810e-02  3.119e-02  -0.580   0.5634  
+foreign_born_population  1.775e+01  3.795e+01   0.468   0.6412  
 ---
 Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
 
-Residual standard error: 6.728 on 86 degrees of freedom
+Residual standard error: 6.778 on 87 degrees of freedom
   (2 observations deleted due to missingness)
-Multiple R-squared:  0.2793,	Adjusted R-squared:  0.1872 
-F-statistic:  3.03 on 11 and 86 DF,  p-value: 0.001838
+Multiple R-squared:  0.2599,	Adjusted R-squared:  0.1748 
+F-statistic: 3.055 on 10 and 87 DF,  p-value: 0.002295
 
 

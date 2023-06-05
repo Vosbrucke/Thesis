@@ -1,0 +1,84 @@
+$`SAR model for EP elections in 2009`
+
+Call:lagsarlm(formula = formula_hungary, data = shp_hungary_year_type,     listw = listw_hungary)
+
+Residuals:
+       Min         1Q     Median         3Q        Max 
+-3.6131095 -1.1656562  0.0029578  0.9415699  4.0427542 
+
+Type: lag 
+Coefficients: (asymptotic standard errors) 
+                              Estimate Std. Error z value  Pr(>|z|)
+(Intercept)                     3.6605     1.4041   2.607 0.0091339
+perc_foreign_born_population -133.6006    40.1810  -3.325 0.0008843
+
+Rho: 0.82319, LR test value: 21.568, p-value: 3.415e-06
+Asymptotic standard error: 0.10191
+    z-value: 8.0776, p-value: 6.6613e-16
+Wald statistic: 65.247, p-value: 6.6613e-16
+
+Log likelihood: -40.43738 for lag model
+ML residual variance (sigma squared): 2.588, (sigma: 1.6087)
+Number of observations: 20 
+Number of parameters estimated: 4 
+AIC: 88.875, (AIC for lm: 108.44)
+LM test for residual autocorrelation
+test value: 0.20676, p-value: 0.64932
+
+
+$`SAR model for EP elections in 2014`
+
+Call:lagsarlm(formula = formula_hungary, data = shp_hungary_year_type,     listw = listw_hungary)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-29.3387 -24.0805  -7.1969  24.1760  36.2509 
+
+Type: lag 
+Coefficients: (asymptotic standard errors) 
+                             Estimate Std. Error z value  Pr(>|z|)
+(Intercept)                    61.526     11.471  5.3638 8.148e-08
+perc_foreign_born_population -168.504    566.375 -0.2975    0.7661
+
+Rho: -1.4046, LR test value: 6.6886, p-value: 0.0097034
+Asymptotic standard error: 0.35144
+    z-value: -3.9967, p-value: 6.4222e-05
+Wald statistic: 15.974, p-value: 6.4222e-05
+
+Log likelihood: -189.2509 for lag model
+ML residual variance (sigma squared): 633.16, (sigma: 25.163)
+Number of observations: 40 
+Number of parameters estimated: 4 
+AIC: 386.5, (AIC for lm: 391.19)
+LM test for residual autocorrelation
+test value: 4.5602, p-value: 0.032724
+
+
+$`SAR model for EP elections in 2019`
+
+Call:lagsarlm(formula = formula_hungary, data = shp_hungary_year_type,     listw = listw_hungary)
+
+Residuals:
+      Min        1Q    Median        3Q       Max 
+-3.139355 -0.989054  0.091715  0.887590  2.434472 
+
+Type: lag 
+Coefficients: (asymptotic standard errors) 
+                             Estimate Std. Error z value Pr(>|z|)
+(Intercept)                   -6.0007     2.2016 -2.7256 0.006418
+perc_foreign_born_population -55.6236    30.1352 -1.8458 0.064921
+
+Rho: 0.1091, LR test value: 0.1429, p-value: 0.70542
+Asymptotic standard error: 0.28766
+    z-value: 0.37928, p-value: 0.70448
+Wald statistic: 0.14385, p-value: 0.70448
+
+Log likelihood: -33.64003 for lag model
+ML residual variance (sigma squared): 1.6875, (sigma: 1.299)
+Number of observations: 20 
+Number of parameters estimated: 4 
+AIC: 75.28, (AIC for lm: 73.423)
+LM test for residual autocorrelation
+test value: 0.0013899, p-value: 0.97026
+
+

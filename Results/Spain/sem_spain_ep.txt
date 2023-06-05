@@ -3,35 +3,36 @@ $`SEM model for EP elections in 2014`
 Call:errorsarlm(formula = formula_spain, data = shp_spain_year_type,     listw = listw_spain)
 
 Residuals:
-     Min       1Q   Median       3Q      Max 
--0.78802 -0.34865 -0.14594  0.16159  1.31890 
+      Min        1Q    Median        3Q       Max 
+-1.507817 -0.297595 -0.013881  0.291550  1.812733 
 
 Type: error 
+Regions with no neighbours included:
+ 48 49 
 Coefficients: (asymptotic standard errors) 
-                                     Estimate  Std. Error z value Pr(>|z|)
-(Intercept)                        5.9969e+00  5.5595e+00  1.0787 0.280732
-gdp                                3.4166e-05  8.4146e-05  0.4060 0.684720
-employment_rate                    5.1965e+00  7.0433e+00  0.7378 0.460638
-elder_rate                        -1.1341e+01  3.9169e+00 -2.8953 0.003788
-fem_rate                          -1.3034e-02  4.9347e-02 -0.2641 0.791680
-migration_rate                     1.4635e-04  5.0477e-02  0.0029 0.997687
-pop_density                       -1.0335e-03  7.3464e-04 -1.4068 0.159486
-gdp_lag_4                         -5.0627e+00  4.1042e+00 -1.2336 0.217368
-employment_rate_lag_4              1.6009e+00  4.4556e+00  0.3593 0.719372
-migration_rate_lag_4               3.7629e-03  9.1055e-03  0.4133 0.679417
-country_of_the_eu28_without_spain  7.5446e+00  5.0629e+00  1.4902 0.136183
-from_africa                       -3.2548e+01  1.0465e+01 -3.1102 0.001870
+                           Estimate  Std. Error z value  Pr(>|z|)
+(Intercept)              9.0431e+00  5.2889e+00  1.7098    0.0873
+gdp                      2.8176e-06  9.8123e-05  0.0287    0.9771
+employment_rate          5.8476e-01  8.5128e+00  0.0687    0.9452
+elder_rate              -4.2116e+00  4.4729e+00 -0.9416    0.3464
+fem_rate                -4.2630e-02  4.1062e-02 -1.0382    0.2992
+migration_rate           4.3845e-02  6.1135e-02  0.7172    0.4733
+pop_density              5.5479e-04  1.3975e-04  3.9700 7.188e-05
+gdp_lag_4               -3.2664e+00  5.0608e+00 -0.6454    0.5187
+employment_rate_lag_4   -3.1478e-01  5.4549e+00 -0.0577    0.9540
+migration_rate_lag_4     3.0103e-03  1.0669e-02  0.2822    0.7778
+foreign_born_population  1.1949e+00  3.6949e+00  0.3234    0.7464
 
-Lambda: 0.79894, LR test value: 15.988, p-value: 6.3749e-05
-Asymptotic standard error: 0.084742
-    z-value: 9.428, p-value: < 2.22e-16
-Wald statistic: 88.887, p-value: < 2.22e-16
+Lambda: 0.78443, LR test value: 14.655, p-value: 0.00012906
+Asymptotic standard error: 0.088799
+    z-value: 8.8337, p-value: < 2.22e-16
+Wald statistic: 78.035, p-value: < 2.22e-16
 
-Log likelihood: -40.58064 for error model
-ML residual variance (sigma squared): 0.26729, (sigma: 0.517)
-Number of observations: 47 
-Number of parameters estimated: 14 
-AIC: 109.16, (AIC for lm: 123.15)
+Log likelihood: -52.23087 for error model
+ML residual variance (sigma squared): 0.40841, (sigma: 0.63907)
+Number of observations: 49 
+Number of parameters estimated: 13 
+AIC: 130.46, (AIC for lm: 143.12)
 
 
 $`SEM model for EP elections in 2019`
@@ -39,34 +40,33 @@ $`SEM model for EP elections in 2019`
 Call:errorsarlm(formula = formula_spain, data = shp_spain_year_type,     listw = listw_spain)
 
 Residuals:
-    Min      1Q  Median      3Q     Max 
--9.9182 -4.6296 -1.6886  4.5882 14.7006 
+     Min       1Q   Median       3Q      Max 
+-12.8987  -4.8402  -1.5934   6.1564  16.4416 
 
 Type: error 
 Coefficients: (asymptotic standard errors) 
-                                     Estimate  Std. Error z value Pr(>|z|)
-(Intercept)                       -3.4822e+01  3.7911e+01 -0.9185  0.35835
-gdp                               -7.9782e-04  3.6158e-04 -2.2065  0.02735
-employment_rate                    3.9218e+01  3.7221e+01  1.0536  0.29205
-elder_rate                        -2.4233e+01  2.0677e+01 -1.1720  0.24120
-fem_rate                           2.4066e-01  2.7954e-01  0.8609  0.38928
-migration_rate                    -4.5933e-01  2.5956e-01 -1.7697  0.07678
-pop_density                        4.1361e-03  5.0665e-03  0.8164  0.41429
-gdp_lag_4                          2.5748e+01  2.1359e+01  1.2055  0.22801
-employment_rate_lag_4             -1.2971e-01  3.7457e+01 -0.0035  0.99724
-migration_rate_lag_4              -3.0706e-02  2.3831e-02 -1.2885  0.19757
-country_of_the_eu28_without_spain  1.0299e+02  4.6424e+01  2.2185  0.02652
-from_africa                       -6.8904e+00  5.1105e+01 -0.1348  0.89275
+                           Estimate  Std. Error z value Pr(>|z|)
+(Intercept)             -1.1902e+01  4.0815e+01 -0.2916  0.77058
+gdp                     -8.8386e-04  4.3466e-04 -2.0334  0.04201
+employment_rate          4.8330e+01  4.2769e+01  1.1300  0.25847
+elder_rate              -4.5188e+01  2.1548e+01 -2.0971  0.03599
+fem_rate                 2.2008e-01  2.9077e-01  0.7569  0.44912
+migration_rate          -3.3235e-01  3.0009e-01 -1.1075  0.26808
+pop_density             -1.0712e-03  1.2009e-03 -0.8920  0.37238
+gdp_lag_4                3.9901e+01  2.3635e+01  1.6882  0.09136
+employment_rate_lag_4   -2.9792e+01  3.7897e+01 -0.7861  0.43178
+migration_rate_lag_4    -1.8219e-02  2.8955e-02 -0.6292  0.52920
+foreign_born_population  1.7101e+01  3.5254e+01  0.4851  0.62762
 
-Lambda: -0.69494, LR test value: 2.8521, p-value: 0.091252
-Asymptotic standard error: 0.28142
-    z-value: -2.4694, p-value: 0.013532
-Wald statistic: 6.0981, p-value: 0.013532
+Lambda: -0.12665, LR test value: 0.34028, p-value: 0.55967
+Asymptotic standard error: 0.19871
+    z-value: -0.63735, p-value: 0.5239
+Wald statistic: 0.40622, p-value: 0.5239
 
-Log likelihood: -301.4952 for error model
-ML residual variance (sigma squared): 34.368, (sigma: 5.8624)
-Number of observations: 94 
-Number of parameters estimated: 14 
-AIC: 630.99, (AIC for lm: 631.84)
+Log likelihood: -320.5973 for error model
+ML residual variance (sigma squared): 40.561, (sigma: 6.3688)
+Number of observations: 98 
+Number of parameters estimated: 13 
+AIC: 667.19, (AIC for lm: 665.53)
 
 

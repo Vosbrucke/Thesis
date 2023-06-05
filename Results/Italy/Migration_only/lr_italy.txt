@@ -1,0 +1,20 @@
+[1] "Linear regression model for EP in 2019"
+
+Call:
+lm(formula = formula_italy, data = df_italy)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-13.0972  -3.7623   0.2534   3.2680  12.9193 
+
+Coefficients:
+                             Estimate Std. Error t value Pr(>|t|)    
+(Intercept)                     24.91       1.26  19.777  < 2e-16 ***
+perc_foreign_born_population    76.07      14.72   5.167  1.2e-06 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 4.896 on 101 degrees of freedom
+Multiple R-squared:  0.209,	Adjusted R-squared:  0.2012 
+F-statistic: 26.69 on 1 and 101 DF,  p-value: 1.203e-06
+

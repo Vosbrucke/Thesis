@@ -37,3 +37,7 @@ Number of observations: 390
 Number of parameters estimated: 16 
 AIC: 1779.1, (AIC for lm: 2186.4)
 
+# A tibble: 1 × 6
+  r.squared   AIC   BIC deviance logLik  nobs
+      <dbl> <dbl> <dbl>    <dbl>  <dbl> <int>
+1     0.853 1779. 1843.    1609.  -874.   390

@@ -1,0 +1,54 @@
+$`SEM model for EP elections in 2014`
+
+Call:errorsarlm(formula = formula_spain, data = shp_spain_year_type,     listw = listw_spain)
+
+Residuals:
+      Min        1Q    Median        3Q       Max 
+-1.180044 -0.644569 -0.262398  0.045609  3.931150 
+
+Type: error 
+Regions with no neighbours included:
+ 48 49 
+Coefficients: (asymptotic standard errors) 
+                        Estimate Std. Error z value  Pr(>|z|)
+(Intercept)              1.53879    0.41531  3.7051 0.0002113
+foreign_born_population  2.48868    3.47286  0.7166 0.4736155
+
+Lambda: 0.57174, LR test value: 7.1594, p-value: 0.0074571
+Asymptotic standard error: 0.14027
+    z-value: 4.0761, p-value: 4.5803e-05
+Wald statistic: 16.614, p-value: 4.5803e-05
+
+Log likelihood: -66.41392 for error model
+ML residual variance (sigma squared): 0.80954, (sigma: 0.89975)
+Number of observations: 49 
+Number of parameters estimated: 4 
+AIC: 140.83, (AIC for lm: 145.99)
+
+
+$`SEM model for EP elections in 2019`
+
+Call:errorsarlm(formula = formula_spain, data = shp_spain_year_type,     listw = listw_spain)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-9.3575 -5.6806 -3.8273  6.6848 21.0344 
+
+Type: error 
+Coefficients: (asymptotic standard errors) 
+                        Estimate Std. Error z value  Pr(>|z|)
+(Intercept)               9.2677     2.1078  4.3968 1.099e-05
+foreign_born_population  10.7848    19.2824  0.5593     0.576
+
+Lambda: 0.44635, LR test value: 10.848, p-value: 0.00098893
+Asymptotic standard error: 0.13691
+    z-value: 3.2602, p-value: 0.0011133
+Wald statistic: 10.629, p-value: 0.0011133
+
+Log likelihood: -330.0137 for error model
+ML residual variance (sigma squared): 47.699, (sigma: 6.9065)
+Number of observations: 98 
+Number of parameters estimated: 4 
+AIC: 668.03, (AIC for lm: 676.88)
+
+

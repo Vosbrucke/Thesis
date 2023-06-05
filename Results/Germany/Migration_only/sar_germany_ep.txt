@@ -1,0 +1,19 @@
+[1] "SAR model for EP elections in 2019"
+
+Call:
+lagsarlm(formula = formula_germany, data = shp_germany_ep, listw = listw_germany_ep)
+Type: lag 
+
+Coefficients:
+                                           rho                                    (Intercept) 
+                                     0.7817591                                      3.7235725 
+third_countries_to_eu_28_until_january_31_2020                                         africa 
+                                    -5.8493878                                     13.9674278 
+                                       america                                           asia 
+                                   -48.9580912                                     10.1502943 
+
+Log likelihood: -963.1588 
+# A tibble: 1 × 6
+  r.squared   AIC   BIC deviance logLik  nobs
+      <dbl> <dbl> <dbl>    <dbl>  <dbl> <int>
+1     0.780 1940. 1968.    2635.  -963.   393

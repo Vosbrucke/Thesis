@@ -1,0 +1,29 @@
+[1] "Spatial panel SEM model with fixed effects and one direction for EP elections in 2009-2019 period"
+Spatial panel fixed effects sarar model
+ 
+
+Call:
+spml(formula = formula_sweden, data = panel_sweden, listw = listw_sweden, 
+    model = "within", effect = "individual", lag = T, spatial.error = "b")
+
+Residuals:
+   Min. 1st Qu.  Median 3rd Qu.    Max. 
+-6.1384 -4.7453  2.0213  2.6257  4.7913 
+
+Spatial error parameter:
+    Estimate Std. Error t-value  Pr(>|t|)    
+rho 0.945964   0.022978  41.168 < 2.2e-16 ***
+
+Spatial autoregressive coefficient:
+       Estimate Std. Error t-value  Pr(>|t|)    
+lambda -0.85848    0.14309 -5.9995 1.979e-09 ***
+
+Coefficients:
+                                                                          Estimate Std. Error t-value Pr(>|t|)  
+foreign_born                                                                47.480     43.310  1.0963  0.27296  
+born_in_sweden_with_two_foreign_born_parents                              -256.810    117.042 -2.1942  0.02822 *
+born_in_sweden_with_one_parent_born_in_sweden_and_one_foreign_born_parent -268.941    139.647 -1.9259  0.05412 .
+born_in_sweden_with_two_parents_born_in_sweden                             -19.907     56.951 -0.3495  0.72668  
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
