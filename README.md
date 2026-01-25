@@ -247,11 +247,10 @@ Provide background information on the most salient issue areas within each count
 While there is a clear visible spatial component in both election years the evolution in between them is not spatially impacted with Moran I test confirming it. The electoral gap is very small with Far-Right parties scoring 42.54% of votes in 2023 vs 50.41% in 2019.
 
 Far-right support in Poland in 2015, 2019 and 2023 Parliamentary elections and its development in between 2023 and 2015
-![alt text](<Data Outputs/Plots/Dependent variable/far-right_parties_electional_results_in_poland_2023_parliamentary_elections.png>)
 | | |
 |---|---|
-| ![alt text](<Data Outputs/Plots/Dependent variable/far-right_parties_electional_results_in_poland_2015_parliamentary_elections.png>) | ![alt text](<Data Outputs/Plots/Dependent variable/far-right_parties_electional_results_in_poland_2019_parliamentary_elections.png>) |
-| ![alt text](<Data Outputs/Plots/Dependent variable/far-right_parties_electional_results_in_poland_2023_parliamentary_elections.png>) | 2026 Thesis/Data Outputs/Plots/Dependent variable/far-right_parties_support_difference_between_2023_and_2015_parliamentary_elections_in_poland.png |
+| ![alt text](https://github.com/Vosbrucke/Thesis/blob/main/Data%20Outputs/Plots/Dependent%20variable/far-right_parties_electional_results_in_poland_2015_parliamentary_elections.png) | ![alt text](https://github.com/Vosbrucke/Thesis/blob/main/Data%20Outputs/Plots/Dependent%20variable/far-right_parties_electional_results_in_poland_2019_parliamentary_elections.png) |
+| ![alt text](https://github.com/Vosbrucke/Thesis/blob/main/Data%20Outputs/Plots/Dependent%20variable/far-right_parties_electional_results_in_poland_2023_parliamentary_elections.png) | ![alt text](https://github.com/Vosbrucke/Thesis/blob/main/Data%20Outputs/Plots/Dependent%20variable/far-right_parties_support_difference_between_2023_and_2015_parliamentary_elections_in_poland.png) |
 
 # linear regression results
 Table: Linear Model Results for Far-Right Parties Support in Poland 2023 Parliamentary Elections
@@ -269,7 +268,7 @@ Table: Linear Model Results for Far-Right Parties Support in Poland 2023 Parliam
 |share_of_kids_until_17_yo_receiving_family_benefits_2023 |    0.552|      0.029|  19.082|                  0|
 
 The residuals show significant spatial autocorrelation
-![alt text](<Data Outputs/Plots/pl_2023_spatial_distribution_of_linear_model_residuals.png>)
+![alt text](https://github.com/Vosbrucke/Thesis/blob/main/Data%20Outputs/Plots/pl_2023_spatial_distribution_of_linear_model_residuals.png)
 
 # SAR model results
 Table: SAR Model Results for Far-Right Parties Support in Poland 2023 Parliamentary Elections
@@ -326,3 +325,4 @@ Parties in Europe.
 - Funke, M., Schularick, M., & Trebesch, C. (2015). Politics in the Slump: Polarization and Extremism after Financial Crises, 1870-2014. European Commission.
 - Inglehart, R. F., & Norris, P. (2016). Trump, Brexit, and the Rise of Populism: Economic HaveNots and Cultural Backlash. HKS Faculty Research Working Paper Series.
 - Kowalczyk, K. (2018). THE CATHOLIC CHURCH IN POLAND AS A SUBJECT AFFECTING THE POLITICAL SYSTEM: CASUS OF LEGAL REGULATIONS OF EXTRACORPOREAL FERTILIZATION IN VITRO. Athaneum, 7-19.
+
