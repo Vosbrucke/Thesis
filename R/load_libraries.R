@@ -1,0 +1,8 @@
+library(sf)
+library(glue)
+library(ggplot2)
+library(data.table)
+library(spatialRF)
+library(spdep)
+library(spatialreg)
+library(knitr)
