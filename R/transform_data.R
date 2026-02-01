@@ -54,7 +54,8 @@ join_covariates_data <- function(
     dt_indicators = "read_indicators_xlsx",
     dt_family_benefits = "read_family_benefits_xlsx",
     dt_revenue = "read_revenue_xlsx",
-    dt_unemployment = "read_unemployment_xlsx"
+    dt_unemployment = "read_unemployment_xlsx",
+    dt_partitions = "load_partitions_classification"
   )
 ) {
 

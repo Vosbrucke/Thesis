@@ -359,32 +359,34 @@ read_indicators_xlsx <- function() {
 }
 
 read_family_benefits_xlsx <- function() {
-  data <- data.table::setDT(suppressMessages(readxl::read_xlsx(
+  data_b <- data.table::setDT(suppressMessages(readxl::read_xlsx(
     path = "2026 Thesis/Data Inputs/population/PL_NUTS3_kids_share_benefiting_from_family_benefits.xlsx",
     sheet = "TABLICA",
     skip = 2
   )))
 
   # rename columns
-  names(data) <- c(
+  names(data_b) <- c(
     "territory_nuts4", "territory_nuts4_name",
     paste0("share_of_kids_until_17_yo_receiving_family_benefits_", 2011:2024)
   )
 
-  data <- data[!is.na(territory_nuts4)]
+  data_b <- data_b[!is.na(territory_nuts4)]
 
   # clean territory names
-  data[, territory_nuts4_name := tolower(gsub("\\.", "", tolower(territory_nuts4_name)))]
-  data[, territory_nuts4 := as.numeric(gsub(" .*", "", territory_nuts4))]
+  data_b[, territory_nuts4_name := tolower(gsub("\\.", "", tolower(territory_nuts4_name)))]
+  data_b[, territory_nuts4 := as.numeric(gsub(" .*", "", territory_nuts4))]
 
   # remove the last number from territory_nuts4
-  data[, territory_nuts4 := as.numeric(substr(territory_nuts4, 1, nchar(territory_nuts4) - 1))]
+  data_b[, territory_nuts4 := as.numeric(substr(territory_nuts4, 1, nchar(territory_nuts4) - 1))]
 
   # turn numeric columns to numeric
-  cols <- names(data)[3:ncol(data)]
-  data[, (cols) := lapply(.SD, function(x) as.numeric(gsub(" ", "", x))), .SDcols = cols]
+  cols <- names(data_b)[3:ncol(data_b)]
+  data_b[, (cols) := lapply(.SD, function(x) as.numeric(gsub(" ", "", x))), .SDcols = cols]
 
-  return(data)
+  # summarise cols by territory_nuts4
+  data_b <- data_b[, lapply(.SD, function(x) sum(as.numeric(x), na.rm = TRUE)), by = .(territory_nuts4), .SDcols = cols]
+  return(data_b)
 }
 
 read_revenue_xlsx <- function() {
@@ -497,6 +499,34 @@ read_migrations_yearly_xlsx <- function() {
     .SDcols = cols_registration_abroad
   ]
 
+  cols_registration_internal <- paste0("registration_internal_year_", 2011:2019)
+  cols_registration_abroad <- paste0("registration_from_abroad_year_", 2011:2019)
+  cols_deregistration_internal <- paste0("deregistration_internal_year_", 2011:2019)
+
+  data[,
+    registration_balance_internal_2011_2019 := rowSums(.SD, na.rm = TRUE),
+    .SDcols = c(cols_registration_internal, cols_deregistration_internal)
+  ]
+  data[
+    ,
+    registration_abroad_2011_2019 := rowSums(.SD, na.rm = TRUE),
+    .SDcols = cols_registration_abroad
+  ]
+
+  cols_registration_internal <- paste0("registration_internal_year_", 2011:2015)
+  cols_registration_abroad <- paste0("registration_from_abroad_year_", 2011:2015)
+  cols_deregistration_internal <- paste0("deregistration_internal_year_", 2011:2015)
+
+  data[,
+    registration_balance_internal_2011_2015 := rowSums(.SD, na.rm = TRUE),
+    .SDcols = c(cols_registration_internal, cols_deregistration_internal)
+  ]
+  data[
+    ,
+    registration_abroad_2011_2015 := rowSums(.SD, na.rm = TRUE),
+    .SDcols = cols_registration_abroad
+  ]
+
   # turn numeric and then summarize by territory_nuts4
   cols <- names(data)[3:ncol(data)]
   data <- data[, lapply(.SD, function(x) sum(as.numeric(x), na.rm = TRUE)), by = .(territory_nuts4), .SDcols = cols]
@@ -505,8 +535,145 @@ read_migrations_yearly_xlsx <- function() {
   data <- data[, .(
     territory_nuts4,
     registration_balance_internal_2011_2023,
-    registration_abroad_2011_2023
+    registration_abroad_2011_2023,
+    registration_balance_internal_2011_2019,
+    registration_abroad_2011_2019,
+    registration_balance_internal_2011_2015,
+    registration_abroad_2011_2015
   )]
 
   return(data)
+}
+
+load_partitions_classification <- function() {
+  dt <- data.table::fread("2026 Thesis/Data Inputs/partition_classification.csv")
+  setnames(dt, c("JPT_KOD_JE", "JPT_NAZWA", "partition"), c("territory_nuts4", "territory_nuts4_name", "partition_classification"))
+  return(dt)
+}
+
+load_minorities_data <- function() {
+  data_2021 <- data.table::setDT(readxl::read_xlsx(
+    "2026 Thesis/Data Inputs/population/PL_2021_NUTS3_minorities.xlsx",
+    sheet = "TABL. 5", skip = 3
+  ))[, 1:6]
+  names(data_2021) <- c("territory_nuts2_name", "territory_nuts3_name", "territory_nuts4_name", "territory_nuts4", "minority_population", "minority_population_abs")
+  data_2021 <- data_2021[!is.na(minority_population)]
+  # fill in the territory names by what is above it in the excel
+  data_2021[, territory_nuts2_name := zoo::na.locf(territory_nuts2_name)]
+  data_2021[, territory_nuts3_name := zoo::na.locf(territory_nuts3_name)]
+  data_2021[, territory_nuts4_name := zoo::na.locf(territory_nuts4_name)]
+  data_2021[, territory_nuts4 := as.numeric(territory_nuts4)]
+  data_2021$minority_population |> unique()
+  data_2021[, minority_population := fcase(
+    minority_population == "Ogółem", "total",
+    minority_population == "śląska", "silesian",
+    minority_population == "kaszubska", "kashubian",
+    minority_population == "niemiecka", "german",
+    minority_population == "ukraińska", "ukrainian",
+    minority_population == "białoruska", "belarusian",
+    default = minority_population
+  )]
+  data_2021[grepl("kartuski", tolower(territory_nuts3_name))]
+  data_2021[!minority_population %in% c("Polska", "Inna niż polska\r\n       w tym:", "total", "silesian", "kashubian", "german", "ukrainian", "belarusian"), minority_population := "other_than_polish_rest"]
+
+  # summarize the other_than_polish_rest into a single category
+  data_2021 <- data_2021[minority_population %in% c("total", "silesian", "kashubian", "german", "ukrainian", "belarusian", "other_than_polish_rest")]
+  data_2021 <- data_2021[,
+    .(minority_population_abs = sum(minority_population_abs, na.rm = TRUE)),
+    by = .(territory_nuts4, territory_nuts4_name, territory_nuts3_name, territory_nuts2_name, minority_population)
+  ]
+
+  data_2021_nuts3[grepl("kartusk", tolower(territory_nuts3_name))]
+
+  # turn to wide format
+  data_2021_nuts4 <- data.table::dcast(
+    copy(data_2021)[, territory_nuts4 := substr(territory_nuts4, 1, nchar(territory_nuts4) - 1)],
+    territory_nuts4 + territory_nuts4_name + territory_nuts3_name + territory_nuts2_name ~ minority_population,
+    value.var = "minority_population_abs",
+    fun.aggregate = sum,
+    fill = 0
+  )
+
+  data_2021_nuts4[, other_than_polish_perc := ((other_than_polish_rest + belarusian + german + kashubian + silesian + ukrainian) / total) * 100]
+
+  data_2021[, territory_nuts3 := as.numeric(substr(territory_nuts4, 1, nchar(territory_nuts4) - 3))]
+  data_2021_nuts3 <- data.table::dcast(
+    data_2021,
+    territory_nuts3 + territory_nuts3_name + territory_nuts2_name ~ minority_population,
+    value.var = "minority_population_abs",
+    fun.aggregate = sum,
+    fill = 0
+  )
+
+  data_2021_nuts3[, other_than_polish_perc := ((other_than_polish_rest + belarusian + german + kashubian + silesian + ukrainian) / total) * 100]
+
+  # read the 2011 data to calculate changes
+  data_2011 <- data.table::setDT(readxl::read_xls(
+    "2026 Thesis/Data Inputs/population/PL_2011_NUTS2_minorities.xls",
+    sheet = "Tabl. 2", skip = 2
+  ))
+  names(data_2011) <- c("territory_nuts2_name", "territory_nuts3", "territory_nuts3_name", "minority_population", "minority_population_abs", "minority_population_percentage")
+  data_2011 <- data_2011[!is.na(minority_population)]
+  # fill in the territory names by what is above it in the excel
+  data_2011[, territory_nuts2_name := zoo::na.locf(territory_nuts2_name)]
+  data_2011[, territory_nuts3_name := zoo::na.locf(territory_nuts3_name)]
+  data_2011[, territory_nuts3 := zoo::na.locf(territory_nuts3)]
+
+  data_2011[, territory_nuts3 := as.numeric(territory_nuts3)]
+
+  data_2011[, minority_population := fcase(
+    minority_population == "Ogółem", "total",
+    minority_population %in% c("Inna niż polska", "Inna niż polska\n    w tym:"), "other_than_polish"
+  )]
+
+  data_2011 <- data_2011[minority_population %in% c("total", "other_than_polish")]
+
+  # turn to wide format
+  data_2011 <- data.table::dcast(
+    data_2011,
+    territory_nuts3 + territory_nuts3_name + territory_nuts2_name ~ minority_population,
+    value.var = "minority_population_abs",
+    # fun.aggregate = sum,
+    fill = 0
+  )
+  data_2011[, other_than_polish_perc := (other_than_polish / total) * 100]
+
+  # compare evolution between 2011 and 2021
+  data_comparison <- merge(
+    data_2021_nuts3[, .(territory_nuts3, territory_nuts3_name, other_than_polish_perc_2021 = other_than_polish_perc)],
+    data_2011[, .(territory_nuts3, other_than_polish_perc_2011 = other_than_polish_perc)],
+    by.x = "territory_nuts3",
+    by.y = "territory_nuts3",
+    all = TRUE
+  )
+  data_comparison[, change_in_other_than_polish_perc_2011_2021 := other_than_polish_perc_2021 - other_than_polish_perc_2011][order(change_in_other_than_polish_perc_2011_2021)][1:15]
+
+  print("Top 15 NUTS3 regions with the highest increase in share of population belonging to minorities between 2011 and 2021:")
+  print(data_comparison[order(-change_in_other_than_polish_perc_2011_2021)][1:15])
+
+  # join shp data
+  shp <- sf::st_read(
+    "2026 Thesis/Data Inputs/shapefiles/PL_NUTS3.shp",
+    quiet = TRUE
+  )
+
+  shp$JPT_KOD_JE <- as.numeric(substr(shp$JPT_KOD_JE, 1, 6))
+  data_2021_nuts4_shp <- merge(
+    shp[, c("JPT_KOD_JE", "geometry")],
+    data_2021_nuts4,
+    by.x = "JPT_KOD_JE",
+    by.y = "territory_nuts4",
+    all.y = TRUE,
+    all.x = FALSE
+  )
+  visualize_data(
+    data_vis = data_2021_nuts4_shp,
+    value_column = "other_than_polish_perc",
+    title = "Share of population belonging to minorities other than Polish in 2021 (perc)",
+    limits_to_100 = FALSE
+  )
+
+  return(data_2021_nuts4[, .(
+    territory_nuts4, belarusian, german, kashubian, silesian, ukrainian, other_than_polish_rest, total, other_than_polish_perc
+  )])
 }
