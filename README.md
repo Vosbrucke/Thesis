@@ -1,5 +1,34 @@
 # **Spatial Dependence and Electoral Dynamics of Far-Right Party Support in Europe**
 
+# Updates
+- 01.02.2026:
+  * added panel modeling code and run various models testing thesis hypothesis. SDM shows the most interesting results. It allocates 76.8% of variability to contagion effects and 23.2% to local effects. It might be either that there is indeed a true contagion taking place with ideas/attitudes spreading between neighbors, or there are many imitted spatial variables- missing contextual factors that cluster spatially. It requires therefore further data ingestion for testing (project for the upcoming week):
+    * Historical context:
+      * minority data from 2021 National Census- Kashubian, German, Ukrainian, Silesian, Belarusian. The results were compared against 2011 data to see if 2021 data can be extrapolated for years before- otherwise the granularity is wrong. There are some changes, most probably would be best to classify in a binary state
+      * classified Prussian, Austrian-Hungarian and Russian partition
+      * former german territory - Areas of Silesia, Lubusz vojewodship, West Pomerania, Masuria and Warmia were populated by people displaced from the eastern borderlands. The newly settled towns were inhabited by a mixed population, from all regions of Poland, which forced people to abandon the local customs they had brought with them leading to more openness to others and in consequence liberal view
+    * Economic structure:
+      * employment agriculture/manufacturing/services share - next step in the process; data downloaded just need to process it
+      * deindustrialization index - WIP
+      * eu accession winners losers - WIP (difficult to find any data but let's try again)
+    * Urban context:
+      * distance to major university city - WIP
+      * urban type (metropolis/city/town/village categorical) - WIP
+      * accessibility index (road network, public transport) - WIP
+      * remoteness score (peripherality measure) - WIP
+
+# Urban character
+- suburban_dummy (commuting zones around cities)
+- city_size_category (small/medium/large urban center)
+- functional_urban_area (vs standalone municipalities)
+  
+- 25.01.2026:
+   * Full overhaul:
+     * New data
+     * New README
+     * New code
+     * New hypthesis
+
 # Table of content
 1. Introduction and objectives of thesis
 2. Overview of the state of research into the 3rd wave of far right surge
@@ -286,6 +315,21 @@ Table: SAR Model Results for Far-Right Parties Support in Poland 2023 Parliament
 |registration_abroad_2011_2023_per_1000                   |registration_abroad_2011_2023_per_1000                   |      -0.180|     0.043|  -4.213|   0.000|        -4.314|          -4.254|       -4.292|
 |share_of_kids_until_17_yo_receiving_family_benefits_2023 |share_of_kids_until_17_yo_receiving_family_benefits_2023 |       0.133|     0.018|   7.608|   0.000|         7.880|           8.315|        8.319|
 
+# Model comparison
+|Model |    LogLik|      AIC|      BIC| Num_Parameters| R_squared|
+|:-----|---------:|--------:|--------:|--------------:|---------:|
+|OLS   | -9308.830| 18637.66| 18696.30|             10|     0.542|
+|SAR   | -7979.601| 15981.20| 16045.71|             12|     0.857|
+|SEM   | -7834.424| 15690.85| 15755.35|             12|     0.883|
+|SDM   | -7783.039| 15604.08| 15715.49|             20|     0.883|
+|SDEM  |  -7812.65| 15663.30| 15774.72|             20|     0.883|
+
+Key questions atm:
+Spatial persistence: Do the same regions remain high/low over time? - Mostly yes but there are some regional differences in 2023 vs 2015 view
+Spatial diffusion: Do changes spread spatially? (critical!!)
+Time dynamics: Do effects strengthen or weaken over time?
+Polarization vs convergence: Are regions becoming more similar or more different?
+
 ### notes on Poland 2023: 
 1. In 2023 parliamentary elections there is a strong spatial component of voting on far right parties visible. In general the west Poland and cities tend to be more non far right leaning while the opposite is true for East and rural areas.
 2. The classification to far-right parties includes PiS which had been for 2 terms a ruling party from 2015 to 2023. Considering a qualitative context of political landscape during this time reveals that PiS made and benefited from considerable changes to media coverage around political topics. In turn, PiS locked some voters to only one perspective on occurring events therefore while we see a turn to the right it is driven by media ownership very often creating the demand for right wing policies instead of reacting to voiced grievances. This leads to a need to understand how and why did support for far right parties change in places not associated to far right party support areas before 2015. Were there economic factors involved?
@@ -325,4 +369,5 @@ Parties in Europe.
 - Funke, M., Schularick, M., & Trebesch, C. (2015). Politics in the Slump: Polarization and Extremism after Financial Crises, 1870-2014. European Commission.
 - Inglehart, R. F., & Norris, P. (2016). Trump, Brexit, and the Rise of Populism: Economic HaveNots and Cultural Backlash. HKS Faculty Research Working Paper Series.
 - Kowalczyk, K. (2018). THE CATHOLIC CHURCH IN POLAND AS A SUBJECT AFFECTING THE POLITICAL SYSTEM: CASUS OF LEGAL REGULATIONS OF EXTRACORPOREAL FERTILIZATION IN VITRO. Athaneum, 7-19.
+
 
