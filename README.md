@@ -16,11 +16,9 @@
       * urban type (metropolis/city/town/village categorical) - WIP
       * accessibility index (road network, public transport) - WIP
       * remoteness score (peripherality measure) - WIP
-
-# Urban character
-- suburban_dummy (commuting zones around cities)
-- city_size_category (small/medium/large urban center)
-- functional_urban_area (vs standalone municipalities)
+      * suburban_dummy (commuting zones around cities) - WIP
+      * city_size_category (small/medium/large urban center) - WIP
+      * functional_urban_area (vs standalone municipalities) - WIP
   
 - 25.01.2026:
    * Full overhaul:
@@ -369,5 +367,6 @@ Parties in Europe.
 - Funke, M., Schularick, M., & Trebesch, C. (2015). Politics in the Slump: Polarization and Extremism after Financial Crises, 1870-2014. European Commission.
 - Inglehart, R. F., & Norris, P. (2016). Trump, Brexit, and the Rise of Populism: Economic HaveNots and Cultural Backlash. HKS Faculty Research Working Paper Series.
 - Kowalczyk, K. (2018). THE CATHOLIC CHURCH IN POLAND AS A SUBJECT AFFECTING THE POLITICAL SYSTEM: CASUS OF LEGAL REGULATIONS OF EXTRACORPOREAL FERTILIZATION IN VITRO. Athaneum, 7-19.
+
 
 
